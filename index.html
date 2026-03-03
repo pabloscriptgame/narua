@@ -4,23 +4,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NARUA RPG — Servidor Oficial</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>NARUA RPG — Servidor Oficial SA-MP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
-         :root {
-            --gold: #F6AF4D;
-            --blue: #33CCFF;
-            --dark: #0a0a0f;
-            --surface: #10101a;
-            --surface2: #181828;
-            --surface3: #1e1e30;
-            --border: rgba(246, 175, 77, 0.2);
-            --text: #ddd;
-            --muted: #888;
-            --green: #2ecc71;
+        /* ============================================================
+   NARUA RPG — Template Estilo PlayShox
+   ============================================================ */
+        
+        :root {
+            --orange: #FF9900;
+            /* Ajustado para a cor da logo */
+            --orange2: #FF7700;
+            --orange3: #FFB347;
+            --dark: #0A0A0B;
+            --dark2: #121214;
+            --dark3: #18181B;
+            --dark4: #202024;
+            --card: rgba(24, 24, 27, 0.7);
+            --card2: rgba(32, 32, 36, 0.9);
+            --border: rgba(255, 153, 0, 0.3);
+            --border2: rgba(255, 255, 255, 0.05);
+            --text: #E1E1E6;
+            --muted: #A8A8B3;
+            --muted2: #C4C4CC;
+            --white: #FFFFFF;
+            --font: 'Open Sans', sans-serif;
+            --head: 'Oswald', sans-serif;
+            --mono: 'Share Tech Mono', monospace;
+            --shadow-orange: 0 0 30px rgba(255, 153, 0, 0.15);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
         
-        * {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -31,974 +48,1430 @@
         }
         
         body {
-            background: var(--dark);
+            background: var(--dark) url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: var(--text);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 16px;
+            font-family: var(--font);
+            font-size: 14px;
             overflow-x: hidden;
             min-height: 100vh;
         }
         
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.07) 2px, rgba(0, 0, 0, 0.07) 4px);
-            pointer-events: none;
-            z-index: 9999;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        /* NAV */
         
-        nav {
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--orange), var(--orange2));
+            border-radius: 4px;
+        }
+        /* ============================================================
+   TOP BAR
+   ============================================================ */
+        
+        .top-bar {
+            background: rgba(10, 10, 11, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            font-size: .75rem;
+            color: var(--muted);
+            font-family: var(--mono);
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
+            z-index: 1001;
+            backdrop-filter: blur(10px);
+        }
+        
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .top-bar a {
+            color: var(--muted);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        
+        .top-bar a:hover {
+            color: var(--orange);
+        }
+        
+        .top-bar .dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--orange);
+            border-radius: 50%;
+            margin-right: .4rem;
+            box-shadow: 0 0 10px var(--orange);
+            animation: blink 2s infinite;
+        }
+        /* ============================================================
+   NAVBAR
+   ============================================================ */
+        
+        nav {
+            position: fixed;
+            top: 36px;
+            left: 0;
+            right: 0;
             z-index: 1000;
-            background: rgba(10, 10, 15, 0.97);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(16px);
+            height: 70px;
+            background: rgba(18, 18, 20, 0.85);
+            border-bottom: 2px solid var(--orange2);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 1.5rem;
-            height: 58px;
-            gap: 1rem;
+            padding: 0 5%;
+            gap: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
         
         .nav-logo {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.7rem;
-            letter-spacing: 4px;
-            color: var(--gold);
-            text-shadow: 0 0 20px rgba(246, 175, 77, 0.4);
+            display: flex;
+            align-items: center;
+            gap: .8rem;
             cursor: pointer;
             flex-shrink: 0;
+            transition: transform 0.3s ease;
         }
         
-        .nav-logo span {
+        .nav-logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.5));
+        }
+        
+        .nav-logo-text {
+            font-family: var(--head);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             color: #fff;
+            text-transform: uppercase;
+            display: none;
         }
         
-        .nav-tabs {
+        .nav-links {
             display: flex;
-            gap: 2px;
             list-style: none;
+            gap: 0.5rem;
             flex: 1;
             justify-content: center;
-            flex-wrap: wrap;
         }
         
-        .nav-tabs li a {
-            display: flex;
-            align-items: center;
-            gap: .35rem;
+        .nav-links li a {
+            display: block;
+            padding: 0.6rem 1.2rem;
             text-decoration: none;
-            color: var(--muted);
-            font-weight: 700;
-            font-size: .78rem;
+            color: var(--muted2);
+            font-family: var(--head);
+            font-weight: 600;
+            font-size: .85rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            padding: .45rem .9rem;
-            border-radius: 5px;
-            transition: all .2s;
-            border: 1px solid transparent;
-            white-space: nowrap;
+            transition: all .3s ease;
             position: relative;
+            white-space: nowrap;
+            border-radius: 4px;
         }
         
-        .nav-tabs li a:hover {
-            color: var(--gold);
-            border-color: var(--border);
-            background: rgba(246, 175, 77, .05);
-        }
-        
-        .nav-tabs li a.active {
-            color: var(--gold);
-            border-color: rgba(246, 175, 77, .4);
-            background: rgba(246, 175, 77, .1);
-        }
-        
-        .nav-tabs li a.active::after {
+        .nav-links li a::before {
             content: '';
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 50%;
-            transform: translateX(-50%);
-            width: 60%;
+            right: 50%;
             height: 2px;
-            background: var(--gold);
-            border-radius: 2px;
+            background: var(--orange);
+            transition: all .3s ease;
+            opacity: 0;
         }
         
-        .nav-server {
+        .nav-links li a:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .nav-links li a:hover::before,
+        .nav-links li a.active::before {
+            left: 10%;
+            right: 10%;
+            opacity: 1;
+        }
+        
+        .nav-links li a.active {
+            color: var(--orange);
+        }
+        
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: .5rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: .72rem;
-            color: var(--green);
-            border: 1px solid rgba(46, 204, 113, .3);
-            padding: .28rem .7rem;
-            border-radius: 4px;
-            background: rgba(46, 204, 113, .05);
-            cursor: pointer;
-            transition: all .2s;
+            gap: 1rem;
             flex-shrink: 0;
         }
         
-        .nav-server:hover {
-            background: rgba(46, 204, 113, .12);
-        }
-        
-        .dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-                box-shadow: 0 0 5px var(--green)
-            }
-            50% {
-                opacity: .3;
-                box-shadow: none
-            }
-        }
-        
-        .mobile-btn {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            background: rgba(246, 175, 77, .1);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            cursor: pointer;
-            color: var(--gold);
-            font-size: 1.1rem;
-        }
-        
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 58px;
-            left: 0;
-            right: 0;
-            background: rgba(10, 10, 15, .99);
-            border-bottom: 1px solid var(--border);
-            z-index: 999;
-            padding: .8rem;
-            flex-direction: column;
-            gap: .3rem;
-        }
-        
-        .mobile-nav.open {
-            display: flex;
-        }
-        
-        .mobile-nav a {
-            text-decoration: none;
-            color: var(--muted);
-            font-weight: 700;
-            font-size: .9rem;
-            letter-spacing: 1px;
-            padding: .6rem 1rem;
-            border-radius: 5px;
+        .nav-ip {
             display: flex;
             align-items: center;
             gap: .6rem;
-            transition: all .15s;
+            background: rgba(255, 153, 0, 0.1);
+            border: 1px solid rgba(255, 153, 0, 0.4);
+            border-radius: 6px;
+            padding: .4rem 1rem;
+            font-family: var(--mono);
+            font-size: .8rem;
+            color: var(--orange);
+            cursor: pointer;
+            transition: all .3s ease;
+            box-shadow: inset 0 0 10px rgba(255, 153, 0, 0.05);
         }
         
-        .mobile-nav a:hover,
-        .mobile-nav a.active {
-            color: var(--gold);
-            background: rgba(246, 175, 77, .08);
+        .nav-ip:hover {
+            background: rgba(255, 153, 0, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.2);
         }
-        /* APP */
+        
+        .nav-ip .pdot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--orange);
+            box-shadow: 0 0 8px var(--orange);
+            animation: blink 2s infinite;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: .5rem;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--orange);
+            transition: all .3s;
+        }
+        /* MOBILE MENU */
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 106px;
+            left: 0;
+            right: 0;
+            background: rgba(18, 18, 20, 0.98);
+            border-bottom: 2px solid var(--orange);
+            z-index: 998;
+            flex-direction: column;
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mobile-menu.open {
+            display: flex;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-menu a {
+            padding: 1rem 5%;
+            text-decoration: none;
+            color: var(--muted2);
+            font-family: var(--head);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all .2s;
+            border-bottom: 1px solid rgba(255, 255, 255, .05);
+        }
+        
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            color: var(--orange);
+            background: rgba(255, 153, 0, 0.05);
+            padding-left: calc(5% + 10px);
+            border-left: 4px solid var(--orange);
+        }
+        
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 10px var(--orange);
+            }
+            50% {
+                opacity: .4;
+                box-shadow: 0 0 2px var(--orange);
+            }
+        }
+        /* ============================================================
+   APP
+   ============================================================ */
         
         #app {
-            padding-top: 58px;
-            min-height: 100vh;
+            padding-top: 106px;
+            min-height: calc(100vh - 106px);
         }
         
         .page {
             display: none;
-            animation: pgFade .3s ease;
         }
         
         .page.active {
             display: block;
+            animation: fadeIn .4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @keyframes pgFade {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(8px)
+                transform: translateY(15px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0)
+                transform: none;
             }
         }
-        /* HOME */
+        /* ============================================================
+   HERO SECTION (COM SLIDER DE IMAGENS)
+   ============================================================ */
         
         #page-home {
-            min-height: calc(100vh - 58px);
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 3rem 2rem 4rem;
+            min-height: calc(100vh - 106px);
             position: relative;
             overflow: hidden;
-        }
-        
-        #page-home.active {
             display: flex;
+            align-items: center;
         }
+        /* SLIDER ANIMADO ESTILO PLAYSHOX */
         
-        #page-home::before {
-            content: '';
+        .hero-slider {
             position: absolute;
             inset: 0;
-            background: radial-gradient(ellipse at 25% 50%, rgba(246, 175, 77, .07) 0%, transparent 55%), radial-gradient(ellipse at 75% 20%, rgba(51, 204, 255, .05) 0%, transparent 50%), radial-gradient(ellipse at 50% 85%, rgba(192, 57, 43, .05) 0%, transparent 50%);
-            pointer-events: none;
+            z-index: 0;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4);
+            animation: bgSlider 20s infinite;
+        }
+        
+        @keyframes bgSlider {
+            0%,
+            25% {
+                background-image: url('https://i.imgur.com/8Q3u1tH.jpg');
+            }
+            /* LS / Grove */
+            33%,
+            58% {
+                background-image: url('https://i.imgur.com/KzQ3LdC.jpg');
+            }
+            /* Perseguição Policial */
+            66%,
+            91% {
+                background-image: url('https://i.imgur.com/Z4c9e4g.jpg');
+            }
+            /* Cidade Noturna */
+            100% {
+                background-image: url('https://i.imgur.com/8Q3u1tH.jpg');
+            }
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(10, 10, 11, 1) 0%, rgba(10, 10, 11, 0.8) 40%, transparent 100%);
+            z-index: 1;
+        }
+        
+        .hero-wrap {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+            padding: 4rem 0;
         }
         
         .hero-tag {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: .68rem;
-            letter-spacing: 4px;
-            color: var(--blue);
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            background: rgba(255, 153, 0, 0.1);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 4px;
+            padding: .4rem 1rem;
+            font-family: var(--mono);
+            font-size: .75rem;
+            letter-spacing: 2px;
+            color: var(--orange);
             text-transform: uppercase;
-            margin-bottom: .8rem;
-            opacity: 0;
-            animation: fadeUp .5s .1s forwards;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.1);
         }
         
-        .hero-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(4.5rem, 13vw, 10rem);
-            line-height: .88;
-            letter-spacing: 8px;
-            color: #fff;
-            text-shadow: 0 0 60px rgba(246, 175, 77, .2);
-            opacity: 0;
-            animation: fadeUp .5s .25s forwards;
+        .hero-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--orange);
+            box-shadow: 0 0 8px var(--orange);
+            animation: blink 2s infinite;
         }
         
-        .hero-title span {
-            color: var(--gold);
+        .hero-logo-img {
+            max-width: 480px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.8));
+            animation: heroIn .6s .1s both;
         }
         
-        .hero-sub {
-            font-size: 1rem;
-            color: var(--muted);
-            font-weight: 600;
+        .hero-subtitle {
+            font-family: var(--head);
+            font-size: 1.3rem;
+            font-weight: 500;
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-top: .8rem;
-            opacity: 0;
-            animation: fadeUp .5s .4s forwards;
+            color: var(--muted2);
+            margin-bottom: 2.5rem;
+            animation: heroIn .6s .2s both;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
         }
         
-        .hero-ip {
-            margin-top: 1.8rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem;
-            color: var(--gold);
-            border: 1px solid var(--border);
-            padding: .55rem 1.4rem;
-            border-radius: 6px;
-            background: rgba(246, 175, 77, .04);
-            opacity: 0;
-            animation: fadeUp .5s .55s forwards;
+        .hero-subtitle em {
+            color: var(--orange);
+            font-style: normal;
+            font-weight: 700;
+        }
+        /* SERVER STATUS CARD */
+        
+        .server-card {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--orange);
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 2rem;
+            animation: heroIn .6s .3s both;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        
+        .server-card:hover {
+            transform: translateX(5px);
+            border-color: rgba(255, 153, 0, 0.3);
+        }
+        
+        .server-status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--orange);
+            box-shadow: 0 0 10px var(--orange);
+            animation: blink 2s infinite;
+            flex-shrink: 0;
+        }
+        
+        .server-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .server-name {
+            font-family: var(--head);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+        
+        .server-ip {
+            font-family: var(--mono);
+            font-size: .85rem;
+            color: var(--orange);
+            margin-top: .3rem;
             cursor: pointer;
-            transition: all .2s;
-            user-select: none;
+            transition: color 0.2s;
         }
         
-        .hero-ip:hover {
-            background: rgba(246, 175, 77, .09);
-            box-shadow: 0 0 20px rgba(246, 175, 77, .15);
+        .server-ip:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        
+        .server-players {
+            text-align: right;
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+        
+        .server-players .num {
+            font-family: var(--head);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--orange);
+            line-height: 1;
+        }
+        
+        .server-players .lbl {
+            font-size: .7rem;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        
+        .server-bar-wrap {
+            width: 100%;
+            height: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 3px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+        
+        .server-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange2), var(--orange));
+            border-radius: 3px;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0%;
+            box-shadow: 0 0 10px var(--orange);
         }
         
         .hero-btns {
             display: flex;
-            gap: .7rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 1.8rem;
-            opacity: 0;
-            animation: fadeUp .5s .7s forwards;
-        }
-        
-        .hero-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
             gap: 1rem;
-            margin-top: 3rem;
-            width: 100%;
-            max-width: 900px;
-            opacity: 0;
-            animation: fadeUp .5s .9s forwards;
+            flex-wrap: wrap;
+            animation: heroIn .6s .4s both;
+            margin-bottom: 3rem;
+        }
+        /* HERO STATS ROW */
+        
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            animation: heroIn .6s .5s both;
+            background: rgba(24, 24, 27, 0.6);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(5px);
         }
         
-        .hsc {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.2rem 1rem;
-            cursor: pointer;
-            transition: all .25s;
-            text-decoration: none;
-            color: inherit;
-            display: block;
+        .hstat {
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
         }
         
-        .hsc:hover {
-            border-color: var(--gold);
-            background: var(--surface3);
+        .hstat:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
         }
         
-        .hsc-icon {
+        .hstat-num {
+            font-family: var(--head);
             font-size: 2rem;
-            margin-bottom: .4rem;
-        }
-        
-        .hsc-num {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 2.2rem;
-            color: var(--gold);
-            letter-spacing: 2px;
+            font-weight: 700;
+            color: #fff;
             line-height: 1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
         
-        .hsc-label {
+        .hstat-lbl {
             font-size: .7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--muted);
-            margin-top: .2rem;
+            color: var(--orange);
+            margin-top: .4rem;
+            font-weight: 600;
         }
         
-        @keyframes fadeUp {
+        .hstat-sep {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .1), transparent);
+            align-self: stretch;
+        }
+        /* CHARACTER ADAPTADO AUTOMATICO PARA MOBILE E PC */
+        
+        .hero-char {
+            position: absolute;
+            right: 5%;
+            bottom: 0;
+            height: 90%;
+            max-height: 850px;
+            width: auto;
+            z-index: 2;
+            filter: drop-shadow(-20px 20px 50px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 153, 0, 0.2));
+            animation: charIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) .2s both;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        @keyframes charIn {
             from {
                 opacity: 0;
-                transform: translateY(16px)
+                transform: translateX(100px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0)
+                transform: none;
             }
         }
-        /* PAGE INNER */
-        
-        .page-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem 5rem;
-        }
-        
-        .page-header {
-            margin-bottom: 2.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .page-label {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: .62rem;
-            letter-spacing: 4px;
-            color: var(--blue);
-            text-transform: uppercase;
-            margin-bottom: .4rem;
-        }
-        
-        .page-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: clamp(2.2rem, 5vw, 3.8rem);
-            letter-spacing: 4px;
-            color: #fff;
-            line-height: 1;
-        }
-        
-        .page-title span {
-            color: var(--gold);
-        }
-        
-        .page-desc {
-            color: var(--muted);
-            font-size: .95rem;
-            line-height: 1.6;
-            margin-top: .6rem;
-            max-width: 650px;
-        }
-        /* BUTTONS */
+        /* ============================================================
+   BUTTONS
+   ============================================================ */
         
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: .4rem;
-            padding: .6rem 1.4rem;
+            justify-content: center;
+            gap: .6rem;
+            padding: .8rem 2rem;
             border-radius: 6px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: .85rem;
+            font-family: var(--head);
+            font-weight: 600;
+            font-size: .9rem;
             letter-spacing: 1.5px;
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
             border: none;
-            transition: all .22s;
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold), #d98a20);
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-20deg);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::after {
+            left: 150%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--orange), var(--orange2));
+            color: #111;
+            /* Contraste forte no botão laranja */
+            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 153, 0, 0.6);
             color: #000;
-        }
-        
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(246, 175, 77, .35);
         }
         
         .btn-outline {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid rgba(255, 255, 255, .18);
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, .1);
+            backdrop-filter: blur(5px);
         }
         
         .btn-outline:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--orange);
+            color: var(--orange);
+            background: rgba(255, 153, 0, 0.05);
+            transform: translateY(-3px);
         }
         
-        .btn-discord {
-            background: #5865F2;
+        .btn-wa {
+            background: linear-gradient(135deg, #25D366, #1ebe5a);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-wa:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5);
+        }
+        /* ============================================================
+   PAGE HEADER (inside pages)
+   ============================================================ */
+        
+        .page-hero {
+            background: linear-gradient(to bottom, rgba(18, 18, 20, 0.8), var(--dark)), url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            border-bottom: 1px solid rgba(255, 153, 0, 0.15);
+            padding: 4rem 5% 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 50%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+            transform: translateX(-50%);
+        }
+        
+        .page-hero-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-eyebrow {
+            font-family: var(--mono);
+            font-size: .8rem;
+            letter-spacing: 4px;
+            color: var(--orange);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background: rgba(255, 153, 0, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 153, 0, 0.2);
+        }
+        
+        .page-title {
+            font-family: var(--head);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            line-height: 1.1;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        
+        .page-title em {
+            color: var(--orange);
+            font-style: normal;
+        }
+        
+        .page-desc {
+            color: var(--muted2);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-top: 1.5rem;
+            max-width: 700px;
+            font-weight: 400;
+        }
+        
+        .page-desc code {
+            color: var(--orange);
+            background: rgba(255, 153, 0, 0.1);
+            padding: .2em .6em;
+            border-radius: 4px;
+            font-family: var(--mono);
+        }
+        
+        .page-desc strong {
             color: #fff;
         }
+        /* ============================================================
+   PAGE CONTENT
+   ============================================================ */
         
-        .btn-discord:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(88, 101, 242, .4);
+        .page-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 5% 6rem;
         }
-        
-        .btn-green {
-            background: #25D366;
-            color: #fff;
-        }
-        
-        .btn-green:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, .35);
-        }
-        /* FILTERS */
+        /* ============================================================
+   FILTER BAR
+   ============================================================ */
         
         .filter-bar {
             display: flex;
-            gap: .3rem;
-            margin-bottom: 1.8rem;
+            gap: .8rem;
             flex-wrap: wrap;
+            margin-bottom: 2.5rem;
         }
         
         .fb {
-            padding: .35rem .9rem;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, .1);
-            color: var(--muted);
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: .75rem;
+            padding: .6rem 1.5rem;
+            background: rgba(24, 24, 27, 0.5);
+            border: 1px solid rgba(255, 255, 255, .05);
+            color: var(--muted2);
+            font-family: var(--head);
+            font-weight: 600;
+            font-size: .85rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            border-radius: 4px;
-            transition: all .2s;
+            border-radius: 6px;
+            transition: all .3s ease;
+            backdrop-filter: blur(5px);
         }
         
         .fb.active {
-            background: var(--gold);
-            color: #000;
-            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--orange2), var(--orange));
+            color: #111;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
         }
         
         .fb:hover:not(.active) {
-            border-color: var(--gold);
-            color: var(--gold);
+            border-color: var(--orange);
+            color: #fff;
+            transform: translateY(-2px);
+            background: rgba(255, 153, 0, 0.05);
         }
         /* SEARCH */
         
         .search-box {
             display: flex;
             align-items: center;
-            gap: .6rem;
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 7px;
-            padding: .5rem 1rem;
-            margin-bottom: 1.5rem;
-            max-width: 380px;
+            gap: 1rem;
+            background: rgba(24, 24, 27, 0.8);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 8px;
+            padding: .8rem 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 400px;
+            transition: all .3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .search-box:focus-within {
+            border-color: var(--orange);
+            box-shadow: 0 4px 20px rgba(255, 153, 0, 0.15);
+            transform: translateY(-2px);
         }
         
         .search-box input {
             background: none;
             border: none;
             outline: none;
-            color: var(--text);
-            font-family: 'Rajdhani', sans-serif;
-            font-size: .9rem;
-            font-weight: 600;
+            color: #fff;
+            font-family: var(--font);
+            font-size: 1rem;
             width: 100%;
         }
         
         .search-box input::placeholder {
             color: var(--muted);
         }
-        /* ORGS */
+        /* ============================================================
+   ORG CARDS, JOB CARDS, RULES, WA...
+   (Mesma estrutura)
+   ============================================================ */
         
-        .orgs-grid {
+        .orgs-grid,
+        .jobs-grid,
+        .wa-grid,
+        .vip-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-            gap: .8rem;
+            gap: 1.5rem;
         }
         
-        .org-card {
-            background: var(--surface2);
-            border: 1px solid var(--border);
+        .orgs-grid {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        
+        .jobs-grid {
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        }
+        
+        .wa-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+        
+        .vip-grid {
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        
+        .org-card,
+        .job-card,
+        .wa-card,
+        .rule-card,
+        .vip-card,
+        .info-card {
+            background: var(--card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, .03);
             border-radius: 8px;
-            padding: 1rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: .9rem;
-            transition: all .22s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all .3s ease;
             position: relative;
             overflow: hidden;
         }
         
-        .org-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--oc, var(--gold));
-            transition: width .2s;
+        .org-card {
+            border-top: 4px solid var(--oc, var(--orange));
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
         }
         
         .org-card:hover {
-            background: var(--surface3);
-            border-color: var(--oc, var(--gold));
-            transform: translateX(3px);
-        }
-        
-        .org-card:hover::before {
-            width: 4px;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(var(--oc-rgb, 255, 153, 0), 0.2);
+            background: var(--card2);
         }
         
         .org-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .04);
-            border: 2px solid var(--oc, var(--gold));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
+            font-size: 2.2rem;
             flex-shrink: 0;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
         }
         
         .org-info {
             flex: 1;
             min-width: 0;
+            z-index: 1;
         }
         
         .org-name {
+            font-family: var(--head);
             font-weight: 700;
-            font-size: .95rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             color: #fff;
+            margin-bottom: 4px;
+        }
+        
+        .org-desc2 {
+            font-size: .85rem;
+            color: var(--muted);
+            margin-top: .3rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
         
-        .org-desc2 {
-            font-size: .72rem;
-            color: var(--muted);
-            margin-top: 1px;
-            line-height: 1.3;
-        }
-        
         .org-badges {
+            margin-top: .8rem;
             display: flex;
-            gap: .3rem;
-            margin-top: .4rem;
+            gap: .5rem;
             flex-wrap: wrap;
         }
         
         .badge {
-            font-size: .6rem;
-            font-weight: 700;
-            letter-spacing: .8px;
-            padding: 1px 7px;
-            border-radius: 30px;
-            white-space: nowrap;
+            font-family: var(--head);
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: .3rem .6rem;
+            border-radius: 4px;
         }
         
         .badge-police {
-            background: rgba(51, 204, 255, .12);
-            color: #33CCFF;
-            border: 1px solid rgba(51, 204, 255, .25);
+            background: rgba(51, 204, 255, .1);
+            color: #33ccff;
+            border: 1px solid rgba(51, 204, 255, .3);
         }
         
         .badge-crime {
-            background: rgba(231, 76, 60, .12);
-            color: #e74c3c;
-            border: 1px solid rgba(231, 76, 60, .25);
+            background: rgba(255, 107, 122, .1);
+            color: #ff6b7a;
+            border: 1px solid rgba(255, 107, 122, .3);
         }
         
         .badge-gov {
-            background: rgba(46, 204, 113, .12);
-            color: #2ecc71;
-            border: 1px solid rgba(46, 204, 113, .25);
+            background: rgba(255, 153, 0, .1);
+            color: var(--orange);
+            border: 1px solid rgba(255, 153, 0, .3);
         }
         
         .badge-other {
-            background: rgba(246, 175, 77, .12);
-            color: var(--gold);
-            border: 1px solid rgba(246, 175, 77, .25);
+            background: rgba(255, 255, 255, .05);
+            color: var(--muted2);
+            border: 1px solid rgba(255, 255, 255, .1);
         }
         
         .org-wa {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(37, 211, 102, .1);
-            border: 1px solid rgba(37, 211, 102, .3);
+            font-size: 1.4rem;
+            cursor: pointer;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: .9rem;
-            cursor: pointer;
-            flex-shrink: 0;
-            transition: all .2s;
+            background: rgba(37, 211, 102, .1);
+            border: 1px solid rgba(37, 211, 102, .3);
+            border-radius: 8px;
+            transition: all .3s ease;
             text-decoration: none;
+            z-index: 1;
         }
         
         .org-wa:hover {
-            background: rgba(37, 211, 102, .25);
+            background: #25D366;
+            color: #fff;
             transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, .4);
         }
-        /* JOBS */
-        
-        .jobs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-            gap: .8rem;
-        }
+        /* JOB */
         
         .job-card {
-            background: var(--surface2);
-            border: 1px solid rgba(255, 255, 255, .07);
-            border-radius: 8px;
-            padding: 1.1rem 1.2rem;
-            transition: all .22s;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        
+        .job-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--orange2), var(--orange));
+            transform: scaleX(0);
+            transition: transform .3s ease;
+            transform-origin: center;
         }
         
         .job-card:hover {
-            border-color: var(--gold);
-            background: var(--surface3);
-            transform: translateY(-2px);
+            transform: translateY(-5px);
+        }
+        
+        .job-card:hover::before {
+            transform: scaleX(1);
         }
         
         .job-emoji {
-            font-size: 1.8rem;
-            margin-bottom: .5rem;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+            transition: transform 0.3s ease;
+        }
+        
+        .job-card:hover .job-emoji {
+            transform: scale(1.1);
         }
         
         .job-name {
+            font-family: var(--head);
+            font-size: 1.1rem;
             font-weight: 700;
-            font-size: .95rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             color: #fff;
+            margin-bottom: .8rem;
         }
         
         .job-desc {
-            font-size: .75rem;
+            font-size: .85rem;
             color: var(--muted);
-            margin-top: .25rem;
-            line-height: 1.4;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
         
         .job-req {
-            display: inline-block;
-            margin-top: .6rem;
+            font-family: var(--mono);
+            font-size: .75rem;
+            color: var(--orange);
+            background: rgba(255, 153, 0, .1);
+            border: 1px solid rgba(255, 153, 0, .2);
+            padding: .3rem .8rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .job-cat-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-family: var(--head);
             font-size: .6rem;
+            font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid var(--border);
-            padding: 2px 8px;
-            border-radius: 30px;
+            padding: .2rem .6rem;
+            border-radius: 4px;
+        }
+        
+        .cat-basico {
+            background: rgba(0, 180, 216, .1);
+            color: #00b4d8;
+            border: 1px solid rgba(0, 180, 216, .3);
+        }
+        
+        .cat-veiculo {
+            background: rgba(255, 153, 0, .1);
+            color: var(--orange);
+            border: 1px solid rgba(255, 153, 0, .3);
+        }
+        
+        .cat-crime {
+            background: rgba(255, 107, 122, .1);
+            color: #ff6b7a;
+            border: 1px solid rgba(255, 107, 122, .3);
+        }
+        
+        .cat-nivel {
+            background: rgba(155, 89, 182, .1);
+            color: #c39bd3;
+            border: 1px solid rgba(155, 89, 182, .3);
         }
         /* RULES */
         
         .rules-list {
             display: flex;
             flex-direction: column;
-            gap: .6rem;
+            gap: 1rem;
         }
         
         .rule-card {
-            background: var(--surface2);
-            border: 1px solid rgba(255, 255, 255, .06);
-            border-radius: 8px;
-            padding: 1rem 1.3rem;
+            padding: 1.5rem;
             display: flex;
+            gap: 1.5rem;
             align-items: flex-start;
-            gap: 1rem;
-            transition: border-color .2s;
         }
         
         .rule-card:hover {
-            border-color: rgba(231, 76, 60, .3);
+            border-color: rgba(255, 107, 122, .3);
+            transform: translateX(5px);
         }
         
         .rule-id {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: .65rem;
-            color: var(--blue);
-            background: rgba(51, 204, 255, .07);
-            border: 1px solid rgba(51, 204, 255, .2);
-            padding: 3px 8px;
-            border-radius: 4px;
-            white-space: nowrap;
+            font-family: var(--head);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--orange);
+            background: rgba(255, 153, 0, .1);
+            border: 1px solid rgba(255, 153, 0, .2);
+            padding: .5rem 1rem;
+            border-radius: 6px;
             flex-shrink: 0;
-            margin-top: 1px;
+            min-width: 60px;
+            text-align: center;
         }
         
         .rule-title {
+            font-family: var(--head);
             font-weight: 700;
-            font-size: .95rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             color: #fff;
+            margin-bottom: 4px;
         }
         
         .rule-text {
-            font-size: .78rem;
+            font-size: .9rem;
             color: var(--muted);
-            margin-top: .2rem;
-            line-height: 1.4;
+            margin-top: .5rem;
+            line-height: 1.6;
         }
         
         .rule-punish {
-            font-size: .72rem;
-            color: #e74c3c;
-            font-weight: 600;
-            margin-top: .3rem;
+            font-family: var(--mono);
+            font-size: .8rem;
+            font-weight: bold;
+            color: #ff6b7a;
+            margin-top: .8rem;
+            display: inline-block;
+            background: rgba(255, 107, 122, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 107, 122, 0.2);
         }
-        /* WHATSAPP */
-        
-        .wa-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-            gap: .9rem;
-        }
+        /* WA */
         
         .wa-card {
-            background: var(--surface2);
-            border: 1px solid rgba(37, 211, 102, .18);
-            border-radius: 10px;
-            padding: 1.4rem 1.2rem;
-            text-align: center;
-            transition: all .25s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .wa-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #25D366, transparent);
-            opacity: 0;
-            transition: opacity .3s;
-        }
-        
-        .wa-card:hover::after {
-            opacity: 1;
-        }
-        
-        .wa-card:hover {
-            border-color: rgba(37, 211, 102, .45);
-            background: var(--surface3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
-        }
-        
-        .wa-icon {
-            font-size: 2.2rem;
-            margin-bottom: .6rem;
-        }
-        
-        .wa-name {
-            font-weight: 700;
-            font-size: 1rem;
-            color: #fff;
-            margin-bottom: .25rem;
-        }
-        
-        .wa-desc2 {
-            font-size: .76rem;
-            color: var(--muted);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-        
-        .btn-wa {
-            display: inline-flex;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: .35rem;
-            background: #25D366;
-            color: #fff;
-            border: none;
-            padding: .45rem 1.1rem;
-            border-radius: 6px;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
-            font-size: .78rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all .2s;
-        }
-        
-        .btn-wa:hover {
-            background: #1ebe58;
-            transform: scale(1.04);
-        }
-        /* VIP */
-        
-        .vip-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            text-align: center;
             gap: 1rem;
         }
         
+        .wa-card:hover {
+            border-color: rgba(37, 211, 102, .3);
+            transform: translateY(-5px);
+        }
+        
+        .wa-icon {
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
+        }
+        
+        .wa-name {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        
+        .wa-desc2 {
+            font-size: .85rem;
+            color: var(--muted);
+            flex: 1;
+            line-height: 1.5;
+        }
+        
+        .btn-wa-sm {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            background: linear-gradient(135deg, #25D366, #1ebe5a);
+            color: #fff;
+            font-family: var(--head);
+            font-weight: 600;
+            font-size: .8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: .6rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all .3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, .2);
+        }
+        
+        .btn-wa-sm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, .4);
+        }
+        
+        .sec-head {
+            font-family: var(--head);
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: .8rem;
+            border-bottom: 2px solid rgba(255, 255, 255, .05);
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            color: var(--orange);
+        }
+        
+        .sec-head::before {
+            content: '';
+            width: 4px;
+            height: 18px;
+            background: var(--orange);
+            border-radius: 2px;
+        }
+        /* VIP */
+        
         .vip-card {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.6rem;
-            position: relative;
-            overflow: hidden;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
         }
         
         .vip-card.featured {
-            border-color: var(--gold);
-            background: linear-gradient(145deg, var(--surface2), rgba(246, 175, 77, .04));
+            border: 2px solid var(--orange);
+            background: linear-gradient(180deg, rgba(32, 32, 36, 0.95) 0%, rgba(255, 153, 0, 0.05) 100%);
+            transform: scale(1.02);
         }
         
         .vip-card.featured::before {
-            content: 'POPULAR';
+            content: 'DESTAQUE';
             position: absolute;
-            top: 10px;
-            right: -12px;
-            background: var(--gold);
-            color: #000;
-            font-size: .5rem;
-            font-weight: 800;
+            top: 1.5rem;
+            right: -2.5rem;
+            font-family: var(--head);
+            font-size: .7rem;
+            font-weight: 700;
             letter-spacing: 2px;
-            padding: 3px 24px;
-            transform: rotate(35deg);
+            background: var(--orange);
+            color: #111;
+            padding: .4rem 3rem;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .vip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 153, 0, 0.1);
+            border-color: rgba(255, 153, 0, 0.5);
+        }
+        
+        .vip-card.featured:hover {
+            transform: translateY(-10px) scale(1.02);
         }
         
         .vip-tier {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.9rem;
-            letter-spacing: 3px;
-            line-height: 1;
+            font-family: var(--head);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: .5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .vip-coins {
+            font-family: var(--mono);
+            font-size: .85rem;
+            color: var(--muted2);
+            margin: .5rem 0 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .vip-price {
-            font-size: .78rem;
+            font-size: .9rem;
             color: var(--muted);
-            margin: .3rem 0 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .vip-price strong {
-            color: var(--green);
-            font-size: .9rem;
+            color: #25D366;
+            font-weight: bold;
         }
         
         .vip-perks {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: .35rem;
+            gap: .8rem;
+            flex: 1;
         }
         
         .vip-perks li {
-            font-size: .8rem;
-            color: var(--text);
+            font-size: .9rem;
+            color: var(--muted2);
             display: flex;
-            gap: .5rem;
             align-items: flex-start;
-            line-height: 1.3;
+            gap: .8rem;
+            line-height: 1.4;
         }
         
         .vip-perks li::before {
-            content: '▸';
-            color: var(--gold);
+            content: '✔';
+            color: var(--orange);
+            font-size: 1rem;
             flex-shrink: 0;
-            margin-top: 1px;
+            font-weight: bold;
         }
         /* FAQ */
         
         .faq-list {
             display: flex;
             flex-direction: column;
-            gap: .6rem;
+            gap: 1rem;
+            margin-bottom: 3rem;
         }
         
         .faq-item {
-            background: var(--surface2);
-            border: 1px solid var(--border);
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, .05);
             border-radius: 8px;
             overflow: hidden;
-            cursor: pointer;
+            transition: all .3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .faq-item.open {
+            border-color: var(--orange);
+            box-shadow: 0 4px 20px rgba(255, 153, 0, 0.1);
         }
         
         .faq-q {
-            padding: 1rem 1.3rem;
-            font-weight: 700;
-            font-size: .92rem;
-            color: #fff;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            font-family: var(--head);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: #fff;
             gap: 1rem;
-            user-select: none;
+            transition: color .3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        
+        .faq-q:hover {
+            color: var(--orange);
+            background: rgba(255, 255, 255, 0.05);
         }
         
         .faq-arrow {
-            color: var(--gold);
-            transition: transform .25s;
+            color: var(--orange);
             font-size: .8rem;
+            flex-shrink: 0;
+            transition: transform .3s ease;
         }
         
         .faq-item.open .faq-arrow {
@@ -1006,148 +1479,263 @@
         }
         
         .faq-a {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .3s ease;
-            font-size: .82rem;
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+            font-size: .9rem;
             color: var(--muted);
-            line-height: 1.6;
-            padding: 0 1.3rem;
+            line-height: 1.8;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 1rem;
+            padding-top: 1rem;
         }
         
         .faq-item.open .faq-a {
-            max-height: 300px;
-            padding-bottom: 1rem;
+            display: block;
+            animation: slideDownFAQ 0.3s ease;
         }
         
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
         }
         
         .info-card {
-            background: var(--surface2);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.4rem;
+            padding: 2rem;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 153, 0, 0.2);
         }
         
         .info-card-icon {
             font-size: 2rem;
-            margin-bottom: .6rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 153, 0, 0.1);
+            display: inline-block;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 153, 0, 0.2);
         }
         
         .info-card-title {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            color: var(--gold);
-            margin-bottom: .4rem;
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--orange);
+            margin-bottom: 1rem;
         }
         
         .info-card-text {
-            font-size: .82rem;
+            font-size: .9rem;
             color: var(--muted);
-            line-height: 1.7;
+            line-height: 2;
         }
         
-        code {
-            color: var(--gold);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: .8rem;
+        .info-card-text code {
+            color: var(--orange);
+            background: rgba(255, 153, 0, .1);
+            padding: .2em .5em;
+            border-radius: 4px;
+            font-family: var(--mono);
+            font-size: .85rem;
         }
-        /* FOOTER */
+        /* ============================================================
+   PAGE FOOTER
+   ============================================================ */
         
         .page-footer {
-            background: var(--surface);
-            border-top: 1px solid var(--border);
-            padding: 2.5rem 2rem 1.2rem;
+            background: var(--dark2);
+            border-top: 2px solid rgba(255, 153, 0, 0.2);
+            padding: 4rem 5%;
             text-align: center;
-            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
         }
         
-        .footer-logo {
-            font-family: 'Bebas Neue', cursive;
-            font-size: 1.8rem;
+        .page-footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 153, 0, 0.1), transparent 70%);
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        
+        .footer-logo-img {
+            height: 60px;
+            width: auto;
+            margin: 0 auto 1.5rem;
+            display: block;
+            filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.4));
+            transition: transform 0.3s;
+        }
+        
+        .footer-logo-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .footer-tagline {
+            font-family: var(--head);
+            font-size: .85rem;
             letter-spacing: 4px;
-            color: var(--gold);
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
         }
         
         .footer-links {
             display: flex;
+            gap: 1rem;
             justify-content: center;
-            gap: .8rem;
             flex-wrap: wrap;
-            margin: 1.2rem 0;
+            margin-bottom: 2rem;
         }
         
         .footer-link {
-            font-size: .75rem;
+            text-decoration: none;
+            color: var(--muted2);
+            font-size: .85rem;
+            padding: .6rem 1.2rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, .05);
+            transition: all .3s ease;
+            font-family: var(--head);
             font-weight: 600;
             letter-spacing: 1px;
-            padding: .3rem .9rem;
-            border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, .08);
-            text-decoration: none;
-            color: var(--muted);
-            transition: all .2s;
+            text-transform: uppercase;
+            background: rgba(24, 24, 27, 0.5);
         }
         
         .footer-link:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+            color: #fff;
+            border-color: var(--orange);
+            background: rgba(255, 153, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.2);
         }
         
         .footer-copy {
-            font-size: .7rem;
+            font-size: .8rem;
             color: var(--muted);
             opacity: .6;
+            font-family: var(--mono);
         }
-        /* TOAST */
+        /* ============================================================
+   TOAST
+   ============================================================ */
         
         #toast {
             position: fixed;
-            bottom: 1.5rem;
+            bottom: 2rem;
             left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            background: var(--green);
-            color: #000;
-            font-weight: 800;
-            font-size: .8rem;
-            padding: .55rem 1.4rem;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, var(--orange), var(--orange2));
+            color: #111;
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: .9rem;
+            letter-spacing: 1px;
+            padding: .8rem 2rem;
             border-radius: 6px;
             z-index: 99999;
-            transition: transform .3s ease;
-            letter-spacing: 1px;
+            transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
             white-space: nowrap;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 153, 0, 0.4);
         }
         
         #toast.show {
             transform: translateX(-50%) translateY(0);
         }
-        /* SCROLLBAR */
+        /* ============================================================
+   RESPONSIVE
+   ============================================================ */
         
-        ::-webkit-scrollbar {
-            width: 6px
-        }
-        
-         ::-webkit-scrollbar-track {
-            background: var(--dark)
-        }
-        
-         ::-webkit-scrollbar-thumb {
-            background: rgba(246, 175, 77, .3);
-            border-radius: 3px
-        }
-        
-        @media(max-width:720px) {
-            .nav-tabs {
-                display: none
+        @media (max-width: 1024px) {
+            .hero-char {
+                right: 0;
+                opacity: 0.9;
+                height: 80%;
             }
-            .mobile-btn {
-                display: flex
+        }
+        
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero-char {
+                right: -5%;
+                opacity: 0.6;
+                height: 70%;
+            }
+            /* Personagem adaptado para tablet */
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                z-index: 5;
+            }
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-btns {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+                width: 100%;
+            }
+            .server-card {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .server-players {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero-char {
+                right: -25%;
+                opacity: 0.3;
+                height: 50%;
+                bottom: 5%;
+            }
+            /* Personagem adaptado automaticamente no Mobile, fica como fundo/lateral */
+            .hero-logo-img {
+                max-width: 100%;
+            }
+            .page-title {
+                font-size: 2rem;
+            }
+            .top-bar {
+                display: none;
+            }
+            nav {
+                top: 0;
+            }
+            #app {
+                padding-top: 70px;
+                min-height: calc(100vh - 70px);
+            }
+            .mobile-menu {
+                top: 70px;
             }
         }
     </style>
@@ -1155,95 +1743,125 @@
 
 <body>
 
-    <nav>
-        <div class="nav-logo" onclick="goPage('home')">NARUA<span>RPG</span></div>
-        <ul class="nav-tabs">
-            <li><a href="#" data-page="home" onclick="goPage('home');return false" class="active">🏠 Início</a></li>
-            <li><a href="#" data-page="orgs" onclick="goPage('orgs');return false">🏛 ORGs</a></li>
-            <li><a href="#" data-page="empregos" onclick="goPage('empregos');return false">💼 Empregos</a></li>
-            <li><a href="#" data-page="regras" onclick="goPage('regras');return false">📜 Regras</a></li>
-            <li><a href="#" data-page="whatsapp" onclick="goPage('whatsapp');return false">📲 WhatsApp</a></li>
-            <li><a href="#" data-page="vip" onclick="goPage('vip');return false">💎 VIP</a></li>
-            <li><a href="#" data-page="faq" onclick="goPage('faq');return false">❓ FAQ</a></li>
-        </ul>
-        <div class="nav-server" onclick="copyIP()" title="Clique para copiar IP">
-            <div class="dot"></div>149.56.41.52:7788
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span><span class="dot"></span>SA-MP · PC &amp; Android · v0.3.7</span>
         </div>
-        <div class="mobile-btn" onclick="toggleMobile()">☰</div>
+        <div class="top-bar-right">
+            <span>📱 WhatsApp VIP: (34) 9 9811-0946</span>
+            <a href="#" onclick="copyIP();return false">IP: 168.222.251.98:5177</a>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-logo" onclick="goPage('home')">
+            <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" onerror="this.style.display='none';document.querySelector('.nav-logo-text').style.display='block'">
+            <div class="nav-logo-text">NARUA RPG</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" data-page="home" onclick="goPage('home');return false" class="active">Início</a></li>
+            <li><a href="#" data-page="orgs" onclick="goPage('orgs');return false">Organizações</a></li>
+            <li><a href="#" data-page="empregos" onclick="goPage('empregos');return false">Empregos</a></li>
+            <li><a href="#" data-page="regras" onclick="goPage('regras');return false">Regras</a></li>
+            <li><a href="#" data-page="whatsapp" onclick="goPage('whatsapp');return false">Recrutamento</a></li>
+            <li><a href="#" data-page="vip" onclick="goPage('vip');return false">VIP &amp; Sócios</a></li>
+            <li><a href="#" data-page="faq" onclick="goPage('faq');return false">FAQ</a></li>
+        </ul>
+        <div class="nav-right">
+            <div class="nav-ip" onclick="copyIP()">
+                <div class="pdot"></div>
+                <span id="navStatus">168.222.251.98:5177</span>
+            </div>
+            <div class="hamburger" onclick="toggleMobile()"><span></span><span></span><span></span></div>
+        </div>
     </nav>
 
-    <div class="mobile-nav" id="mobileNav">
+    <div class="mobile-menu" id="mobileMenu">
         <a href="#" data-page="home" onclick="goPage('home');closeMobile();return false">🏠 Início</a>
         <a href="#" data-page="orgs" onclick="goPage('orgs');closeMobile();return false">🏛 Organizações</a>
         <a href="#" data-page="empregos" onclick="goPage('empregos');closeMobile();return false">💼 Empregos</a>
         <a href="#" data-page="regras" onclick="goPage('regras');closeMobile();return false">📜 Regras</a>
-        <a href="#" data-page="whatsapp" onclick="goPage('whatsapp');closeMobile();return false">📲 WhatsApp</a>
-        <a href="#" data-page="vip" onclick="goPage('vip');closeMobile();return false">💎 VIP</a>
+        <a href="#" data-page="whatsapp" onclick="goPage('whatsapp');closeMobile();return false">📲 Recrutamento</a>
+        <a href="#" data-page="vip" onclick="goPage('vip');closeMobile();return false">💎 VIP &amp; Sócios</a>
         <a href="#" data-page="faq" onclick="goPage('faq');closeMobile();return false">❓ FAQ</a>
     </div>
 
     <div id="app">
 
-        <!-- HOME -->
+        <!-- ============================================================ HOME -->
         <div class="page active" id="page-home">
-            <div class="hero-tag">// Servidor de Role Play · SA-MP · Versão D.1.0 //</div>
-            <h1 class="hero-title">NARUA<span>RPG</span></h1>
-            <p class="hero-sub">Guerra de Facções · Empregos · Crimes · Vida Real</p>
-            <div class="hero-ip" onclick="copyIP()">📋 149.56.41.52:7788 — Clique para Copiar</div>
-            <div class="hero-btns">
-                <a href="https://discord.gg/a2DNB37kq6" target="_blank" class="btn btn-discord">💬 Discord</a>
-                <a href="#" onclick="goPage('whatsapp');return false" class="btn btn-green">📲 WhatsApp</a>
-                <a href="#" onclick="goPage('orgs');return false" class="btn btn-gold">🏛 Ver ORGs</a>
-                <a href="#" onclick="goPage('regras');return false" class="btn btn-outline">📜 Regras</a>
+            <!-- SLIDER DE IMAGENS -->
+            <div class="hero-slider"></div>
+            <div class="hero-overlay"></div>
+
+            <div class="hero-wrap">
+                <div class="hero-content">
+                    <div class="hero-tag">Servidor Oficial SA-MP · D.1.0</div>
+                    <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" class="hero-logo-img" onerror="this.outerHTML='<h1 style=\'font-family:Oswald,sans-serif;font-size:4.5rem;font-weight:900;letter-spacing:6px;color:#fff;text-transform:uppercase;margin-bottom:1rem;text-shadow:0 4px 20px rgba(0,0,0,0.8)\'>NARUA<span style=\'color:var(--orange)\'>RPG</span></h1>'">
+                    <p class="hero-subtitle">Guerra de Facções · <em>Empregos</em> · Crimes · Vida Real</p>
+
+                    <div class="server-card">
+                        <div class="server-status-dot" id="heroStatusDot"></div>
+                        <div class="server-info">
+                            <div class="server-name">NARUA RPG — Servidor Oficial</div>
+                            <div class="server-ip" onclick="copyIP()">168.222.251.98:5177 — clique para copiar</div>
+                            <div class="server-bar-wrap">
+                                <div class="server-bar" id="heroBar"></div>
+                            </div>
+                        </div>
+                        <div class="server-players">
+                            <div class="num" id="heroPlayers">—</div>
+                            <div class="lbl">Online</div>
+                        </div>
+                    </div>
+
+                    <div class="hero-btns">
+                        <a href="#" onclick="copyIP();return false" class="btn btn-primary">📋 Copiar IP</a>
+                        <a href="#" onclick="goPage('whatsapp');return false" class="btn btn-wa">📲 Recrutamento</a>
+                        <a href="#" onclick="goPage('vip');return false" class="btn btn-outline">💎 VIP</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="hstat" style="cursor:pointer" onclick="goPage('orgs')">
+                            <div class="hstat-num">26</div>
+                            <div class="hstat-lbl">Organizações</div>
+                        </div>
+                        <div class="hstat-sep"></div>
+                        <div class="hstat" style="cursor:pointer" onclick="goPage('empregos')">
+                            <div class="hstat-num">19</div>
+                            <div class="hstat-lbl">Empregos</div>
+                        </div>
+                        <div class="hstat-sep"></div>
+                        <div class="hstat">
+                            <div class="hstat-num" id="heroTotal">700</div>
+                            <div class="hstat-lbl">Slots</div>
+                        </div>
+                        <div class="hstat-sep"></div>
+                        <div class="hstat" style="cursor:pointer" onclick="goPage('vip')">
+                            <div class="hstat-num">7</div>
+                            <div class="hstat-lbl">Planos VIP</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="hero-cards">
-                <div class="hsc" onclick="goPage('orgs')">
-                    <div class="hsc-icon">🏛</div>
-                    <div class="hsc-num">26</div>
-                    <div class="hsc-label">Organizações</div>
-                </div>
-                <div class="hsc" onclick="goPage('empregos')">
-                    <div class="hsc-icon">💼</div>
-                    <div class="hsc-num">18</div>
-                    <div class="hsc-label">Empregos</div>
-                </div>
-                <div class="hsc">
-                    <div class="hsc-icon">👥</div>
-                    <div class="hsc-num">104</div>
-                    <div class="hsc-label">Slots Online</div>
-                </div>
-                <div class="hsc" onclick="goPage('vip')">
-                    <div class="hsc-icon">💎</div>
-                    <div class="hsc-num">VIP</div>
-                    <div class="hsc-label">Compre Agora</div>
-                </div>
-                <div class="hsc">
-                    <div class="hsc-icon">🚗</div>
-                    <div class="hsc-num">2000+</div>
-                    <div class="hsc-label">Veículos</div>
-                </div>
-            </div>
-            <div style="margin-top:3rem;width:100%;max-width:900px;border-top:1px solid var(--border);padding-top:1.5rem;">
-                <div class="footer-links" style="justify-content:center">
-                    <a href="https://discord.gg/a2DNB37kq6" target="_blank" class="footer-link">💬 Discord</a>
-                    <a href="https://fb.gg/NaRuaRPGOficial" target="_blank" class="footer-link">📘 Facebook</a>
-                    <a href="#" class="footer-link">📸 Instagram</a>
-                    <a href="https://ts.NaRuaRPGOficial.com.br" target="_blank" class="footer-link">🎙 TeamSpeak</a>
-                </div>
-                <div class="footer-copy">© 2024 NARUA RPG · Não afiliado à Rockstar Games</div>
-            </div>
+            <!-- CHARACTER ADAPTÁVEL -->
+            <img src="https://iili.io/qBuZQ1a.png" alt="Personagem NARUA RPG" class="hero-char" onerror="this.style.display='none'">
         </div>
 
-        <!-- ORGS -->
+        <!-- ============================================================ ORGS -->
         <div class="page" id="page-orgs">
-            <div class="page-inner">
-                <div class="page-header">
-                    <div class="page-label">// facções & grupos //</div>
-                    <h2 class="page-title">ORGANIZA<span>ÇÕES</span></h2>
-                    <p class="page-desc">26 organizações ativas — policiais, criminosas e governamentais. Cada org tem cofre próprio, salários por cargo (Cargo 1 até Líder) e sala exclusiva no WhatsApp. Clique em 📲 para entrar no grupo da org.</p>
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">facções &amp; grupos</div>
+                    <h2 class="page-title">ORGANIZA<em>ÇÕES</em></h2>
+                    <p class="page-desc">26 organizações ativas — policiais, criminosas e governamentais. Cada ORG tem cofre, salário por cargo e sala exclusiva. Clique em 📲 para o recrutamento.</p>
                 </div>
+            </div>
+            <div class="page-content">
                 <div class="search-box">
-                    <span>🔍</span>
+                    <span style="color:var(--muted)">🔍</span>
                     <input type="text" id="orgSearch" placeholder="Buscar organização..." oninput="applyOrgFilters()">
                 </div>
                 <div class="filter-bar" id="orgFB">
@@ -1251,25 +1869,27 @@
                     <button class="fb" onclick="setOrgF('police',this)">🚔 Policiais</button>
                     <button class="fb" onclick="setOrgF('crime',this)">💀 Criminosas</button>
                     <button class="fb" onclick="setOrgF('gov',this)">🏛 Governo</button>
-                    <button class="fb" onclick="setOrgF('other',this)">🔧 Outras</button>
+                    <button class="fb" onclick="setOrgF('other',this)">📡 Outros</button>
                 </div>
                 <div class="orgs-grid" id="orgsGrid"></div>
             </div>
-            <div class="page-footer">
-                <div class="footer-copy">NARUA RPG · 149.56.41.52:7788</div>
+            <div class="page-footer"><img src="https://iili.io/qBukOIR.png" alt="Logo" class="footer-logo-img">
+                <div class="footer-copy">© 2024 NARUA RPG · Não afiliado à Rockstar Games</div>
             </div>
         </div>
 
-        <!-- EMPREGOS -->
+        <!-- ============================================================ EMPREGOS -->
         <div class="page" id="page-empregos">
-            <div class="page-inner">
-                <div class="page-header">
-                    <div class="page-label">// prefeitura · /gps //</div>
-                    <h2 class="page-title">EMPRE<span>GOS</span></h2>
-                    <p class="page-desc">Empregos são adquiridos na Prefeitura — use <code>/gps</code> para encontrar. Após contratar, use <code>/ajudaemprego</code> para ver os comandos. Empregos são diferentes de Organizações e qualquer jogador pode pegar.</p>
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">mercado de trabalho</div>
+                    <h2 class="page-title">EMPRE<em>GOS</em></h2>
+                    <p class="page-desc">19 empregos disponíveis. Contrate na Prefeitura com <code>/emprego</code>. Use <code>/ajudaemprego</code> para os comandos. Empregos de nível exigem rank mínimo.</p>
                 </div>
+            </div>
+            <div class="page-content">
                 <div class="filter-bar" id="jobFB">
-                    <button class="fb active" onclick="setJobF('all',this)">Todos (18)</button>
+                    <button class="fb active" onclick="setJobF('all',this)">Todos (19)</button>
                     <button class="fb" onclick="setJobF('basico',this)">🟢 Básicos</button>
                     <button class="fb" onclick="setJobF('veiculo',this)">🚗 Veículo</button>
                     <button class="fb" onclick="setJobF('crime',this)">🔴 Crime</button>
@@ -1278,118 +1898,147 @@
                 <div class="jobs-grid" id="jobsGrid"></div>
             </div>
             <div class="page-footer">
-                <div class="footer-copy">NARUA RPG · 149.56.41.52:7788</div>
+                <div class="footer-copy">NARUA RPG · 168.222.251.98:5177</div>
             </div>
         </div>
 
-        <!-- REGRAS -->
+        <!-- ============================================================ REGRAS -->
         <div class="page" id="page-regras">
-            <div class="page-inner">
-                <div class="page-header">
-                    <div class="page-label">// conduta obrigatória //</div>
-                    <h2 class="page-title">REGRAS DO <span>SERVIDOR</span></h2>
-                    <p class="page-desc">Todos os jogadores devem conhecer e respeitar as regras abaixo. Punições variam de advertência até ban permanente. Para regras completas, use <code>/forum</code> no jogo.</p>
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">conduta obrigatória</div>
+                    <h2 class="page-title">REGRAS DO <em>SERVIDOR</em></h2>
+                    <p class="page-desc">Todos os jogadores devem conhecer e respeitar as regras. Punições variam de advertência até ban permanente.</p>
                 </div>
+            </div>
+            <div class="page-content">
                 <div class="rules-list" id="rulesList"></div>
             </div>
             <div class="page-footer">
-                <div class="footer-copy">NARUA RPG · 149.56.41.52:7788</div>
+                <div class="footer-copy">NARUA RPG · 168.222.251.98:5177</div>
             </div>
         </div>
 
-        <!-- WHATSAPP -->
+        <!-- ============================================================ WHATSAPP -->
         <div class="page" id="page-whatsapp">
-            <div class="page-inner">
-                <div class="page-header">
-                    <div class="page-label">// comunidade //</div>
-                    <h2 class="page-title">SALAS <span>WHATSAPP</span></h2>
-                    <p class="page-desc">Cada organização e grupo do servidor possui sua sala exclusiva no WhatsApp para comunicação fora do jogo. Clique para entrar. Respeite as regras de cada grupo.</p>
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">salas &amp; recrutamento</div>
+                    <h2 class="page-title">SALAS <em>&amp; RECRUT.</em></h2>
+                    <p class="page-desc">Grupos oficiais no WhatsApp. No jogo use <code>/entrarorg</code> para solicitar entrada e procure o líder ou sub-líder no grupo.</p>
                 </div>
-                <div class="wa-grid" id="waGrid"></div>
+            </div>
+            <div class="page-content">
+                <div class="sec-head">🌐 Salas Gerais</div>
+                <div class="wa-grid" id="waGrid" style="margin-bottom:3rem"></div>
+                <div class="sec-head">🏛 Recrutamento por Organização</div>
+                <p style="color:var(--muted);font-size:.9rem;margin-bottom:2rem">Clique em 📲 para o grupo de recrutamento da org desejada.</p>
+                <div class="orgs-grid" id="recruitGrid"></div>
             </div>
             <div class="page-footer">
-                <div class="footer-copy">NARUA RPG · 149.56.41.52:7788</div>
+                <div class="footer-copy">NARUA RPG · 168.222.251.98:5177</div>
             </div>
         </div>
 
-        <!-- VIP -->
+        <!-- ============================================================ VIP -->
         <div class="page" id="page-vip">
-            <div class="page-inner">
-                <div class="page-header">
-                    <div class="page-label">// benefícios premium //</div>
-                    <h2 class="page-title">PLANOS <span>VIP</span></h2>
-                    <p class="page-desc">Adquira seu VIP e tenha vantagens exclusivas. Compra via WhatsApp: <strong style="color:var(--gold)">34998110946</strong>. Ativação em até 24h por um administrador.</p>
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">benefícios premium</div>
+                    <h2 class="page-title">VIP <em>&amp; SÓCIOS</em></h2>
+                    <p class="page-desc">7 planos disponíveis. Adquira via <strong>WhatsApp: (34) 9 9811-0946</strong> ou via Moedas VIP no jogo (<code>/lojavip</code>). Ativação em até 24h.</p>
                 </div>
-                <div class="vip-grid" id="vipGrid"></div>
-                <div style="margin-top:2.5rem;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;">
-                    <div style="font-family:'Bebas Neue',cursive;font-size:1.5rem;letter-spacing:2px;color:var(--gold);margin-bottom:.8rem;">💳 COMO COMPRAR VIP</div>
-                    <div style="font-size:.88rem;color:var(--muted);line-height:2;">
-                        1. Entre em contato via WhatsApp: <strong style="color:#25D366">34998110946</strong><br> 2. Informe seu Nick exato no servidor<br> 3. Escolha o plano desejado<br> 4. Realize o pagamento conforme orientado<br> 5. Aguarde a ativação
-                        por um administrador (até 24h)
+            </div>
+            <div class="page-content">
+                <div class="filter-bar" id="vipTabBar">
+                    <button class="fb active" onclick="setVipTab('vip',this)">💎 VIPs (2)</button>
+                    <button class="fb" onclick="setVipTab('socio',this)">👑 Sócios (5)</button>
+                </div>
+                <div id="vipSection">
+                    <div class="vip-grid" id="vipGrid"></div>
+                </div>
+                <div id="socioSection" style="display:none">
+                    <div class="vip-grid" id="socioGrid"></div>
+                </div>
+
+                <div style="margin-top:4rem;background:var(--card);border:1px solid rgba(255,153,0,.2);border-left:4px solid var(--orange);border-radius:8px;padding:2.5rem;box-shadow:0 10px 30px rgba(0,0,0,0.3)">
+                    <div style="font-family:var(--head);font-size:1.4rem;font-weight:700;letter-spacing:2px;color:var(--orange);margin-bottom:1.5rem;text-transform:uppercase">💳 Como Adquirir VIP / Sócio</div>
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
+                        <div style="background:var(--card2);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                            <div style="color:#25D366;font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">📲 Via WhatsApp</div>
+                            <div style="font-size:.9rem;color:var(--muted);line-height:2">1. Chame: <strong style="color:#fff">(34) 9 9811-0946</strong><br>2. Informe seu Nick exato<br>3. Escolha o plano<br>4. Realize o pagamento<br>5. Ativação em até 24h</div>
+                        </div>
+                        <div style="background:var(--card2);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                            <div style="color:var(--orange);font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">🪙 Via Moedas VIP</div>
+                            <div style="font-size:.9rem;color:var(--muted);line-height:2">1. Digite <code style="color:var(--orange);background:rgba(255,153,0,0.1);padding:2px 6px;border-radius:4px">/lojavip</code> no jogo<br>2. Escolha VIPs ou Sócios<br>3. Tenha moedas suficientes<br>4. Confirme a compra<br>5.
+                                Benefícios imediatos</div>
+                        </div>
+                        <div style="background:var(--card2);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
+                            <div style="color:#C4C4CC;font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">🎯 Comandos VIP</div>
+                            <div style="font-size:.9rem;color:var(--muted);line-height:2"><code style="color:var(--orange)">/lojavip</code> — Abrir loja<br><code style="color:var(--orange)">/menuvip</code> — Seus benefícios<br><code style="color:var(--orange)">/vip</code> — Info VIP<br><code style="color:var(--orange)">/kitsocio</code>                                — Kit sócio<br><code style="color:var(--orange)">/kitvip</code> — Kit VIP</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="page-footer">
-                <div class="footer-copy">NARUA RPG · 149.56.41.52:7788</div>
+            <div class="page-footer"><img src="https://iili.io/qBukOIR.png" alt="Logo" class="footer-logo-img">
+                <div class="footer-copy">© 2024 NARUA RPG · Não afiliado à Rockstar Games</div>
             </div>
         </div>
 
-        <!-- FAQ -->
+        <!-- ============================================================ FAQ -->
         <div class="page" id="page-faq">
-            <div class="page-inner">
-                <div class="page-header">
-                    <div class="page-label">// perguntas frequentes //</div>
-                    <h2 class="page-title">FAQ — <span>AJUDA</span></h2>
-                    <p class="page-desc">Dúvidas frequentes sobre o servidor. Se precisar de ajuda no jogo, use <code>/atendimento</code> ou <code>/duvida</code>.</p>
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">perguntas frequentes</div>
+                    <h2 class="page-title">FAQ — <em>AJUDA</em></h2>
+                    <p class="page-desc">Dúvidas frequentes. No jogo use <code>/atendimento</code> ou <code>/duvida</code> para suporte direto com a staff.</p>
                 </div>
+            </div>
+            <div class="page-content">
                 <div class="faq-list" id="faqList"></div>
                 <div class="info-grid">
                     <div class="info-card">
                         <div class="info-card-icon">🎮</div>
                         <div class="info-card-title">Comandos Úteis</div>
                         <div class="info-card-text">
-                            <code>/gps</code> — Localizar pontos no mapa<br>
-                            <code>/ajudaemprego</code> — Comandos do emprego<br>
-                            <code>/inventario</code> — Ver seu inventário<br>
-                            <code>/vip</code> — Informações sobre VIP<br>
-                            <code>/regras</code> — Ver regras do servidor<br>
-                            <code>/atendimento</code> — Chamar um admin<br>
-                            <code>/rg</code> — Ver seus respeitos<br>
-                            <code>/forum</code> — Acessar fórum do servidor<br>
-                            <code>/faq</code> — Perguntas frequentes<br>
-                            <code>/duvida</code> — Tirar dúvidas no chat
+                            <code>/gps</code> — Localizar pontos<br>
+                            <code>/ajudaemprego</code> — Cmds emprego<br>
+                            <code>/inventario</code> — Inventário<br>
+                            <code>/vip</code> — Info VIP<br>
+                            <code>/regras</code> — Ver regras<br>
+                            <code>/atendimento</code> — Chamar admin<br>
+                            <code>/rg</code> — Seus respeitos<br>
+                            <code>/faq</code> — Perguntas freq.<br>
+                            <code>/duvida</code> — Tirar dúvidas
                         </div>
                     </div>
                     <div class="info-card">
                         <div class="info-card-icon">📡</div>
                         <div class="info-card-title">Contatos Oficiais</div>
                         <div class="info-card-text">
-                            <strong style="color:var(--gold)">IP do Servidor:</strong><br>149.56.41.52:7788<br><br>
-                            <strong style="color:var(--gold)">Discord:</strong><br>discord.gg/a2DNB37kq6<br><br>
-                            <strong style="color:var(--gold)">Facebook:</strong><br>fb.gg/NaRuaRPGOficial<br><br>
-                            <strong style="color:var(--gold)">Instagram:</strong><br>@NaRuaRPGOficialsamp<br><br>
-                            <strong style="color:var(--gold)">WhatsApp VIP:</strong><br>34998110946
+                            <strong>IP:</strong> 168.222.251.98:5177<br><br>
+                            <strong>Facebook:</strong> fb.gg/NaRuaRPGOficial<br><br>
+                            <strong>WhatsApp VIP:</strong> (34) 9 9811-0946
                         </div>
                     </div>
                     <div class="info-card">
                         <div class="info-card-icon">⚠️</div>
                         <div class="info-card-title">Informações Importantes</div>
                         <div class="info-card-text">
-                            Leia as regras no <strong style="color:var(--gold)">Fórum</strong> antes de entrar para uma ORG.<br><br> Para entrar em uma organização, o Líder irá aplicar um teste.<br><br> O <strong style="color:var(--gold)">Discord</strong>                            é obrigatório para membros de ORGs.<br><br> O servidor possui versão <strong style="color:var(--gold)">D.1.0</strong> com atualizações constantes.
+                            Comporte-se de acordo com o RPG no servidor.<br><br> Para entrar em org o Líder aplica teste em Game ou Grupos.<br><br> Servidor versão <strong>D.1.0</strong> — atualizações constantes.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="page-footer">
-                <div class="footer-logo">NARUA RPG</div>
-                <p style="color:var(--muted);font-size:.85rem;margin-top:.3rem">Versão D.1.0 · SA-MP Role Play · 149.56.41.52:7788</p>
-                <div class="footer-links" style="margin-top:1.2rem">
-                    <a href="https://discord.gg/a2DNB37kq6" target="_blank" class="footer-link">💬 Discord</a>
+                <img src="https://iili.io/qBukOIR.png" alt="Logo" class="footer-logo-img">
+                <div class="footer-tagline">SA-MP Role Play · PC &amp; Android</div>
+                <div class="footer-links">
                     <a href="https://fb.gg/NaRuaRPGOficial" target="_blank" class="footer-link">📘 Facebook</a>
                     <a href="#" class="footer-link">📸 Instagram</a>
                     <a href="https://ts.NaRuaRPGOficial.com.br" target="_blank" class="footer-link">🎙 TeamSpeak</a>
                 </div>
-                <div class="footer-copy">© 2024 NARUA RPG · Não afiliado à Rockstar Games</div>
+                <div class="footer-copy">© 2024 NARUA RPG · Não afiliado à Rockstar Games · Versão D.1.0</div>
             </div>
         </div>
 
@@ -1398,7 +2047,9 @@
     <div id="toast">✅ IP Copiado!</div>
 
     <script>
-        // ---- DATA ----
+        // ==============================
+        // DATA
+        // ==============================
         const ORGS = [{
             id: 1,
             name: 'Policia Militar',
@@ -1424,14 +2075,14 @@
             id: 4,
             name: 'Médicos',
             type: 'gov',
-            color: '#aa3333',
+            color: '#cc2222',
             icon: '🏥',
             desc: 'Atende feridos e salva vidas em campo'
         }, {
             id: 5,
             name: 'Los Aztecas',
             type: 'crime',
-            color: '#0000FF',
+            color: '#0055ff',
             icon: '💀',
             desc: 'Gang de rua dominante nos bairros'
         }, {
@@ -1452,7 +2103,7 @@
             id: 8,
             name: 'Hitmans',
             type: 'crime',
-            color: '#4F4F4F',
+            color: '#888',
             icon: '🔫',
             desc: 'Assassinos de aluguel profissionais'
         }, {
@@ -1473,7 +2124,7 @@
             id: 11,
             name: 'PCC',
             type: 'crime',
-            color: '#8bb78b',
+            color: '#5a9a5a',
             icon: '🔴',
             desc: 'Primeiro Comando da Capital'
         }, {
@@ -1494,7 +2145,7 @@
             id: 14,
             name: 'DETRAN',
             type: 'gov',
-            color: '#F6AF4D',
+            color: '#FF6B00',
             icon: '🚗',
             desc: 'Departamento de Trânsito Nacional'
         }, {
@@ -1529,7 +2180,7 @@
             id: 19,
             name: 'Los Vagos',
             type: 'crime',
-            color: '#FFFF00',
+            color: '#dddd00',
             icon: '🟡',
             desc: 'Gang latina dominante em certas zonas'
         }, {
@@ -1543,14 +2194,14 @@
             id: 21,
             name: 'Sons of Anarchy',
             type: 'crime',
-            color: '#570000',
+            color: '#880000',
             icon: '🏍',
             desc: 'Clube de motociclistas SAMCRO'
         }, {
             id: 22,
             name: 'Mafia Cosa Nostra',
             type: 'crime',
-            color: '#00FFFF',
+            color: '#00CCCC',
             icon: '🇮🇹',
             desc: 'A poderosa família italiana'
         }, {
@@ -1571,7 +2222,7 @@
             id: 25,
             name: 'Polícia Federal',
             type: 'police',
-            color: '#363636',
+            color: '#666',
             icon: '🏅',
             desc: 'Elite federal de investigação'
         }, {
@@ -1581,251 +2232,342 @@
             color: '#a0522d',
             icon: '🐉',
             desc: 'Tríade chinesa com influência global'
-        }, ];
+        }];
+
         const WA = [{
             name: 'Geral do Servidor',
             icon: '🌐',
             desc: 'Sala para todos os jogadores',
             link: 'https://chat.whatsapp.com/naruaa-geral'
         }, {
+            name: 'Suporte / Dúvidas',
+            icon: '🆘',
+            desc: 'Staff e suporte oficial',
+            link: 'https://chat.whatsapp.com/naruaa-suporte'
+        }, {
+            name: 'Compra de VIP',
+            icon: '💎',
+            desc: 'Adquira VIP e Sócio aqui',
+            link: 'https://wa.me/5534998110946'
+        }, {
             name: 'Policia Militar',
             icon: '🚔',
             desc: 'Membros da PM apenas',
             link: 'https://chat.whatsapp.com/naruaa-pm'
         }, {
-            name: 'B.O.P.E',
-            icon: '🪖',
-            desc: 'Operações especiais internas',
-            link: 'https://chat.whatsapp.com/naruaa-bope'
-        }, {
-            name: 'Exército',
-            icon: '🎖',
-            desc: 'Canal das Forças Armadas',
-            link: 'https://chat.whatsapp.com/naruaa-exercito'
-        }, {
             name: 'Médicos',
             icon: '🏥',
-            desc: 'Coordenação médica do servidor',
+            desc: 'Equipe médica do servidor',
             link: 'https://chat.whatsapp.com/naruaa-medicos'
-        }, {
-            name: 'G.A.T.E',
-            icon: '🦅',
-            desc: 'Grupo de ações táticas',
-            link: 'https://chat.whatsapp.com/naruaa-gate'
-        }, {
-            name: 'R.O.T.A',
-            icon: '🛡',
-            desc: 'Ronda ostensiva especial',
-            link: 'https://chat.whatsapp.com/naruaa-rota'
-        }, {
-            name: 'Polícia Civil',
-            icon: '🔍',
-            desc: 'Investigações e delegacias',
-            link: 'https://chat.whatsapp.com/naruaa-pc'
-        }, {
-            name: 'Polícia Federal',
-            icon: '🏅',
-            desc: 'Operações federais sigilosas',
-            link: 'https://chat.whatsapp.com/naruaa-pf'
         }, {
             name: 'Governo',
             icon: '🏛',
-            desc: 'Gestão municipal e administrativa',
-            link: 'https://chat.whatsapp.com/naruaa-gov'
+            desc: 'Gestão municipal e staff',
+            link: 'https://chat.whatsapp.com/naruaa-governo'
+        }];
+
+        const RECRUT = [{
+            name: 'Policia Militar',
+            icon: '🚔',
+            color: '#33CCFF',
+            tipo: 'Policial',
+            req: 'Nível 5+',
+            link: 'https://chat.whatsapp.com/recrut-pm'
+        }, {
+            name: 'B.O.P.E',
+            icon: '🪖',
+            color: '#27408B',
+            tipo: 'Policial',
+            req: 'Nível 10+, PM prévia',
+            link: 'https://chat.whatsapp.com/recrut-bope'
+        }, {
+            name: 'Exército',
+            icon: '🎖',
+            color: '#006400',
+            tipo: 'Policial',
+            req: 'Nível 8+',
+            link: 'https://chat.whatsapp.com/recrut-exercito'
+        }, {
+            name: 'R.O.T.A',
+            icon: '🛡',
+            color: '#ff6347',
+            tipo: 'Policial',
+            req: 'Nível 12+, experiência',
+            link: 'https://chat.whatsapp.com/recrut-rota'
+        }, {
+            name: 'G.A.T.E',
+            icon: '🦅',
+            color: '#33aa33',
+            tipo: 'Policial',
+            req: 'Nível 15+, treinamento',
+            link: 'https://chat.whatsapp.com/recrut-gate'
+        }, {
+            name: 'Polícia Civil',
+            icon: '🔍',
+            color: '#93833e',
+            tipo: 'Policial',
+            req: 'Nível 5+',
+            link: 'https://chat.whatsapp.com/recrut-pc'
+        }, {
+            name: 'Polícia Federal',
+            icon: '🏅',
+            color: '#666',
+            tipo: 'Policial',
+            req: 'Nível 20+, elite',
+            link: 'https://chat.whatsapp.com/recrut-pf'
+        }, {
+            name: 'Médicos',
+            icon: '🏥',
+            color: '#cc2222',
+            tipo: 'Governo',
+            req: 'Nível 3+',
+            link: 'https://chat.whatsapp.com/recrut-medicos'
+        }, {
+            name: 'Governo',
+            icon: '🏛',
+            color: '#0099FF',
+            tipo: 'Governo',
+            req: 'Nível 5+',
+            link: 'https://chat.whatsapp.com/recrut-governo'
         }, {
             name: 'DETRAN',
             icon: '🚗',
-            desc: 'Departamento de trânsito',
-            link: 'https://chat.whatsapp.com/naruaa-detran'
+            color: '#FF6B00',
+            tipo: 'Governo',
+            req: 'Nível 5+, CNH',
+            link: 'https://chat.whatsapp.com/recrut-detran'
+        }, {
+            name: 'Los Aztecas',
+            icon: '💀',
+            color: '#0055ff',
+            tipo: 'Criminosa',
+            req: 'Nível 3+, respeito',
+            link: 'https://chat.whatsapp.com/recrut-aztecas'
+        }, {
+            name: 'Taliban',
+            icon: '💣',
+            color: '#f4005b',
+            tipo: 'Criminosa',
+            req: 'Nível 5+, lealdade',
+            link: 'https://chat.whatsapp.com/recrut-taliban'
         }, {
             name: 'PCC',
             icon: '🔴',
-            desc: 'Membros ativos do PCC',
-            link: 'https://chat.whatsapp.com/naruaa-pcc'
-        }, {
-            name: 'Comando Vermelho',
-            icon: '❤',
-            desc: 'CV — acesso restrito a membros',
-            link: 'https://chat.whatsapp.com/naruaa-cv'
+            color: '#5a9a5a',
+            tipo: 'Criminosa',
+            req: 'Nível 4+, respeito',
+            link: 'https://chat.whatsapp.com/recrut-pcc'
         }, {
             name: 'Groove Street',
             icon: '🟢',
-            desc: 'Grove & aliados',
-            link: 'https://chat.whatsapp.com/naruaa-grove'
+            color: '#00d900',
+            tipo: 'Criminosa',
+            req: 'Nível 3+, lealdade',
+            link: 'https://chat.whatsapp.com/recrut-grove'
         }, {
             name: 'Ballas',
             icon: '🟣',
-            desc: 'Gang Ballas — internos',
-            link: 'https://chat.whatsapp.com/naruaa-ballas'
+            color: '#9900ff',
+            tipo: 'Criminosa',
+            req: 'Nível 3+, respeito',
+            link: 'https://chat.whatsapp.com/recrut-ballas'
         }, {
             name: 'Los Vagos',
             icon: '🟡',
-            desc: 'Los Vagos — membros',
-            link: 'https://chat.whatsapp.com/naruaa-vagos'
+            color: '#dddd00',
+            tipo: 'Criminosa',
+            req: 'Nível 3+, território',
+            link: 'https://chat.whatsapp.com/recrut-vagos'
         }, {
-            name: 'Mafia Italiana',
-            icon: '🇮🇹',
-            desc: 'Cosa Nostra — a Família',
-            link: 'https://chat.whatsapp.com/naruaa-mafia'
-        }, {
-            name: 'Sons of Anarchy',
-            icon: '🏍',
-            desc: 'SAMCRO — Motociclistas',
-            link: 'https://chat.whatsapp.com/naruaa-soa'
-        }, {
-            name: 'Triads',
-            icon: '🐉',
-            desc: 'Tríade — membros internos',
-            link: 'https://chat.whatsapp.com/naruaa-triads'
+            name: 'Comando Vermelho',
+            icon: '❤',
+            color: '#FF0000',
+            tipo: 'Criminosa',
+            req: 'Nível 5+, lealdade',
+            link: 'https://chat.whatsapp.com/recrut-cv'
         }, {
             name: 'Hitmans',
             icon: '🔫',
-            desc: 'Assassinos — canal interno',
-            link: 'https://chat.whatsapp.com/naruaa-hitmans'
+            color: '#888',
+            tipo: 'Criminosa',
+            req: 'Nível 8+, skill',
+            link: 'https://chat.whatsapp.com/recrut-hit'
+        }, {
+            name: 'Mafia Mexicana',
+            icon: '🌵',
+            color: '#DD7C7C',
+            tipo: 'Criminosa',
+            req: 'Nível 6+, cartel',
+            link: 'https://chat.whatsapp.com/recrut-mmex'
+        }, {
+            name: 'Mafia Yakuza',
+            icon: '⛩',
+            color: '#006699',
+            tipo: 'Criminosa',
+            req: 'Nível 8+, código',
+            link: 'https://chat.whatsapp.com/recrut-yakuza'
+        }, {
+            name: 'Sons of Anarchy',
+            icon: '🏍',
+            color: '#880000',
+            tipo: 'Criminosa',
+            req: 'Nível 6+, moto',
+            link: 'https://chat.whatsapp.com/recrut-soa'
+        }, {
+            name: 'Mafia Cosa Nostra',
+            icon: '🇮🇹',
+            color: '#00CCCC',
+            tipo: 'Criminosa',
+            req: 'Nível 8+, família',
+            link: 'https://chat.whatsapp.com/recrut-nostra'
+        }, {
+            name: 'Mayans',
+            icon: '🏍',
+            color: '#a774e2',
+            tipo: 'Criminosa',
+            req: 'Nível 5+, moto',
+            link: 'https://chat.whatsapp.com/recrut-mayans'
+        }, {
+            name: 'Triads',
+            icon: '🐉',
+            color: '#a0522d',
+            tipo: 'Criminosa',
+            req: 'Nível 8+, honra',
+            link: 'https://chat.whatsapp.com/recrut-triads'
+        }, {
+            name: "Al'qaeda",
+            icon: '☪',
+            color: '#ffcc99',
+            tipo: 'Criminosa',
+            req: 'Nível 6+, lealdade',
+            link: 'https://chat.whatsapp.com/recrut-alq'
         }, {
             name: 'Rede Globo',
             icon: '📺',
-            desc: 'Imprensa e jornalistas',
-            link: 'https://chat.whatsapp.com/naruaa-globo'
-        }, {
-            name: 'VIP / Sócio',
-            icon: '💎',
-            desc: 'Sala exclusiva VIP',
-            link: 'https://chat.whatsapp.com/naruaa-vip'
-        }, {
-            name: 'Novatos',
-            icon: '🌱',
-            desc: 'Ajuda e dúvidas para iniciantes',
-            link: 'https://chat.whatsapp.com/naruaa-novatos'
-        }, {
-            name: 'Eventos',
-            icon: '🎯',
-            desc: 'Avisos de eventos especiais',
-            link: 'https://chat.whatsapp.com/naruaa-eventos'
-        }, ];
+            color: '#CD9B9B',
+            tipo: 'Outro',
+            req: 'Nível 3+, comunicação',
+            link: 'https://chat.whatsapp.com/recrut-globo'
+        }];
+
         const JOBS = [{
-            name: 'Fazendeiro',
-            icon: '🌾',
-            desc: 'Cuida de fazendas e produção agrícola',
-            req: 'Básico',
-            cat: 'basico'
-        }, {
-            name: 'Caminhoneiro',
-            icon: '🚛',
-            desc: 'Transporta cargas pesadas entre cidades',
-            req: 'Hab. B',
-            cat: 'veiculo'
-        }, {
-            name: 'Lixeiro',
-            icon: '🗑',
-            desc: 'Recolhe o lixo pelas ruas da cidade',
-            req: 'Básico',
-            cat: 'basico'
-        }, {
-            name: 'Coveiro',
-            icon: '⚰',
-            desc: 'Trabalha no cemitério municipal',
-            req: 'Básico',
-            cat: 'basico'
-        }, {
+            icon: '🧤',
             name: 'Mendigo',
-            icon: '🤲',
-            desc: 'Pede esmola pelas ruas da cidade',
-            req: 'Inicial',
-            cat: 'basico'
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Pede esmolas e faz pequenos serviços nas ruas'
         }, {
-            name: 'Mot. de Ônibus',
-            icon: '🚌',
-            desc: 'Transporta passageiros pela cidade',
-            req: 'Hab.',
-            cat: 'veiculo'
+            icon: '🗑️',
+            name: 'Lixeiro',
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Coleta lixo pelas rotas da cidade por salário'
         }, {
-            name: 'Detetive',
-            icon: '🕵',
-            desc: 'Investiga casos e crimes particulares',
-            req: 'Nível 5+',
-            cat: 'nivel'
+            icon: '✉️',
+            name: 'Carteiro',
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Entrega encomendas e cartas pelo mapa'
         }, {
-            name: 'Advogado',
-            icon: '⚖',
-            desc: 'Defende clientes nas delegacias e cadeia',
-            req: 'Nível 5+',
-            cat: 'nivel'
-        }, {
-            name: 'Ag. Penitenciário',
-            icon: '🔒',
-            desc: 'Cuida da cadeia e dos detentos',
-            req: 'Nível 3+',
-            cat: 'nivel'
-        }, {
-            name: 'Segurança',
-            icon: '💪',
-            desc: 'Protege locais e pessoas importantes',
-            req: 'Nível 3+',
-            cat: 'nivel'
-        }, {
-            name: 'Pizzaboy',
             icon: '🍕',
-            desc: 'Entrega pizzas de moto pela cidade',
-            req: 'Moto',
-            cat: 'veiculo'
+            name: 'Pizzaboy',
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Entrega pizzas de moto pelos bairros'
         }, {
-            name: 'Minerador',
-            icon: '⛏',
-            desc: 'Extrai minerais e recursos valiosos',
-            req: 'Ferramenta',
-            cat: 'basico'
+            icon: '⚰️',
+            name: 'Coveiro',
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Trabalha no cemitério realizando enterros'
         }, {
-            name: 'Vendedor Produtos',
+            icon: '💼',
+            name: 'Segurança',
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Protege estabelecimentos por remuneração'
+        }, {
             icon: '🛒',
-            desc: 'Vende produtos de carga pelo mapa',
-            req: 'Veículo',
-            cat: 'veiculo'
+            name: 'Vendedor de Produtos',
+            cat: 'basico',
+            req: 'Nível 1',
+            desc: 'Vende mercadorias em pontos comerciais'
         }, {
-            name: 'Taxista',
+            icon: '🚌',
+            name: 'Motorista de Ônibus',
+            cat: 'veiculo',
+            req: 'Nível 1',
+            desc: 'Transporta passageiros pelas rotas'
+        }, {
+            icon: '🚛',
+            name: 'Caminhoneiro',
+            cat: 'veiculo',
+            req: 'Nível 2',
+            desc: 'Transporta cargas entre pontos do mapa'
+        }, {
             icon: '🚕',
-            desc: 'Transporta passageiros por corridas',
-            req: 'Hab.',
-            cat: 'veiculo'
+            name: 'Taxista',
+            cat: 'veiculo',
+            req: 'Nível 2',
+            desc: 'Transporta jogadores e cobra pelo serviço'
         }, {
-            name: 'Ladrão de Carros',
+            icon: '💰',
+            name: 'Motorista Carro Forte',
+            cat: 'veiculo',
+            req: 'Nível 4',
+            desc: 'Transporta valores — alvo de assaltantes'
+        }, {
             icon: '🔑',
-            desc: 'Rouba veículos e leva ao desmanche',
-            req: 'Crime',
-            cat: 'crime'
+            name: 'Ladrão de Carros',
+            cat: 'crime',
+            req: 'Nível 2',
+            desc: 'Rouba veículos e leva ao Desmanche'
         }, {
-            name: 'Eletricista',
+            icon: '🔫',
+            name: 'Vendedor de Armas',
+            cat: 'crime',
+            req: 'Nível 5',
+            desc: 'Comercializa armamentos ilegais'
+        }, {
+            icon: '🕵️',
+            name: 'Detetive',
+            cat: 'nivel',
+            req: 'Nível 3',
+            desc: 'Investiga crimes e coleta evidências'
+        }, {
+            icon: '⚖️',
+            name: 'Advogado',
+            cat: 'nivel',
+            req: 'Nível 3',
+            desc: 'Defende presos e reduz penas com /advocacia'
+        }, {
+            icon: '🔒',
+            name: 'Agente Penitenciário',
+            cat: 'nivel',
+            req: 'Nível 4',
+            desc: 'Controla a penitenciária e detentos'
+        }, {
+            icon: '🌾',
+            name: 'Fazendeiro',
+            cat: 'nivel',
+            req: 'Nível 2',
+            desc: 'Planta, colhe e vende produtos agrícolas'
+        }, {
+            icon: '⛏️',
+            name: 'Minerador',
+            cat: 'nivel',
+            req: 'Nível 3',
+            desc: 'Extrai minérios em locais especiais'
+        }, {
             icon: '⚡',
-            desc: 'Realiza manutenção elétrica da cidade',
-            req: 'Ferramenta',
-            cat: 'basico'
-        }, {
-            name: 'Carro Forte',
-            icon: '🏦',
-            desc: 'Escolta e protege transporte de valores',
-            req: 'Org/Nível',
-            cat: 'nivel'
-        }, {
-            name: 'Mecânico',
-            icon: '🔧',
-            desc: 'Conserta e reforma veículos na cidade',
-            req: 'Garagem',
-            cat: 'basico'
-        }, ];
+            name: 'Eletricista',
+            cat: 'nivel',
+            req: 'Nível 2',
+            desc: 'Realiza manutenções elétricas na cidade'
+        }];
+
         const RULES = [{
-            title: 'Anti-RPG',
-            punish: 'Advertência + Carandiru',
-            text: 'Proibido relogar para evitar prisão, morte ou qualquer ação intencional que quebre o roleplay.'
-        }, {
-            title: 'Abuso de Bug',
-            punish: 'Advertência | Reincidência: BAN',
-            text: 'Explorar qualquer bug ou falha do servidor para obter vantagem sobre outros jogadores.'
-        }, {
-            title: 'Uso de Joypad',
-            punish: 'Advertência | Reincidência: BAN',
-            text: 'Usar controle/joystick para obter vantagem em combate ou ações no servidor é proibido.'
-        }, {
-            title: 'Divulgar Servidores',
+            title: 'Divulgação de Servidores',
             punish: 'BAN Imediato',
             text: 'Mencionar, divulgar links ou endereços de outros servidores SA-MP no chat.'
         }, {
@@ -1839,93 +2581,153 @@
         }, {
             title: 'Ofensas e Provocações',
             punish: 'Mute | Reincidência: Advertência',
-            text: 'Insultar, ofender ou provocar outros jogadores de forma excessiva e desnecessária.'
+            text: 'Insultar, ofender ou provocar outros jogadores de forma excessiva.'
         }, {
             title: 'Cheats / Hacks / Mods',
             punish: 'BAN PERMANENTE',
-            text: 'Qualquer hack, cheat, trainer ou mod que ofereça vantagem injusta sobre outros jogadores.'
+            text: 'Qualquer hack, cheat, trainer ou mod que ofereça vantagem injusta.'
         }, {
             title: 'Nick Inapropriado',
             punish: 'Kick + Restrição',
-            text: 'Nicks ofensivos, simples demais ou confusos são proibidos. Use letras A-Z, underline, pontos e números.'
+            text: 'Nicks ofensivos ou confusos. Use letras A-Z, underline, pontos e números.'
         }, {
             title: 'Transferência Indevida',
             punish: 'Advertência',
-            text: 'Transferir veículos, dinheiro ou itens sem seguir os procedimentos definidos no Discord.'
-        }, ];
-        const FAQS = [{
-            q: 'Como consigo meu primeiro emprego?',
-            a: 'Vá até a Prefeitura usando /gps para localizar. Lá você encontra os empregos iniciais. Após contratar, use /ajudaemprego para ver todos os comandos do seu emprego.'
-        }, {
-            q: 'Como entro para uma Organização (ORG)?',
-            a: 'Primeiro leia o manual da ORG no Fórum (/forum). Depois entre em contato com o Líder da organização. Você fará um teste com ele. O Discord é obrigatório para membros de ORGs.'
-        }, {
-            q: 'Como funciona o PayDay (salário)?',
-            a: 'Um cronômetro na tela conta o tempo até o próximo PayDay. Ao zerar, você recebe o salário. VIPs recebem salários maiores. Organizações também pagam salário separado por cargo.'
-        }, {
-            q: 'Como comprar um veículo próprio?',
-            a: 'Vá até uma Concessionária no mapa (/gps para encontrar). Com dinheiro suficiente você pode comprar. VIP Plus tem direito a até 2 veículos simultâneos.'
-        }, {
-            q: 'Como funciona a cadeia (Carandiru)?',
-            a: 'Ao ser preso pela polícia ou por DM, você vai para o Carandiru. Cumpra o tempo ou peça a um Advogado para reduzir/sair mais rápido.'
-        }, {
-            q: 'O que é o sistema de Fome e Sede?',
-            a: 'Você pode ativar em /configuracoes. Com ele ativo, ganha mais experiência por PayDay. Compre comida e bebida em locais espalhados pelo mapa.'
-        }, {
-            q: 'Como funciona o Desmanche?',
-            a: 'Sendo Ladrão de Carros, entre em um veículo para roubá-lo e leve até o Desmanche. Use /desmanche fixar para registrar. Donos podem recuperar pagando taxa.'
-        }, {
-            q: 'Como me tornar VIP?',
-            a: 'Entre em contato via WhatsApp: 34998110946. Informe seu nick exato, escolha o plano e realize o pagamento. Ativação em até 24h por um administrador.'
-        }, {
-            q: 'Como chamar a administração?',
-            a: 'Digite /atendimento no chat para abrir um ticket. Você também pode usar /duvida para dúvidas gerais ou pedir ajuda no Discord do servidor.'
-        }, {
-            q: 'Como funciona o sistema de Pichação?',
-            a: 'Membros de gangs usam o Spray para pichar territórios pelo mapa. Pichar aumenta o domínio de sua organização naquele ponto.'
-        }, ];
+            text: 'Transferir veículos, dinheiro ou itens de forma ilicita no servidor.'
+        }];
+
         const VIP_PLANS = [{
             name: 'VIP COMUM',
-            color: '#aaaaaa',
+            color: '#C4C4CC',
+            moedas: '10.000',
+            salBonus: '+7/PayDay',
             featured: false,
-            perks: ['Status VIP no servidor', '+1 nível ao ativar', 'R$120.000 no Banco', 'Salário maior no PayDay', 'Direito a comprar mansões e casas', 'Cor diferenciada no relatório', '+2 respeitos por PayDay', '/KitVIP na loja de armas', 'Chat VIP exclusivo (/v)', '/cordinha liberada', 'Chat no DC com qualquer moderador']
+            perks: ['Status VIP no servidor', '+1 Nível ao ativar', 'R$120.000 no Banco', 'Salário elevado (+7/PayDay)', 'Comprar mansões e casas', '/KitVIP Comum na loja de armas', 'Chat VIP exclusivo (/v)', '/cordinha liberado', 'Cor diferenciada no relatório', '+2 Respeitos por PayDay']
         }, {
-            name: 'VIP PLUS',
-            color: '#F6AF4D',
+            name: 'VIP PREMIUM',
+            color: '#FF9900',
+            moedas: '15.000',
+            salBonus: '+8/PayDay',
             featured: true,
-            perks: ['Tudo do VIP Comum', 'R$150.000 no Banco', 'Até 2 veículos próprios', '+4 respeitos por PayDay', 'Salário ainda mais elevado', 'Neon e Xenon no veículo', 'Tag especial no Discord', 'Prioridade no atendimento']
-        }, {
-            name: 'SÓCIO',
-            color: '#9b59b6',
+            perks: ['Tudo do VIP Comum', '+1 Nível ao ativar', 'R$150.000 no Banco', 'Salário elevado (+8/PayDay)', 'Até 2 veículos próprios', '/KitVIP Premium na loja de armas', 'Neon e Xenon no veículo', '+4 Respeitos por PayDay']
+        }];
+
+        const SOCIO_PLANS = [{
+            name: 'SÓCIO COMUM',
+            color: '#7ecfff',
+            moedas: '23.000',
+            salBonus: '+12/PayDay',
             featured: false,
-            perks: ['Tudo do VIP Plus', 'Benefícios exclusivos de sócio', 'Participação em eventos especiais', 'Suporte prioritário 24 horas', 'Skin exclusiva de sócio', 'Acesso antecipado a novidades', 'Badge único no Discord']
-        }, ];
+            perks: ['Tudo do VIP Premium', '+2 Níveis ao ativar', 'R$100.000 no Banco', 'Salário elevado (+12/PayDay)', 'Entrar em qualquer ORG (/entrarorg)', '/kitsocio Comum', 'Título personalizado (/titulos)']
+        }, {
+            name: 'SÓCIO PREMIUM',
+            color: '#f6af4d',
+            moedas: '30.000',
+            salBonus: '+14/PayDay',
+            featured: false,
+            perks: ['Tudo do Sócio Comum', '+4 Níveis ao ativar', 'R$250.000 no Banco', 'Salário elevado (+14/PayDay)', '1 Troca de Nick', '/kitsocio Premium', 'JetPack permanente (/jp)', '/repararvip — Reparar lataria']
+        }, {
+            name: 'SÓCIO DIAMANTE',
+            color: '#b9f2ff',
+            moedas: '45.000',
+            salBonus: '+17/PayDay',
+            featured: true,
+            perks: ['Tudo do Sócio Premium', '+10 Níveis ao ativar', 'R$500.000 no Banco', 'Salário elevado (+17/PayDay)', '2 Trocas de Nick', '/kitsocio Diamante', 'Skin exclusiva Sócio Diamante', '/jp + /repararvip']
+        }, {
+            name: 'SÓCIO SAFIRA',
+            color: '#4fc3f7',
+            moedas: '100.000',
+            salBonus: '+20/PayDay',
+            featured: false,
+            perks: ['Tudo do Sócio Diamante', '+15 Níveis ao ativar', 'R$1.000.000 no Banco', 'Salário elevado (+20/PayDay)', '3 Trocas de Nick', '/kitsocio Safira', 'Não vai ao hospital ao morrer', '/protecao — Anti-sniper', '/carvip — Criar veículo exclusivo']
+        }, {
+            name: 'PATROCINADOR',
+            color: '#ffd700',
+            moedas: '200.000',
+            salBonus: '+28/PayDay',
+            featured: false,
+            perks: ['Tudo do Sócio Safira', '+25 Níveis ao ativar', 'R$2.500.000 no Banco', 'Salário elevado (+28/PayDay)', '5 Trocas de Nick', '/kitsocio Patrocinador', 'Não vai ao hospital ao morrer', '/protecao total anti-sniper', '/carvip — Shark-Wilshire exclusivo']
+        }];
 
-        // ---- STATE ----
+        const FAQS = [{
+            q: 'Como consigo meu primeiro emprego?',
+            a: 'Vá até a Prefeitura usando /gps. Lá você encontra os empregos iniciais. Após contratar, use /ajudaemprego para ver os comandos.'
+        }, {
+            q: 'Como entro para uma Organização (ORG)?',
+            a: 'Entre em contato com o Líder para fazer o teste através dos Grupos do WhatsApp do servidor.'
+        }, {
+            q: 'Como funciona o PayDay (salário)?',
+            a: 'Um cronômetro na tela conta até o próximo PayDay. Ao zerar você recebe o salário. VIPs e Sócios recebem bônus extras. Use /rg para ver seus respeitos.'
+        }, {
+            q: 'Como comprar um veículo próprio?',
+            a: 'Vá até uma Concessionária no mapa (/gps para encontrar). VIP Premium tem direito a até 2 veículos simultâneos.'
+        }, {
+            q: 'Como funciona a cadeia (Carandiru)?',
+            a: 'Ao ser preso, você vai pro Carandiru. Cumpra o tempo ou peça a um Advogado para reduzir/sair mais rápido.'
+        }, {
+            q: 'O que é o sistema de Fome e Sede?',
+            a: 'Ative em /configuracoes. Com ele ativo, você ganha mais XP por PayDay. Compre comida e bebida pelo mapa.'
+        }, {
+            q: 'Como funciona o Desmanche?',
+            a: 'Sendo Ladrão de Carros, roube um veículo e leve até o Desmanche. Use /desmanche fixar para registrar o local.'
+        }, {
+            q: 'Como me tornar VIP ou Sócio?',
+            a: 'Via WhatsApp: (34) 9 9811-0946 — informe seu nick, plano e pague. Ou no jogo: /lojavip com Moedas VIP. Ativação em até 24h.'
+        }, {
+            q: 'Como chamar a administração?',
+            a: 'Digite /atendimento para abrir um ticket. Use /duvida para tirar duvidas rápidas.'
+        }, {
+            q: 'Como funciona o sistema de Pichação?',
+            a: 'Membros de gangs usam o Spray para pichar territórios. Pichar aumenta o domínio de sua org naquele ponto.'
+        }];
+
+        // ==============================
+        // STATE
+        // ==============================
         let orgFilter = 'all';
+        const catCls = {
+            basico: 'cat-basico',
+            veiculo: 'cat-veiculo',
+            crime: 'cat-crime',
+            nivel: 'cat-nivel'
+        };
+        const catLabel = {
+            basico: 'Básico',
+            veiculo: 'Veículo',
+            crime: 'Crime',
+            nivel: 'Nível'
+        };
+        const tipoColor = {
+            Policial: '#33CCFF',
+            Governo: '#FF9900',
+            Criminosa: '#ff6b7a',
+            Outro: '#A8A8B3'
+        };
+        const orgTypeLabel = {
+            police: 'Policial',
+            crime: 'Criminosa',
+            gov: 'Governo',
+            other: 'Outro'
+        };
 
-        // ---- RENDER ----
+        // ==============================
+        // RENDER
+        // ==============================
         function renderOrgs(list) {
             const g = document.getElementById('orgsGrid');
             if (!list.length) {
                 g.innerHTML = '<p style="color:var(--muted);padding:1rem">Nenhuma org encontrada.</p>';
                 return;
             }
-            const labels = {
-                police: 'Policial',
-                crime: 'Criminosa',
-                gov: 'Governo',
-                other: 'Outro'
-            };
             g.innerHTML = list.map(o => `
     <div class="org-card" style="--oc:${o.color}">
       <div class="org-icon">${o.icon}</div>
       <div class="org-info">
         <div class="org-name">${o.name}</div>
         <div class="org-desc2">${o.desc}</div>
-        <div class="org-badges"><span class="badge badge-${o.type}">${labels[o.type]}</span></div>
+        <div class="org-badges"><span class="badge badge-${o.type}">${orgTypeLabel[o.type]}</span></div>
       </div>
-      <div class="org-wa" title="WhatsApp: ${o.name}" onclick="openOrgWA('${o.name.replace(/'/g,"\\'")}')">📲</div>
+      <div class="org-wa" onclick="openOrgWA('${o.name.replace(/'/g,"\\'")}')">📲</div>
     </div>`).join('');
         }
 
@@ -1943,10 +2745,24 @@
             applyOrgFilters();
         }
 
+        function renderRecruit() {
+            document.getElementById('recruitGrid').innerHTML = RECRUT.map(r => `
+    <div class="org-card" style="--oc:${r.color}">
+      <div class="org-icon">${r.icon}</div>
+      <div class="org-info">
+        <div class="org-name">${r.name}</div>
+        <div class="org-desc2" style="color:var(--muted);font-size:.8rem;margin-top:0.4rem">📋 ${r.req}</div>
+        <div class="org-badges"><span class="badge" style="background:rgba(255,255,255,.05);color:${tipoColor[r.tipo]||'#A8A8B3'};border:1px solid currentColor">${r.tipo}</span></div>
+      </div>
+      <a href="${r.link}" target="_blank" class="org-wa" style="text-decoration:none">📲</a>
+    </div>`).join('');
+        }
+
         function renderJobs(cat) {
             const list = cat === 'all' ? JOBS : JOBS.filter(j => j.cat === cat);
             document.getElementById('jobsGrid').innerHTML = list.map(j => `
     <div class="job-card">
+      <span class="job-cat-badge ${catCls[j.cat]}">${catLabel[j.cat]}</span>
       <div class="job-emoji">${j.icon}</div>
       <div class="job-name">${j.name}</div>
       <div class="job-desc">${j.desc}</div>
@@ -1978,7 +2794,7 @@
       <div class="wa-icon">${w.icon}</div>
       <div class="wa-name">${w.name}</div>
       <div class="wa-desc2">${w.desc}</div>
-      <a class="btn-wa" href="${w.link}" target="_blank">📲 Entrar no Grupo</a>
+      <a class="btn-wa-sm" href="${w.link}" target="_blank">📲 Entrar no Grupo</a>
     </div>`).join('');
         }
 
@@ -1986,54 +2802,137 @@
             document.getElementById('vipGrid').innerHTML = VIP_PLANS.map(v => `
     <div class="vip-card ${v.featured?'featured':''}">
       <div class="vip-tier" style="color:${v.color}">${v.name}</div>
-      <div class="vip-price">WhatsApp: <strong>34998110946</strong></div>
+      <div class="vip-coins">🪙 ${v.moedas} Moedas VIP · ${v.salBonus}</div>
+      <div class="vip-price">WhatsApp: <strong>(34) 9 9811-0946</strong></div>
       <ul class="vip-perks">${v.perks.map(p=>`<li>${p}</li>`).join('')}</ul>
     </div>`).join('');
 }
-function renderFAQ(){
-  document.getElementById('faqList').innerHTML=FAQS.map((f,i)=>`
+
+function renderSocio() {
+  document.getElementById('socioGrid').innerHTML = SOCIO_PLANS.map(v => `
+    <div class="vip-card ${v.featured?'featured':''}">
+      <div class="vip-tier" style="color:${v.color}">${v.name}</div>
+      <div class="vip-coins">🪙 ${v.moedas} Moedas VIP · ${v.salBonus}</div>
+      <div class="vip-price">WhatsApp: <strong>(34) 9 9811-0946</strong></div>
+      <ul class="vip-perks">${v.perks.map(p=>`<li>${p}</li>`).join('')}</ul>
+    </div>`).join('');
+}
+
+function setVipTab(tab, btn) {
+  document.querySelectorAll('#vipTabBar .fb').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('vipSection').style.display = tab === 'vip' ? '' : 'none';
+  document.getElementById('socioSection').style.display = tab === 'socio' ? '' : 'none';
+}
+
+function renderFAQ() {
+  document.getElementById('faqList').innerHTML = FAQS.map((f, i) => `
     <div class="faq-item" id="fq${i}">
       <div class="faq-q" onclick="toggleFAQ(${i})"><span>${f.q}</span><span class="faq-arrow">▼</span></div>
       <div class="faq-a">${f.a}</div>
     </div>`).join('');
 }
 
-// ---- NAVIGATION ----
-function goPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('[data-page]').forEach(a=>a.classList.remove('active'));
-  const p=document.getElementById('page-'+id);
-  if(p){p.classList.add('active');window.scrollTo(0,0);}
-  document.querySelectorAll('[data-page="'+id+'"]').forEach(a=>a.classList.add('active'));
+// ==============================
+// NAV
+// ==============================
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('[data-page]').forEach(a => a.classList.remove('active'));
+  const p = document.getElementById('page-' + id);
+  if (p) { p.classList.add('active'); window.scrollTo(0, 0); }
+  document.querySelectorAll('[data-page="' + id + '"]').forEach(a => a.classList.add('active'));
 }
 
-// ---- INTERACTIONS ----
-function toggleFAQ(i){document.getElementById('fq'+i).classList.toggle('open');}
-
-let toastTimer;
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+// ==============================
+// INTERACTIONS
+// ==============================
+function toggleFAQ(i) { document.getElementById('fq' + i).classList.toggle('open'); }
+let tt;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 3000);
 }
-function copyIP(){navigator.clipboard.writeText('149.56.41.52:7788').then(()=>toast('✅ IP Copiado!'));}
-function openOrgWA(name){
-  const slug=name.toLowerCase().replace(/[^a-z0-9]/g,'').substring(0,6);
-  const m=WA.find(w=>w.name.toLowerCase().replace(/[^a-z]/g,'').startsWith(slug.substring(0,4)));
-  if(m)window.open(m.link,'_blank');
+function copyIP() {
+  navigator.clipboard.writeText('168.222.251.98:5177').then(() => toast('✅ IP Copiado com sucesso!'));
+}
+function openOrgWA(name) {
+  const r = RECRUT.find(x => x.name === name);
+  if (r) window.open(r.link, '_blank');
   else toast('📲 Link em breve!');
 }
-function toggleMobile(){document.getElementById('mobileNav').classList.toggle('open');}
-function closeMobile(){document.getElementById('mobileNav').classList.remove('open');}
+function toggleMobile() { document.getElementById('mobileMenu').classList.toggle('open'); }
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
 
-// ---- INIT ----
+// ==============================
+// INIT RENDERS
+// ==============================
 renderOrgs(ORGS);
 renderJobs('all');
 renderRules();
 renderWA();
+renderRecruit();
 renderVIP();
+renderSocio();
 renderFAQ();
+
+// ==============================
+// SA-MP LIVE STATUS
+// ==============================
+const SV = '168.222.251.98:5177', SIP = '168.222.251.98', SP = 5177;
+
+async function fetchStatus() {
+  let d = null;
+  try {
+    const r = await fetch(`https://api.open.mp/servers/${SV}`, { signal: AbortSignal.timeout(7000) });
+    if (r.ok) {
+      const j = await r.json();
+      if (j && j.active !== undefined) d = { ok: j.active !== false, pl: j.pc ?? 0, max: j.pm ?? 700 };
+    }
+  } catch(e) {}
+  if (!d) {
+    try {
+      const r2 = await fetch(`https://samp.southcla.ws/query?ip=${SIP}&port=${SP}`, { signal: AbortSignal.timeout(7000) });
+      if (r2.ok) { const j2 = await r2.json(); if (j2) d = { ok: true, pl: j2.players ?? 0, max: j2.maxplayers ?? 700 }; }
+    } catch(e) {}
+  }
+  applyStatus(d);
+}
+
+function applyStatus(d) {
+  const ok = d && d.ok !== false;
+  const pl = ok ? (d.pl ?? 0) : 0;
+  const mx = ok ? (d.max ?? 700) : 700;
+  const pct = mx > 0 ? Math.min(100, Math.round(pl / mx * 100)) : 0;
+
+  // dot
+  const dots = document.querySelectorAll('.server-status-dot, .pdot, .nav-ip .pdot');
+  dots.forEach(dot => { dot.style.background = ok ? 'var(--orange)' : '#ff4757'; dot.style.boxShadow = ok ? '0 0 10px var(--orange)' : '0 0 10px #ff4757'; });
+
+  // nav status
+  const navIp = document.getElementById('navStatus');
+  if (navIp) { navIp.textContent = ok ? `● ${pl}/${mx} · 168.222.251.98:5177` : '● OFFLINE'; navIp.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+
+  // hero players
+  const hp = document.getElementById('heroPlayers');
+  if (hp) { hp.textContent = ok ? `${pl}/${mx}` : '—'; }
+
+  // hero total
+  const ht = document.getElementById('heroTotal');
+  if (ht) { ht.textContent = mx; }
+
+  // hero bar
+  const bar = document.getElementById('heroBar');
+  if (bar) { setTimeout(() => { bar.style.width = pct + '%'; }, 300); }
+
+  // status dot on server card
+  const heroD = document.getElementById('heroStatusDot');
+  if (heroD) { heroD.style.background = ok ? 'var(--orange)' : '#ff4757'; }
+}
+
+fetchStatus();
+setInterval(fetchStatus, 30000);
     </script>
 </body>
 
