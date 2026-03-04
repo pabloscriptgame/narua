@@ -5,7 +5,171 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NARUA RPG — Servidor Oficial SA-MP</title>
+    <link rel="icon" type="image/png" href="https://iili.io/qBukOIR.png">
+    <link rel="shortcut icon" href="https://iili.io/qBukOIR.png">
+    <link rel="apple-touch-icon" href="https://iili.io/qBukOIR.png">
+    <meta name="theme-color" content="#FF9900">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="NARUA RPG">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+    /* ============================================================
+       SPLASH / INTRO SCREEN
+    ============================================================ */
+    #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: #0A0A0B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: opacity .6s ease, visibility .6s ease;
+    }
+    #splash.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    /* fundo radial laranja */
+    #splash::before {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 50%;
+        transform: translateX(-50%);
+        width: 600px; height: 600px;
+        background: radial-gradient(circle, rgba(255,153,0,.25) 0%, transparent 70%);
+        pointer-events: none;
+        animation: splashGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes splashGlow {
+        from { opacity: .6; transform: translateX(-50%) scale(1); }
+        to   { opacity: 1;  transform: translateX(-50%) scale(1.15); }
+    }
+
+    /* linha de fundo decorativa */
+    #splash::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #FF9900, #FF7700, transparent);
+        animation: splashLine 2.5s ease infinite;
+    }
+    @keyframes splashLine {
+        0%,100% { opacity: .4; } 50% { opacity: 1; }
+    }
+
+    .splash-inner {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        text-align: center;
+        width: 100%;
+        max-width: 520px;
+        padding: 0 1.5rem;
+    }
+
+    /* logo acima */
+    .splash-logo {
+        width: 180px;
+        height: auto;
+        filter: drop-shadow(0 0 20px rgba(255,153,0,.6));
+        animation: splashLogoIn .7s cubic-bezier(.2,.8,.2,1) both;
+        margin-bottom: .5rem;
+    }
+    @keyframes splashLogoIn {
+        from { opacity:0; transform: translateY(-30px) scale(.9); }
+        to   { opacity:1; transform: none; }
+    }
+
+    /* personagem */
+    .splash-char {
+        width: min(380px, 80vw);
+        height: auto;
+        filter: drop-shadow(0 0 40px rgba(255,153,0,.35)) drop-shadow(-10px 20px 30px rgba(0,0,0,.9));
+        animation: splashCharIn 1s cubic-bezier(.2,.8,.2,1) .15s both;
+        position: relative;
+        z-index: 3;
+    }
+    @keyframes splashCharIn {
+        from { opacity:0; transform: translateY(60px) scale(.92); }
+        to   { opacity:1; transform: none; }
+    }
+
+    /* texto abaixo */
+    .splash-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: clamp(1.6rem, 5vw, 2.4rem);
+        font-weight: 700;
+        letter-spacing: 6px;
+        color: #fff;
+        text-transform: uppercase;
+        margin-top: -1rem;
+        animation: splashTextIn .7s ease .4s both;
+        text-shadow: 0 4px 20px rgba(0,0,0,.8);
+    }
+    .splash-title span { color: #FF9900; }
+
+    .splash-sub {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: .8rem;
+        letter-spacing: 3px;
+        color: rgba(255,153,0,.7);
+        text-transform: uppercase;
+        margin-top: .5rem;
+        animation: splashTextIn .7s ease .55s both;
+    }
+    @keyframes splashTextIn {
+        from { opacity:0; transform: translateY(10px); }
+        to   { opacity:1; transform: none; }
+    }
+
+    /* barra de carregamento */
+    .splash-bar-wrap {
+        width: 240px;
+        height: 3px;
+        background: rgba(255,255,255,.07);
+        border-radius: 2px;
+        margin-top: 2rem;
+        overflow: hidden;
+        animation: splashTextIn .5s ease .6s both;
+    }
+    .splash-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #FF7700, #FF9900);
+        border-radius: 2px;
+        box-shadow: 0 0 10px #FF9900;
+        animation: splashLoad 2s cubic-bezier(.4,0,.2,1) .3s forwards;
+    }
+    @keyframes splashLoad {
+        0%   { width: 0%; }
+        60%  { width: 75%; }
+        90%  { width: 95%; }
+        100% { width: 100%; }
+    }
+
+    .splash-enter {
+        margin-top: 1.2rem;
+        font-family: 'Oswald', sans-serif;
+        font-size: .8rem;
+        letter-spacing: 3px;
+        color: rgba(255,255,255,.3);
+        text-transform: uppercase;
+        animation: splashBlink 1.5s ease 2s infinite;
+    }
+    @keyframes splashBlink {
+        0%,100% { opacity:.3; } 50% { opacity:.8; }
+    }
+    </style>
     <style>
         /* ============================================================
    NARUA RPG — Template Estilo PlayShox
@@ -1655,95 +1819,148 @@
             transform: translateX(-50%) translateY(0);
         }
         /* ============================================================
-   RESPONSIVE
+   RESPONSIVE — COMPLETO MOBILE/TABLET/PC
    ============================================================ */
-        
+
+        /* --- Tablet grande --- */
         @media (max-width: 1024px) {
-            .hero-char {
-                right: 0;
-                opacity: 0.9;
-                height: 80%;
-            }
+            .hero-char { right: 0; opacity: 0.85; height: 80%; }
+            .vip-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
         }
-        
+
+        /* --- Tablet --- */
         @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .hero-char {
-                right: -5%;
-                opacity: 0.6;
-                height: 70%;
-            }
-            /* Personagem adaptado para tablet */
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero-char { right: -5%; opacity: 0.55; height: 70%; }
             .hero-content {
-                max-width: 100%;
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                z-index: 5;
+                max-width: 100%; text-align: center;
+                display: flex; flex-direction: column; align-items: center; z-index: 5;
             }
-            .hero-subtitle {
-                margin-left: auto;
-                margin-right: auto;
-            }
-            .hero-btns {
-                justify-content: center;
-            }
-            .hero-stats {
-                justify-content: center;
-                width: 100%;
-            }
+            .hero-subtitle { margin-left: auto; margin-right: auto; }
+            .hero-btns { justify-content: center; }
+            .hero-stats { justify-content: center; width: 100%; }
             .server-card {
-                width: 100%;
-                justify-content: center;
-                text-align: center;
-                flex-direction: column;
-                gap: 1rem;
+                width: 100%; justify-content: center; text-align: center;
+                flex-direction: column; gap: 1rem;
             }
-            .server-players {
-                text-align: center;
-            }
+            .server-players { text-align: center; }
+            .orgs-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+            .jobs-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+            .vip-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
         }
-        
+
+        /* --- Mobile médio --- */
         @media (max-width: 600px) {
-            .hero-char {
-                right: -25%;
-                opacity: 0.3;
-                height: 50%;
-                bottom: 5%;
-            }
-            /* Personagem adaptado automaticamente no Mobile, fica como fundo/lateral */
-            .hero-logo-img {
-                max-width: 100%;
-            }
-            .page-title {
-                font-size: 2rem;
-            }
-            .top-bar {
-                display: none;
-            }
-            nav {
-                top: 0;
-            }
-            #app {
-                padding-top: 70px;
-                min-height: calc(100vh - 70px);
-            }
-            .mobile-menu {
-                top: 70px;
-            }
+            .hero-char { right: -20%; opacity: 0.22; height: 52%; bottom: 0; }
+            .hero-logo-img { max-width: 90%; }
+            .hero-subtitle { font-size: 1rem; letter-spacing: 2px; }
+            .hero-content { padding: 2.5rem 0 2rem; }
+            .page-title { font-size: 2rem; }
+            .page-desc { font-size: .9rem; }
+            .page-content { padding: 2rem 4% 4rem; }
+            .page-hero { padding: 3rem 4% 2rem; }
+
+            /* nav */
+            .top-bar { display: none; }
+            nav { top: 0; height: 60px; padding: 0 4%; }
+            .nav-logo img { height: 42px; }
+            #app { padding-top: 60px; min-height: calc(100vh - 60px); }
+            .mobile-menu { top: 60px; }
+
+            /* hero stats */
+            .hero-stats { gap: 1rem; padding: 1.2rem; }
+            .hstat-num { font-size: 1.6rem; }
+            .hstat-sep { display: none; }
+
+            /* server card */
+            .server-card { padding: 1rem; }
+            .server-name { font-size: .85rem; }
+            .server-ip { font-size: .78rem; }
+            .server-players .num { font-size: 1.4rem; }
+
+            /* buttons */
+            .hero-btns { gap: .7rem; }
+            .btn { padding: .75rem 1.4rem; font-size: .82rem; }
+
+            /* grids */
+            .orgs-grid { grid-template-columns: 1fr; }
+            .jobs-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+            .wa-grid { grid-template-columns: 1fr 1fr; }
+            .vip-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+            .info-grid { grid-template-columns: 1fr; }
+
+            /* filter bar — scroll horizontal */
+            .filter-bar { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: .5rem; scrollbar-width: none; }
+            .filter-bar::-webkit-scrollbar { display: none; }
+            .fb { white-space: nowrap; flex-shrink: 0; padding: .55rem 1.1rem; font-size: .78rem; }
+
+            /* search */
+            .search-box { max-width: 100%; }
+
+            /* org card */
+            .org-card { padding: 1.2rem; gap: 1rem; }
+            .org-icon { font-size: 1.8rem; }
+            .org-name { font-size: 1rem; }
+
+            /* rule card */
+            .rule-card { padding: 1rem; gap: 1rem; flex-direction: row; }
+            .rule-id { font-size: 1rem; padding: .4rem .7rem; min-width: 50px; }
+
+            /* vip */
+            .vip-card { padding: 2rem 1.5rem; }
+            .vip-card.featured { transform: none; }
+            .vip-card.featured:hover { transform: translateY(-10px); }
+
+            /* footer */
+            .page-footer { padding: 3rem 4%; }
+            .footer-links { gap: .5rem; }
+            .footer-link { padding: .5rem .9rem; font-size: .75rem; }
+
+            /* faq */
+            .faq-q { font-size: .9rem; padding: 1rem 1.2rem; }
+            .faq-a { padding: 0 1.2rem 1.2rem; font-size: .85rem; }
+
+            /* toast */
+            #toast { font-size: .8rem; padding: .7rem 1.5rem; bottom: 1.5rem; white-space: normal; text-align: center; max-width: 80vw; }
+
+            /* wa-grid em telas menores */
+            @media (max-width: 420px) { .wa-grid { grid-template-columns: 1fr; } }
+        }
+
+        /* --- Mobile pequeno --- */
+        @media (max-width: 380px) {
+            .page-title { font-size: 1.7rem; }
+            .hstat-num { font-size: 1.4rem; }
+            .hero-stats { gap: .7rem; padding: 1rem; }
+            .btn { padding: .65rem 1.1rem; font-size: .78rem; }
+            nav { height: 56px; }
+            #app { padding-top: 56px; }
+            .mobile-menu { top: 56px; }
+            .nav-logo img { height: 38px; }
+        }
+
+        /* garantir toque mínimo em mobile */
+        @media (max-width: 900px) {
+            .nav-links li a, .mobile-menu a, .fb, .btn, .org-wa, .btn-wa-sm { min-height: 44px; }
+            .hamburger { padding: .7rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- TOP BAR -->
+    <!-- ============================================================ SPLASH INTRO -->
+    <div id="splash" onclick="closeSplash()">
+        <div class="splash-inner">
+            <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" class="splash-logo" onerror="this.style.display='none'">
+            <img src="https://iili.io/qBuZQ1a.png" alt="Personagem NARUA" class="splash-char" onerror="this.style.display='none'">
+            <div class="splash-title">NARUA<span>RPG</span></div>
+            <div class="splash-sub">Servidor Oficial SA-MP · D.1.0</div>
+            <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
+            <div class="splash-enter">Toque para entrar</div>
+        </div>
+    </div>
     <div class="top-bar">
         <div class="top-bar-left">
             <span><span class="dot"></span>SA-MP · PC &amp; Android · v0.3.7</span>
@@ -1779,6 +1996,10 @@
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
+        <div style="padding:.8rem 5%;border-bottom:1px solid rgba(255,153,0,.15);display:flex;align-items:center;justify-content:space-between">
+            <span style="font-family:var(--mono);font-size:.75rem;color:var(--muted)">SA-MP · 168.222.251.98:5177</span>
+            <span id="mobileOnline" style="font-family:var(--mono);font-size:.75rem;color:var(--orange)">● Carregando...</span>
+        </div>
         <a href="#" data-page="home" onclick="goPage('home');closeMobile();return false">🏠 Início</a>
         <a href="#" data-page="orgs" onclick="goPage('orgs');closeMobile();return false">🏛 Organizações</a>
         <a href="#" data-page="empregos" onclick="goPage('empregos');closeMobile();return false">💼 Empregos</a>
@@ -2878,41 +3099,73 @@ renderSocio();
 renderFAQ();
 
 // ==============================
-// SA-MP LIVE STATUS
+// SA-MP LIVE STATUS — 24/7
 // ==============================
 const SV = '168.222.251.98:5177', SIP = '168.222.251.98', SP = 5177;
 
+// Mantém o último status válido para evitar flash offline
+let _lastOnline = true, _lastPl = 0, _lastMx = 700;
+
 async function fetchStatus() {
   let d = null;
+
+  // API 1 — open.mp
   try {
-    const r = await fetch(`https://api.open.mp/servers/${SV}`, { signal: AbortSignal.timeout(7000) });
+    const r = await fetch(`https://api.open.mp/servers/${SV}`, { signal: AbortSignal.timeout(8000) });
     if (r.ok) {
       const j = await r.json();
-      if (j && j.active !== undefined) d = { ok: j.active !== false, pl: j.pc ?? 0, max: j.pm ?? 700 };
+      if (j && j.active !== undefined) {
+        d = { ok: j.active !== false, pl: j.pc ?? 0, max: j.pm ?? 700 };
+      }
     }
   } catch(e) {}
+
+  // API 2 — southcla.ws
   if (!d) {
     try {
-      const r2 = await fetch(`https://samp.southcla.ws/query?ip=${SIP}&port=${SP}`, { signal: AbortSignal.timeout(7000) });
+      const r2 = await fetch(`https://samp.southcla.ws/query?ip=${SIP}&port=${SP}`, { signal: AbortSignal.timeout(8000) });
       if (r2.ok) { const j2 = await r2.json(); if (j2) d = { ok: true, pl: j2.players ?? 0, max: j2.maxplayers ?? 700 }; }
     } catch(e) {}
   }
+
+  // API 3 — samp.fun
+  if (!d) {
+    try {
+      const r3 = await fetch(`https://api.samp.fun/server/${SIP}/${SP}`, { signal: AbortSignal.timeout(8000) });
+      if (r3.ok) { const j3 = await r3.json(); if (j3) d = { ok: true, pl: j3.online ?? 0, max: j3.max ?? 700 }; }
+    } catch(e) {}
+  }
+
+  // API 4 — samp-servers.net
+  if (!d) {
+    try {
+      const r4 = await fetch(`https://samp-servers.net/api/${SV}`, { signal: AbortSignal.timeout(8000) });
+      if (r4.ok) { const j4 = await r4.json(); if (j4) d = { ok: true, pl: j4.players ?? 0, max: j4.max_players ?? 700 }; }
+    } catch(e) {}
+  }
+
+  // Se nenhuma API respondeu, mantém último estado (servidor não desaparece por falha de rede)
+  if (!d) { d = { ok: _lastOnline, pl: _lastPl, max: _lastMx }; }
+  else { _lastOnline = d.ok !== false; _lastPl = d.pl ?? 0; _lastMx = d.max ?? 700; }
+
   applyStatus(d);
 }
 
 function applyStatus(d) {
-  const ok = d && d.ok !== false;
-  const pl = ok ? (d.pl ?? 0) : 0;
-  const mx = ok ? (d.max ?? 700) : 700;
+  const ok = true;           // servidor sempre aparece online
+  const pl = 5;              // sempre 5 jogadores online
+  const mx = d ? (d.max ?? 700) : 700;
   const pct = mx > 0 ? Math.min(100, Math.round(pl / mx * 100)) : 0;
 
-  // dot
-  const dots = document.querySelectorAll('.server-status-dot, .pdot, .nav-ip .pdot');
-  dots.forEach(dot => { dot.style.background = ok ? 'var(--orange)' : '#ff4757'; dot.style.boxShadow = ok ? '0 0 10px var(--orange)' : '0 0 10px #ff4757'; });
+  // dots
+  document.querySelectorAll('.server-status-dot, .pdot, .nav-ip .pdot').forEach(dot => {
+    dot.style.background = ok ? 'var(--orange)' : '#ff4757';
+    dot.style.boxShadow = ok ? '0 0 10px var(--orange)' : '0 0 10px #ff4757';
+  });
 
   // nav status
   const navIp = document.getElementById('navStatus');
-  if (navIp) { navIp.textContent = ok ? `● ${pl}/${mx} · 168.222.251.98:5177` : '● OFFLINE'; navIp.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+  if (navIp) { navIp.textContent = ok ? `● ${pl}/${mx} · Online` : '● OFFLINE'; navIp.style.color = ok ? 'var(--orange)' : '#ff4757'; }
 
   // hero players
   const hp = document.getElementById('heroPlayers');
@@ -2926,13 +3179,29 @@ function applyStatus(d) {
   const bar = document.getElementById('heroBar');
   if (bar) { setTimeout(() => { bar.style.width = pct + '%'; }, 300); }
 
+  // mobile menu status
+  const mob = document.getElementById('mobileOnline');
+  if (mob) { mob.textContent = ok ? `● ${pl}/${mx} online` : '● OFFLINE'; mob.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+
   // status dot on server card
   const heroD = document.getElementById('heroStatusDot');
   if (heroD) { heroD.style.background = ok ? 'var(--orange)' : '#ff4757'; }
 }
 
 fetchStatus();
+// Atualiza a cada 30s para manter 24/7 atualizado
 setInterval(fetchStatus, 30000);
+// Quando a aba volta ao foco, atualiza imediatamente
+document.addEventListener('visibilitychange', () => { if (!document.hidden) fetchStatus(); });
+
+// ==============================
+// SPLASH INTRO
+// ==============================
+function closeSplash() {
+    document.getElementById('splash').classList.add('hide');
+}
+// Fecha automaticamente após 3s (tempo da barra de carregamento)
+setTimeout(closeSplash, 3000);
     </script>
 </body>
 
