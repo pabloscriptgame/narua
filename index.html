@@ -13,7 +13,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="NARUA RPG">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- Preconnect para reduzir latência -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://iili.io">
+    <link rel="dns-prefetch" href="https://api.open.mp">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet"></noscript>
     <style>
     /* ============================================================
        SPLASH / INTRO SCREEN
@@ -549,72 +555,98 @@
             }
         }
         /* ============================================================
-   HERO SECTION (COM SLIDER DE IMAGENS)
+   HERO SECTION
    ============================================================ */
-        
         #page-home {
             min-height: calc(100vh - 106px);
             position: relative;
             overflow: hidden;
             display: flex;
-            align-items: center;
+            align-items: stretch;
         }
-        /* SLIDER ANIMADO ESTILO PLAYSHOX */
-        
+
         .hero-slider {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.4);
-            animation: bgSlider 20s infinite;
+            position: absolute; inset: 0; z-index: 0;
+            background-size: cover; background-position: center;
+            filter: brightness(0.4); transition: opacity 1.2s ease;
         }
-        
-        @keyframes bgSlider {
-            0%,
-            25% {
-                background-image: url('https://i.imgur.com/8Q3u1tH.jpg');
-            }
-            /* LS / Grove */
-            33%,
-            58% {
-                background-image: url('https://i.imgur.com/KzQ3LdC.jpg');
-            }
-            /* Perseguição Policial */
-            66%,
-            91% {
-                background-image: url('https://i.imgur.com/Z4c9e4g.jpg');
-            }
-            /* Cidade Noturna */
-            100% {
-                background-image: url('https://i.imgur.com/8Q3u1tH.jpg');
-            }
+        .hero-slider-b {
+            position: absolute; inset: 0; z-index: 0;
+            background-size: cover; background-position: center;
+            filter: brightness(0.4); opacity: 0; transition: opacity 1.2s ease;
         }
-        
         .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, rgba(10, 10, 11, 1) 0%, rgba(10, 10, 11, 0.8) 40%, transparent 100%);
-            z-index: 1;
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(90deg,
+                rgba(10,10,11,1)   0%,
+                rgba(10,10,11,.92) 45%,
+                rgba(10,10,11,.4)  75%,
+                rgba(10,10,11,.1)  100%);
         }
-        
+
+        /* WRAP — grid 2 colunas no desktop */
         .hero-wrap {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 5%;
-            display: flex;
+            position: relative; z-index: 2;
+            width: 100%; max-width: 1400px;
+            margin: 0 auto; padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
             align-items: center;
-            justify-content: space-between;
+            min-height: calc(100vh - 106px);
         }
-        
+
         .hero-content {
-            flex: 1;
-            max-width: 650px;
-            padding: 4rem 0;
+            padding: 2.5rem 0;
+            z-index: 4;
+            min-width: 0;
+        }
+
+        /* COLUNA DA PERSONAGEM */
+        .hero-char-col {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            align-self: stretch;
+        }
+        .hero-char-float {
+            display: block;
+            width: 100%;
+            max-width: 360px;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+            object-position: bottom center;
+            filter: drop-shadow(-10px 0 50px rgba(255,153,0,.3))
+                    drop-shadow(0 20px 40px rgba(0,0,0,.9));
+            animation: charFloat 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes charFloat {
+            0%,100% { transform: translateY(0); }
+            50%      { transform: translateY(-16px); }
+        }
+
+        /* ---- TABLET (< 1024px) ---- */
+        @media (max-width: 1024px) {
+            .hero-wrap { grid-template-columns: 1fr 300px; }
+            .hero-char-float { max-width: 280px; }
+        }
+
+        /* ---- MOBILE (< 768px) — coluna única, personagem some ---- */
+        @media (max-width: 768px) {
+            #page-home { min-height: calc(100vh - 60px); }
+            .hero-wrap {
+                grid-template-columns: 1fr;
+                min-height: calc(100vh - 60px);
+                padding: 0 4%;
+            }
+            .hero-char-col { display: none; }
+            .hero-overlay {
+                background: linear-gradient(180deg,
+                    rgba(10,10,11,.85) 0%,
+                    rgba(10,10,11,.6)  100%);
+            }
         }
         
         .hero-tag {
@@ -645,10 +677,10 @@
         }
         
         .hero-logo-img {
-            max-width: 480px;
+            max-width: 380px;
             width: 100%;
             height: auto;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.8));
             animation: heroIn .6s .1s both;
         }
@@ -741,7 +773,7 @@
         
         .server-players .num {
             font-family: var(--head);
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--orange);
             line-height: 1;
@@ -1805,6 +1837,453 @@
             font-family: var(--mono);
         }
         /* ============================================================
+   COMO CONECTAR PAGE
+   ============================================================ */
+        .connect-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .connect-step {
+            background: var(--card);
+            border: 1px solid var(--border2);
+            border-radius: 10px;
+            padding: 2rem 1.8rem;
+            position: relative;
+            transition: border-color .3s, transform .3s;
+        }
+        .connect-step:hover { border-color: var(--border); transform: translateY(-4px); }
+        .connect-step-num {
+            font-family: var(--head);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--orange);
+            opacity: .25;
+            line-height: 1;
+            margin-bottom: .5rem;
+        }
+        .connect-step-title {
+            font-family: var(--head);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: .8rem;
+        }
+        .connect-step-desc {
+            font-size: .9rem;
+            color: var(--muted2);
+            line-height: 1.7;
+        }
+        .connect-step-desc code {
+            background: rgba(255,153,0,.1);
+            color: var(--orange);
+            padding: .15rem .45rem;
+            border-radius: 3px;
+            font-family: var(--mono);
+            font-size: .82rem;
+        }
+        .connect-download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .connect-dl-card {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+            transition: border-color .3s, box-shadow .3s;
+        }
+        .connect-dl-card:hover { border-color: var(--border); box-shadow: var(--shadow-orange); }
+        .connect-dl-icon { font-size: 3rem; line-height: 1; }
+        .connect-dl-title {
+            font-family: var(--head);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .connect-dl-desc { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+        .connect-dl-badge {
+            font-family: var(--mono);
+            font-size: .7rem;
+            color: var(--muted);
+            background: rgba(255,255,255,.04);
+            border: 1px solid var(--border2);
+            border-radius: 4px;
+            padding: .3rem .8rem;
+            letter-spacing: 1px;
+        }
+        .btn-dl-apk {
+            background: linear-gradient(135deg, #1a7a1a, #22aa22);
+            color: #fff !important;
+            border: 1px solid rgba(34,170,34,.5);
+            box-shadow: 0 4px 20px rgba(34,170,34,.25);
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: .5rem;
+        }
+        .btn-dl-apk:hover { background: linear-gradient(135deg,#22aa22,#28cc28); box-shadow: 0 6px 25px rgba(34,170,34,.45); transform: translateY(-3px); }
+        .btn-dl-pc {
+            background: linear-gradient(135deg, #1a5a9a, #2277cc);
+            color: #fff !important;
+            border: 1px solid rgba(34,119,204,.5);
+            box-shadow: 0 4px 20px rgba(34,119,204,.25);
+            text-decoration: none;
+            display: inline-flex; align-items: center; gap: .5rem;
+        }
+        .btn-dl-pc:hover { background: linear-gradient(135deg,#2277cc,#2a88dd); box-shadow: 0 6px 25px rgba(34,119,204,.45); transform: translateY(-3px); }
+        .connect-info-box {
+            background: rgba(255,153,0,.06);
+            border: 1px solid rgba(255,153,0,.2);
+            border-left: 4px solid var(--orange);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .connect-info-box .icon { font-size: 1.5rem; flex-shrink: 0; }
+        .connect-info-box p { font-size: .9rem; color: var(--muted2); line-height: 1.7; }
+        .connect-info-box strong { color: var(--orange); }
+
+        /* ============================================================
+   RÁDIO PLAYER FLUTUANTE
+   ============================================================ */
+        #radio-player {
+            position: fixed;
+            bottom: 1.2rem;
+            right: 1.2rem;
+            z-index: 9000;
+            background: rgba(14,14,16,.97);
+            border: 1px solid rgba(255,153,0,.35);
+            border-radius: 14px;
+            box-shadow: 0 8px 40px rgba(0,0,0,.7), 0 0 20px rgba(255,153,0,.1);
+            width: 292px;
+            overflow: hidden;
+            transition: box-shadow .3s;
+        }
+        #radio-player:hover { box-shadow: 0 10px 50px rgba(0,0,0,.8), 0 0 30px rgba(255,153,0,.2); }
+        @media (max-width: 480px) {
+            #radio-player { width: calc(100vw - 2rem); right: 1rem; bottom: 1rem; }
+        }
+        /* minimizado: esconde body, chevron inverte */
+        #radio-player.minimized .radio-body { display: none; }
+        #radio-player.minimized .radio-chevron { transform: rotate(-180deg); }
+        .radio-header {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            padding: .8rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+            user-select: none;
+        }
+        .radio-wave {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+        .radio-wave span {
+            display: block;
+            width: 3px;
+            border-radius: 2px;
+            background: var(--orange);
+            animation: wave 0.8s ease-in-out infinite alternate;
+        }
+        .radio-wave span:nth-child(1){ height: 8px;  animation-delay: 0s; }
+        .radio-wave span:nth-child(2){ height: 14px; animation-delay: .15s; }
+        .radio-wave span:nth-child(3){ height: 18px; animation-delay: .3s; }
+        .radio-wave span:nth-child(4){ height: 10px; animation-delay: .45s; }
+        .radio-wave span:nth-child(5){ height: 6px;  animation-delay: .6s; }
+        .radio-wave.paused span { animation-play-state: paused; height: 4px !important; }
+        @keyframes wave {
+            from { transform: scaleY(0.4); }
+            to   { transform: scaleY(1); }
+        }
+        .radio-title {
+            flex: 1;
+            min-width: 0;
+        }
+        .radio-title strong {
+            font-family: var(--head);
+            font-size: .85rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .radio-title span {
+            font-family: var(--mono);
+            font-size: .65rem;
+            color: var(--orange);
+            letter-spacing: 1px;
+        }
+        .radio-chevron {
+            font-size: .85rem;
+            color: var(--orange);
+            transition: transform .3s;
+            flex-shrink: 0;
+        }
+        /* regra consolidada acima no bloco do player */
+        .radio-body {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+        .radio-controls {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+        }
+        .radio-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange2), var(--orange));
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(255,153,0,.35);
+            transition: all .2s;
+            flex-shrink: 0;
+        }
+        .radio-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(255,153,0,.5); }
+        .radio-btn:active { transform: scale(.95); }
+        .radio-vol-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .radio-vol-icon { font-size: .9rem; flex-shrink: 0; }
+        input[type=range].radio-vol {
+            flex: 1;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,.1);
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        input[type=range].radio-vol::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--orange);
+            cursor: pointer;
+            box-shadow: 0 0 6px var(--orange);
+        }
+        .radio-pedido-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            padding: .6rem;
+            background: rgba(255,153,0,.08);
+            border: 1px solid rgba(255,153,0,.2);
+            border-radius: 8px;
+            color: var(--orange);
+            font-family: var(--head);
+            font-size: .8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all .2s;
+        }
+        .radio-pedido-btn:hover { background: rgba(255,153,0,.15); border-color: var(--orange); }
+
+        /* ============================================================
+   PÁGINA RÁDIO / PEDIDO DE MÚSICA
+   ============================================================ */
+        .radio-page-player {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,.5);
+        }
+        .radio-page-disc {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #2a2a2a 30%, #1a1a1a 70%);
+            border: 4px solid var(--orange);
+            box-shadow: 0 0 40px rgba(255,153,0,.4), inset 0 0 20px rgba(0,0,0,.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            animation: spin 8s linear infinite;
+        }
+        .radio-page-disc.paused { animation-play-state: paused; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .radio-page-name {
+            font-family: var(--head);
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+            text-align: center;
+        }
+        .radio-page-name span { color: var(--orange); }
+        .radio-page-sub {
+            font-family: var(--mono);
+            font-size: .75rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .radio-page-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .rpc-btn {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange2), var(--orange));
+            border: none;
+            cursor: pointer;
+            font-size: 1.4rem;
+            box-shadow: 0 6px 25px rgba(255,153,0,.4);
+            transition: all .2s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .rpc-btn:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(255,153,0,.6); }
+        .radio-page-vol {
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1rem;
+        }
+        .radio-page-vol input[type=range] {
+            flex: 1;
+            height: 5px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,.1);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .radio-page-vol input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--orange);
+            box-shadow: 0 0 8px var(--orange);
+        }
+        /* Pedido de musica form */
+        .pedido-card {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: 14px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+        }
+        .pedido-card h3 {
+            font-family: var(--head);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 1.8rem;
+        }
+        .pedido-card h3 span { color: var(--orange); }
+        .pedido-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        @media(max-width:600px){ .pedido-fields { grid-template-columns: 1fr; } }
+        .pedido-field {
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+        }
+        .pedido-field label {
+            font-family: var(--mono);
+            font-size: .7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .pedido-field input {
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 8px;
+            padding: .8rem 1rem;
+            color: #fff;
+            font-family: var(--font);
+            font-size: .9rem;
+            transition: border-color .2s;
+            outline: none;
+        }
+        .pedido-field input:focus { border-color: var(--orange); background: rgba(255,153,0,.05); }
+        .pedido-field input::placeholder { color: var(--muted); }
+        .btn-pedido-wa {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .7rem;
+            background: linear-gradient(135deg, #1a7a1a, #25a825);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            font-family: var(--head);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 6px 25px rgba(34,170,34,.3);
+            transition: all .2s;
+            width: 100%;
+        }
+        .btn-pedido-wa:hover { background: linear-gradient(135deg,#22aa22,#29bb29); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(34,170,34,.45); }
+        .pedido-info {
+            font-family: var(--mono);
+            font-size: .72rem;
+            color: var(--muted);
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* ============================================================
    TOAST
    ============================================================ */
         
@@ -1834,126 +2313,117 @@
    RESPONSIVE — COMPLETO MOBILE/TABLET/PC
    ============================================================ */
 
-        /* --- Tablet grande --- */
+        /* =========================================================
+   RESPONSIVO — UNIFICADO
+   ========================================================= */
+
+        /* Tablet grande: encurta coluna da personagem */
         @media (max-width: 1024px) {
-            .hero-char { right: 0; opacity: 0.85; height: 80%; }
+            .hero-wrap { grid-template-columns: 1fr 280px; }
+            .hero-char-float { max-width: 260px; }
             .vip-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
         }
 
-        /* --- Tablet --- */
+        /* Performance: sem backdrop-filter em mobile */
         @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .hamburger { display: flex; }
-            .hero-char { right: -5%; opacity: 0.55; height: 70%; }
-            .hero-content {
-                max-width: 100%; text-align: center;
-                display: flex; flex-direction: column; align-items: center; z-index: 5;
-            }
-            .hero-subtitle { margin-left: auto; margin-right: auto; }
-            .hero-btns { justify-content: center; }
-            .hero-stats { justify-content: center; width: 100%; }
-            .server-card {
-                width: 100%; justify-content: center; text-align: center;
-                flex-direction: column; gap: 1rem;
-            }
-            .server-players { text-align: center; }
-            .orgs-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
-            .jobs-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
-            .vip-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+            nav { backdrop-filter: none; background: rgba(18,18,20,.97); }
+            .mobile-menu { backdrop-filter: none; background: rgba(18,18,20,.99); }
+            .server-card { backdrop-filter: none; background: rgba(24,24,27,.95); }
+            .top-bar { backdrop-filter: none; background: rgba(10,10,11,.98); }
+            #sliderB { display: none; }
         }
 
-        /* --- Mobile médio --- */
-        @media (max-width: 600px) {
-            .hero-char { right: -20%; opacity: 0.22; height: 52%; bottom: 0; }
-            .hero-logo-img { max-width: 90%; }
-            .hero-subtitle { font-size: 1rem; letter-spacing: 2px; }
-            .hero-content { padding: 2.5rem 0 2rem; }
-            .page-title { font-size: 2rem; }
-            .page-desc { font-size: .9rem; }
-            .page-content { padding: 2rem 4% 4rem; }
-            .page-hero { padding: 3rem 4% 2rem; }
-
-            /* nav */
+        /* Mobile/Tablet < 768px — layout vertical, personagem some */
+        @media (max-width: 768px) {
+            /* Nav */
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
             .top-bar { display: none; }
             nav { top: 0; height: 60px; padding: 0 4%; }
             .nav-logo img { height: 42px; }
-            #app { padding-top: 60px; min-height: calc(100vh - 60px); }
+            #app { padding-top: 60px; }
             .mobile-menu { top: 60px; }
 
-            /* hero stats */
-            .hero-stats { gap: 1rem; padding: 1.2rem; }
+            /* Hero */
+            #page-home { min-height: calc(100vh - 60px); }
+            .hero-wrap {
+                grid-template-columns: 1fr;
+                min-height: calc(100vh - 60px);
+                padding: 0 5%;
+                align-items: center;
+            }
+            .hero-char-col { display: none; }
+            .hero-content {
+                text-align: center;
+                display: flex; flex-direction: column; align-items: center;
+                padding: 2rem 0 3rem;
+            }
+            .hero-logo-img { max-width: 80%; margin-bottom: .8rem; }
+            .hero-subtitle { font-size: 1rem; letter-spacing: 2px; margin-bottom: 1.5rem; }
+            .server-card { width: 100%; flex-direction: column; gap: 1rem; text-align: center; padding: 1rem; }
+            .server-players { text-align: center; }
+            /* Botões em grade 2 colunas */
+            .hero-btns {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: .55rem;
+                width: 100%;
+            }
+            .hero-btns .btn { text-align: center; justify-content: center; padding: .75rem .6rem; font-size: .78rem; }
+            .hero-btns .btn-primary { grid-column: 1 / -1; }
+            .hero-stats { justify-content: center; width: 100%; gap: 1rem; padding: 1.2rem; }
             .hstat-num { font-size: 1.6rem; }
             .hstat-sep { display: none; }
 
-            /* server card */
-            .server-card { padding: 1rem; }
-            .server-name { font-size: .85rem; }
-            .server-ip { font-size: .78rem; }
-            .server-players .num { font-size: 1.4rem; }
-
-            /* buttons */
-            .hero-btns { gap: .7rem; }
-            .btn { padding: .75rem 1.4rem; font-size: .82rem; }
-
-            /* grids */
+            /* Grids de páginas */
             .orgs-grid { grid-template-columns: 1fr; }
             .jobs-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
             .wa-grid { grid-template-columns: 1fr 1fr; }
             .vip-grid { grid-template-columns: 1fr; gap: 1.2rem; }
             .info-grid { grid-template-columns: 1fr; }
+            .page-title { font-size: 2rem; }
+            .page-desc { font-size: .9rem; }
+            .page-content { padding: 2rem 4% 4rem; }
+            .page-hero { padding: 3rem 4% 2rem; }
 
-            /* filter bar — scroll horizontal */
+            /* Filter bar scroll */
             .filter-bar { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: .5rem; scrollbar-width: none; }
             .filter-bar::-webkit-scrollbar { display: none; }
             .fb { white-space: nowrap; flex-shrink: 0; padding: .55rem 1.1rem; font-size: .78rem; }
-
-            /* search */
             .search-box { max-width: 100%; }
 
-            /* org card */
+            /* Cards */
             .org-card { padding: 1.2rem; gap: 1rem; }
-            .org-icon { font-size: 1.8rem; }
             .org-name { font-size: 1rem; }
-
-            /* rule card */
-            .rule-card { padding: 1rem; gap: 1rem; flex-direction: row; }
+            .rule-card { padding: 1rem; gap: 1rem; }
             .rule-id { font-size: 1rem; padding: .4rem .7rem; min-width: 50px; }
-
-            /* vip */
             .vip-card { padding: 2rem 1.5rem; }
             .vip-card.featured { transform: none; }
-            .vip-card.featured:hover { transform: translateY(-10px); }
+            .vip-card.featured:hover { transform: translateY(-8px); }
 
-            /* footer */
+            /* Footer / Toast / FAQ */
             .page-footer { padding: 3rem 4%; }
             .footer-links { gap: .5rem; }
             .footer-link { padding: .5rem .9rem; font-size: .75rem; }
-
-            /* faq */
             .faq-q { font-size: .9rem; padding: 1rem 1.2rem; }
             .faq-a { padding: 0 1.2rem 1.2rem; font-size: .85rem; }
-
-            /* toast */
-            #toast { font-size: .8rem; padding: .7rem 1.5rem; bottom: 1.5rem; white-space: normal; text-align: center; max-width: 80vw; }
-
-            /* wa-grid em telas menores */
-            @media (max-width: 420px) { .wa-grid { grid-template-columns: 1fr; } }
+            #toast { font-size: .8rem; padding: .7rem 1.5rem; bottom: 1.5rem; white-space: normal; text-align: center; max-width: 85vw; }
         }
 
-        /* --- Mobile pequeno --- */
+        /* Mobile pequeno */
         @media (max-width: 380px) {
             .page-title { font-size: 1.7rem; }
             .hstat-num { font-size: 1.4rem; }
-            .hero-stats { gap: .7rem; padding: 1rem; }
-            .btn { padding: .65rem 1.1rem; font-size: .78rem; }
             nav { height: 56px; }
             #app { padding-top: 56px; }
             .mobile-menu { top: 56px; }
             .nav-logo img { height: 38px; }
+            .hero-btns .btn { font-size: .72rem; padding: .65rem .5rem; }
+            .wa-grid { grid-template-columns: 1fr; }
         }
 
-        /* garantir toque mínimo em mobile */
-        @media (max-width: 900px) {
+        /* Touch targets mínimos */
+        @media (max-width: 768px) {
             .nav-links li a, .mobile-menu a, .fb, .btn, .org-wa, .btn-wa-sm { min-height: 44px; }
             .hamburger { padding: .7rem; }
         }
@@ -1991,11 +2461,13 @@
         </div>
         <ul class="nav-links">
             <li><a href="#" data-page="home" onclick="goPage('home');return false" class="active">Início</a></li>
+            <li><a href="#" data-page="conectar" onclick="goPage('conectar');return false">Como Conectar</a></li>
             <li><a href="#" data-page="orgs" onclick="goPage('orgs');return false">Organizações</a></li>
             <li><a href="#" data-page="empregos" onclick="goPage('empregos');return false">Empregos</a></li>
             <li><a href="#" data-page="regras" onclick="goPage('regras');return false">Regras</a></li>
             <li><a href="#" data-page="whatsapp" onclick="goPage('whatsapp');return false">Recrutamento</a></li>
             <li><a href="#" data-page="vip" onclick="goPage('vip');return false">VIP &amp; Sócios</a></li>
+            <li><a href="#" data-page="radio" onclick="goPage('radio');return false">🎵 Rádio</a></li>
             <li><a href="#" data-page="faq" onclick="goPage('faq');return false">FAQ</a></li>
         </ul>
         <div class="nav-right">
@@ -2013,20 +2485,53 @@
             <span id="mobileOnline" style="font-family:var(--mono);font-size:.75rem;color:var(--orange)">● Carregando...</span>
         </div>
         <a href="#" data-page="home" onclick="goPage('home');closeMobile();return false">🏠 Início</a>
+        <a href="#" data-page="conectar" onclick="goPage('conectar');closeMobile();return false">🎮 Como Conectar</a>
         <a href="#" data-page="orgs" onclick="goPage('orgs');closeMobile();return false">🏛 Organizações</a>
         <a href="#" data-page="empregos" onclick="goPage('empregos');closeMobile();return false">💼 Empregos</a>
         <a href="#" data-page="regras" onclick="goPage('regras');closeMobile();return false">📜 Regras</a>
         <a href="#" data-page="whatsapp" onclick="goPage('whatsapp');closeMobile();return false">📲 Recrutamento</a>
         <a href="#" data-page="vip" onclick="goPage('vip');closeMobile();return false">💎 VIP &amp; Sócios</a>
+        <a href="#" data-page="radio" onclick="goPage('radio');closeMobile();return false">🎵 Rádio & Pedir Música</a>
         <a href="#" data-page="faq" onclick="goPage('faq');closeMobile();return false">❓ FAQ</a>
     </div>
+
+    <!-- ============================================================ RÁDIO PLAYER FLUTUANTE -->
+    <div id="radio-player">
+        <div class="radio-header" onclick="toggleRadioMin()">
+            <div class="radio-wave paused" id="radioWave">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="radio-title">
+                <strong>📻 Radio NaRua Play</strong>
+                <span id="radioStatus">▶ Clique para ouvir</span>
+            </div>
+            <div class="radio-chevron" id="radioChevron">▼</div>
+        </div>
+        <div class="radio-body" id="radioBody">
+            <div class="radio-controls">
+                <button class="radio-btn" id="radioPlayBtn" onclick="toggleRadio()" title="Play/Pause">▶</button>
+                <div class="radio-vol-wrap">
+                    <span class="radio-vol-icon">🔊</span>
+                    <input type="range" class="radio-vol" id="radioVol" min="0" max="1" step="0.05" value="0.7" oninput="setRadioVol(this.value)">
+                </div>
+            </div>
+            <a href="#" onclick="goPage('radio');return false" class="radio-pedido-btn">
+                🎵 Pedir uma Música
+            </a>
+        </div>
+    </div>
+
+    <audio id="radioAudio" preload="none">
+        <source src="https://stream.zeno.fm/si5xey7akartv.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="app">
 
         <!-- ============================================================ HOME -->
         <div class="page active" id="page-home">
             <!-- SLIDER DE IMAGENS -->
-            <div class="hero-slider"></div>
+            <div class="hero-slider" id="sliderA"></div>
+            <div class="hero-slider-b" id="sliderB"></div>
             <div class="hero-overlay"></div>
 
             <div class="hero-wrap">
@@ -2052,6 +2557,8 @@
 
                     <div class="hero-btns">
                         <a href="#" onclick="copyIP();return false" class="btn btn-primary">📋 Copiar IP</a>
+                        <a href="#" onclick="goPage('conectar');return false" class="btn btn-outline">🎮 Como Conectar</a>
+                        <a href="#" onclick="toggleRadio();return false" class="btn btn-outline" id="heroRadioBtn">▶ Rádio</a>
                         <a href="#" onclick="goPage('whatsapp');return false" class="btn btn-wa">📲 Recrutamento</a>
                         <a href="#" onclick="goPage('vip');return false" class="btn btn-outline">💎 VIP</a>
                         <a href="https://drive.google.com/uc?export=download&id=172NubqniDPhy4kRryNe4qYxerIIbg2np" target="_blank" class="btn btn-apk">📱 Baixar APK</a>
@@ -2080,8 +2587,108 @@
                     </div>
                 </div>
             </div>
-            <!-- CHARACTER ADAPTÁVEL -->
-            <img src="https://iili.io/qBuZQ1a.png" alt="Personagem NARUA RPG" class="hero-char" onerror="this.style.display='none'">
+            <!-- PERSONAGEM FLUTUANTE ANIMADO -->
+            <div class="hero-char-col">
+                <img src="https://iili.io/qBuZQ1a.png" alt="Personagem NARUA RPG" class="hero-char-float" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- ============================================================ COMO CONECTAR -->
+        <div class="page" id="page-conectar">
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">guia de instalação</div>
+                    <h2 class="page-title">COMO <em>CONECTAR</em></h2>
+                    <p class="page-desc">Conecte-se ao NARUA RPG em PC ou Celular. Siga os passos abaixo e entre no servidor em minutos.</p>
+                </div>
+            </div>
+            <div class="page-content">
+
+                <!-- Downloads -->
+                <div class="sec-head">⬇️ Downloads</div>
+                <div class="connect-download-grid">
+                    <div class="connect-dl-card">
+                        <div class="connect-dl-icon">📱</div>
+                        <div class="connect-dl-title">SA-MP Mobile</div>
+                        <div class="connect-dl-desc">Para jogar no <strong>Android</strong>. Instale o APK do SA-MP Mobile e conecte direto pelo celular.</div>
+                        <span class="connect-dl-badge">Android · APK · v0.3.7</span>
+                        <a href="https://drive.google.com/file/d/172NubqniDPhy4kRryNe4qYxerIIbg2np/view?usp=sharing" target="_blank" class="btn btn-dl-apk" style="padding:.85rem 1.8rem;font-family:var(--head);font-size:.9rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:8px;transition:all .3s;cursor:pointer;">
+                            📥 Baixar APK
+                        </a>
+                    </div>
+                    <div class="connect-dl-card">
+                        <div class="connect-dl-icon">🖥️</div>
+                        <div class="connect-dl-title">SA-MP PC</div>
+                        <div class="connect-dl-desc">Para jogar no <strong>Computador</strong>. Você precisa do GTA San Andreas instalado + o cliente SA-MP.</div>
+                        <span class="connect-dl-badge">Windows · PC · v0.3.7-R4</span>
+                        <a href="https://drive.google.com/file/d/1isaCBkxiLvruOjRT8TqLGtqr-F9JCXXU/view?usp=sharing" target="_blank" class="btn btn-dl-pc" style="padding:.85rem 1.8rem;font-family:var(--head);font-size:.9rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:8px;transition:all .3s;cursor:pointer;">
+                            💻 Baixar SA-MP PC
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Aviso importante -->
+                <div class="connect-info-box">
+                    <div class="icon">⚠️</div>
+                    <p>No Android, antes de instalar o APK vá em <strong>Configurações → Segurança</strong> e ative <strong>"Fontes desconhecidas"</strong> ou <strong>"Instalar apps desconhecidos"</strong>. No PC, instale o GTA SA primeiro e depois o SA-MP na mesma pasta do jogo.</p>
+                </div>
+
+                <!-- Passos Mobile -->
+                <div class="sec-head">📱 Passo a Passo — Mobile (Android)</div>
+                <div class="connect-steps" style="margin-bottom:3rem">
+                    <div class="connect-step">
+                        <div class="connect-step-num">01</div>
+                        <div class="connect-step-title">Baixe o APK</div>
+                        <div class="connect-step-desc">Clique em <strong>"Baixar APK"</strong> acima, faça o download e instale o SA-MP Mobile no seu Android.</div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="connect-step-num">02</div>
+                        <div class="connect-step-title">Abra o SA-MP</div>
+                        <div class="connect-step-desc">Abra o app. Toque em <strong>"Servidores"</strong> → <strong>"Adicionar"</strong> e insira o IP: <code>168.222.251.98</code> e Porta: <code>5177</code>.</div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="connect-step-num">03</div>
+                        <div class="connect-step-title">Conecte & Jogue</div>
+                        <div class="connect-step-desc">Toque no servidor salvo, escolha seu apelido e clique em <strong>Conectar</strong>. Bem-vindo ao NARUA RPG! 🎮</div>
+                    </div>
+                </div>
+
+                <!-- Passos PC -->
+                <div class="sec-head">🖥️ Passo a Passo — PC (Windows)</div>
+                <div class="connect-steps">
+                    <div class="connect-step">
+                        <div class="connect-step-num">01</div>
+                        <div class="connect-step-title">Baixe o SA-MP PC</div>
+                        <div class="connect-step-desc">Clique em <strong>"Baixar SA-MP PC"</strong> acima e salve o arquivo no seu computador. Dentro do arquivo baixado estará a <strong>pasta do GTA San Andreas</strong>.</div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="connect-step-num">02</div>
+                        <div class="connect-step-title">Mover para Arquivos de Programas</div>
+                        <div class="connect-step-desc">Abra o <strong>Explorador de Arquivos</strong> e vá em:<br><code>C:\Arquivos de Programas\</code><br>Se não existir, crie a pasta <code>Rockstar Games</code> dentro.</div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="connect-step-num">03</div>
+                        <div class="connect-step-title">Cole a pasta do GTA SA</div>
+                        <div class="connect-step-desc">Cole a pasta do GTA San Andreas dentro de <code>C:\Arquivos de Programas\Rockstar Games\</code>. O resultado deve ser:<br><code>...\Rockstar Games\GTA San Andreas\</code></div>
+                    </div>
+                    <div class="connect-step">
+                        <div class="connect-step-num">04</div>
+                        <div class="connect-step-title">Abra o SA-MP e Conecte</div>
+                        <div class="connect-step-desc">Dentro da pasta do GTA SA, execute o <strong>samp.exe</strong> → vá em <strong>Favoritos → Adicionar Servidor</strong> → insira <code>168.222.251.98:5177</code> e clique em <strong>Conectar</strong>. 🎮</div>
+                    </div>
+                </div>
+
+                <!-- IP Box -->
+                <div style="background:var(--card);border:1px solid rgba(255,153,0,.2);border-left:4px solid var(--orange);border-radius:8px;padding:2rem;text-align:center;margin-bottom:2rem">
+                    <div style="font-family:var(--head);font-size:1rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:.8rem">IP DO SERVIDOR</div>
+                    <div style="font-family:var(--mono);font-size:1.6rem;color:var(--orange);margin-bottom:1.2rem;letter-spacing:2px">168.222.251.98:5177</div>
+                    <a href="#" onclick="copyIP();return false" class="btn btn-primary" style="text-decoration:none">📋 Copiar IP</a>
+                </div>
+
+            </div>
+            <div class="page-footer">
+                <div class="footer-copy">NARUA RPG · 168.222.251.98:5177 · PC &amp; Android</div>
+            </div>
         </div>
 
         <!-- ============================================================ ORGS -->
@@ -2216,6 +2823,66 @@
             </div>
             <div class="page-footer"><img src="https://iili.io/qBukOIR.png" alt="Logo" class="footer-logo-img">
                 <div class="footer-copy">© 2024 NARUA RPG · Não afiliado à Rockstar Games</div>
+            </div>
+        </div>
+
+
+        <!-- ============================================================ RÁDIO & PEDIDO DE MÚSICA -->
+        <div class="page" id="page-radio">
+            <div class="page-hero">
+                <div class="page-hero-inner">
+                    <div class="page-eyebrow">ao vivo 24/7</div>
+                    <h2 class="page-title">RADIO <em>NaRua PLAY</em></h2>
+                    <p class="page-desc">Ouça a rádio oficial do NARUA RPG ao vivo e peça sua música favorita pelo WhatsApp!</p>
+                </div>
+            </div>
+            <div class="page-content">
+
+                <!-- Player grande -->
+                <div class="radio-page-player">
+                    <div class="radio-page-disc" id="pageDisc">📻</div>
+                    <div>
+                        <div class="radio-page-name">Radio <span>NaRua</span> Play</div>
+                        <div class="radio-page-sub" id="pageRadioStatus">Clique em play para ouvir ao vivo</div>
+                    </div>
+                    <div class="radio-page-controls">
+                        <button class="rpc-btn" onclick="toggleRadio()" id="pagePlayBtn" title="Play/Pause">▶</button>
+                    </div>
+                    <div class="radio-page-vol">
+                        <span>🔇</span>
+                        <input type="range" min="0" max="1" step="0.05" value="0.7" oninput="setRadioVol(this.value)" id="pageVolSlider">
+                        <span>🔊</span>
+                    </div>
+                </div>
+
+                <!-- Pedido de Música -->
+                <div class="pedido-card">
+                    <h3>🎵 Pedir uma <span>Música</span></h3>
+                    <div class="pedido-fields">
+                        <div class="pedido-field">
+                            <label>Nome da Música</label>
+                            <input type="text" id="pedidoMusica" placeholder="Ex: Recaída">
+                        </div>
+                        <div class="pedido-field">
+                            <label>Nome do Cantor / Banda</label>
+                            <input type="text" id="pedidoCantor" placeholder="Ex: Gustavo Lima">
+                        </div>
+                    </div>
+                    <a id="pedidoLink" href="#" onclick="enviarPedido();return false" class="btn-pedido-wa">
+                        📲 Enviar Pedido pelo WhatsApp
+                    </a>
+                    <div class="pedido-info">Seu pedido será enviado para o WhatsApp da rádio · (34) 9 9811-0946</div>
+                </div>
+
+                <!-- Info box -->
+                <div class="connect-info-box">
+                    <div class="icon">📻</div>
+                    <p>A <strong>Radio NaRua Play</strong> toca ao vivo enquanto você joga no NARUA RPG. Peça sua música favorita e ouça ela tocar no servidor! O player flutuante fica disponível em todas as páginas — procure o ícone 📻 no canto inferior direito.</p>
+                </div>
+
+            </div>
+            <div class="page-footer">
+                <div class="footer-copy">Radio NaRua Play · NARUA RPG · 168.222.251.98:5177</div>
             </div>
         </div>
 
@@ -3112,7 +3779,46 @@ renderSocio();
 renderFAQ();
 
 // ==============================
-// SA-MP LIVE STATUS — 24/7
+// HERO SLIDER — JS crossfade (mais leve que CSS animation)
+// ==============================
+(function() {
+    const IMGS = [
+        'https://i.imgur.com/8Q3u1tH.jpg',
+        'https://i.imgur.com/KzQ3LdC.jpg',
+        'https://i.imgur.com/Z4c9e4g.jpg'
+    ];
+    let cur = 0;
+    const slA = document.getElementById('sliderA');
+    const slB = document.getElementById('sliderB');
+    if (!slA || !slB) return;
+
+    // Carrega imagem inicial imediatamente
+    slA.style.backgroundImage = `url('${IMGS[0]}')`;
+
+    // Pré-carrega a próxima depois de 3s
+    function preload(src) {
+        return new Promise(res => { const i = new Image(); i.onload = res; i.onerror = res; i.src = src; });
+    }
+
+    let isA = true;
+    async function nextSlide() {
+        cur = (cur + 1) % IMGS.length;
+        await preload(IMGS[cur]);
+        const next = isA ? slB : slA;
+        const prev = isA ? slA : slB;
+        next.style.backgroundImage = `url('${IMGS[cur]}')`;
+        next.style.opacity = '1';
+        next.style.zIndex = '1';
+        prev.style.zIndex = '0';
+        setTimeout(() => { prev.style.opacity = '0'; }, 1200);
+        isA = !isA;
+    }
+
+    setTimeout(() => {
+        setInterval(nextSlide, 6000);
+    }, 3000);
+})();
+
 // ==============================
 const SV = '168.222.251.98:5177', SIP = '168.222.251.98', SP = 5177;
 
@@ -3178,11 +3884,11 @@ function applyStatus(d) {
 
   // nav status
   const navIp = document.getElementById('navStatus');
-  if (navIp) { navIp.textContent = ok ? `● ${pl}/${mx} · Online` : '● OFFLINE'; navIp.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+  if (navIp) { navIp.textContent = ok ? '● ONLINE' : '● OFFLINE'; navIp.style.color = ok ? 'var(--orange)' : '#ff4757'; }
 
-  // hero players
+  // hero players — só mostra ONLINE
   const hp = document.getElementById('heroPlayers');
-  if (hp) { hp.textContent = ok ? `${pl}/${mx}` : '—'; }
+  if (hp) { hp.textContent = ok ? 'ONLINE' : 'OFFLINE'; }
 
   // hero total
   const ht = document.getElementById('heroTotal');
@@ -3194,7 +3900,7 @@ function applyStatus(d) {
 
   // mobile menu status
   const mob = document.getElementById('mobileOnline');
-  if (mob) { mob.textContent = ok ? `● ${pl}/${mx} online` : '● OFFLINE'; mob.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+  if (mob) { mob.textContent = ok ? '● ONLINE' : '● OFFLINE'; mob.style.color = ok ? 'var(--orange)' : '#ff4757'; }
 
   // status dot on server card
   const heroD = document.getElementById('heroStatusDot');
@@ -3206,6 +3912,79 @@ fetchStatus();
 setInterval(fetchStatus, 30000);
 // Quando a aba volta ao foco, atualiza imediatamente
 document.addEventListener('visibilitychange', () => { if (!document.hidden) fetchStatus(); });
+
+// ==============================
+// RÁDIO PLAYER
+// ==============================
+let radioPlaying = false;
+const radioAudio = document.getElementById('radioAudio');
+
+function toggleRadio() {
+    if (radioPlaying) {
+        radioAudio.pause();
+        radioPlaying = false;
+    } else {
+        radioAudio.play().catch(() => {});
+        radioPlaying = true;
+    }
+    updateRadioUI();
+}
+
+function setRadioVol(v) {
+    radioAudio.volume = v;
+    const pv = document.getElementById('pageVolSlider');
+    const rv = document.getElementById('radioVol');
+    if (pv) pv.value = v;
+    if (rv) rv.value = v;
+}
+
+function updateRadioUI() {
+    const wave = document.getElementById('radioWave');
+    const btn  = document.getElementById('radioPlayBtn');
+    const pBtn = document.getElementById('pagePlayBtn');
+    const disc = document.getElementById('pageDisc');
+    const st   = document.getElementById('radioStatus');
+    const pSt  = document.getElementById('pageRadioStatus');
+    const hBtn = document.getElementById('heroRadioBtn');
+
+    if (radioPlaying) {
+        if (wave) wave.classList.remove('paused');
+        if (btn)  btn.textContent = '⏸';
+        if (pBtn) pBtn.textContent = '⏸';
+        if (disc) disc.classList.remove('paused');
+        if (st)   st.textContent = '● AO VIVO';
+        if (pSt)  pSt.textContent = '● Transmitindo ao vivo agora';
+        if (hBtn) hBtn.innerHTML = '⏸ Rádio';
+    } else {
+        if (wave) wave.classList.add('paused');
+        if (btn)  btn.textContent = '▶';
+        if (pBtn) pBtn.textContent = '▶';
+        if (disc) disc.classList.add('paused');
+        if (st)   st.textContent = 'CLIQUE PARA OUVIR';
+        if (pSt)  pSt.textContent = 'Clique em play para ouvir ao vivo';
+        if (hBtn) hBtn.innerHTML = '▶ Rádio';
+    }
+}
+
+function toggleRadioMin() {
+    const rp = document.getElementById('radio-player');
+    rp.classList.toggle('minimized');
+}
+
+radioAudio.addEventListener('play',  updateRadioUI);
+radioAudio.addEventListener('pause', updateRadioUI);
+radioAudio.volume = 0.7;
+
+// ==============================
+// PEDIDO DE MÚSICA
+// ==============================
+function enviarPedido() {
+    const musica = document.getElementById('pedidoMusica')?.value.trim();
+    const cantor = document.getElementById('pedidoCantor')?.value.trim();
+    if (!musica || !cantor) { toast('⚠️ Preencha a música e o cantor!'); return; }
+    const msg = encodeURIComponent(`🎵 *Pedido de Música — Radio NaRua Play*\n\n🎶 Música: ${musica}\n🎤 Cantor/Banda: ${cantor}\n\n📻 Servidor NARUA RPG · 168.222.251.98:5177`);
+    window.open(`https://wa.me/5534998110946?text=${msg}`, '_blank');
+}
 
 // ==============================
 // SPLASH INTRO
