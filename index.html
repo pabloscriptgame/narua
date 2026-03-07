@@ -176,6 +176,237 @@
         0%,100% { opacity:.3; } 50% { opacity:.8; }
     }
     </style>
+
+    <style>
+    /* ============================================================
+       AGE GATE — Verificação de Idade 14+
+    ============================================================ */
+    #age-gate {
+        position: fixed;
+        inset: 0;
+        z-index: 200000;
+        background: #07070A;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        transition: opacity .5s ease, visibility .5s ease;
+    }
+    #age-gate.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+    #age-gate::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,153,0,.12) 0%, transparent 70%),
+            url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+    }
+    .age-gate-box {
+        position: relative;
+        z-index: 2;
+        background: rgba(18,18,20,.97);
+        border: 1px solid rgba(255,153,0,.35);
+        border-radius: 16px;
+        padding: 2.8rem 2.4rem 2.4rem;
+        max-width: 420px;
+        width: 90%;
+        text-align: center;
+        box-shadow: 0 0 60px rgba(255,153,0,.1), 0 20px 60px rgba(0,0,0,.7);
+        animation: ageGateIn .55s cubic-bezier(.2,.8,.2,1) both;
+    }
+    @keyframes ageGateIn {
+        from { opacity:0; transform: translateY(30px) scale(.95); }
+        to   { opacity:1; transform: none; }
+    }
+    .age-gate-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #FF9900, #FF7700);
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 1px;
+        box-shadow: 0 0 30px rgba(255,153,0,.5);
+        margin-bottom: 1.4rem;
+    }
+    .age-gate-logo {
+        width: 110px;
+        height: auto;
+        filter: drop-shadow(0 0 12px rgba(255,153,0,.5));
+        margin-bottom: 1rem;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .age-gate-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: .5rem;
+    }
+    .age-gate-sub {
+        font-family: 'Share Tech Mono', monospace;
+        font-size: .75rem;
+        color: rgba(255,153,0,.7);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1.4rem;
+    }
+    .age-gate-text {
+        font-family: 'Open Sans', sans-serif;
+        font-size: .88rem;
+        color: rgba(225,225,230,.75);
+        line-height: 1.6;
+        margin-bottom: 1.8rem;
+    }
+    .age-gate-text strong { color: #FF9900; }
+    .age-gate-divider {
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #FF9900, transparent);
+        margin: 0 auto 1.6rem;
+    }
+    .age-gate-btn-yes {
+        display: block;
+        width: 100%;
+        padding: .85rem 1rem;
+        background: linear-gradient(135deg, #FF9900, #FF7700);
+        border: none;
+        border-radius: 8px;
+        font-family: 'Oswald', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(255,153,0,.3);
+        transition: all .25s ease;
+        margin-bottom: .75rem;
+    }
+    .age-gate-btn-yes:hover {
+        background: linear-gradient(135deg, #FFB347, #FF9900);
+        box-shadow: 0 6px 28px rgba(255,153,0,.5);
+        transform: translateY(-2px);
+    }
+    .age-gate-btn-no {
+        display: block;
+        width: 100%;
+        padding: .7rem 1rem;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 8px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .82rem;
+        color: rgba(168,168,179,.6);
+        cursor: pointer;
+        transition: all .25s ease;
+    }
+    .age-gate-btn-no:hover {
+        border-color: rgba(255,71,87,.4);
+        color: rgba(255,71,87,.7);
+        background: rgba(255,71,87,.05);
+    }
+    .age-gate-footer {
+        margin-top: 1.2rem;
+        font-size: .7rem;
+        color: rgba(168,168,179,.35);
+        font-family: 'Share Tech Mono', monospace;
+        letter-spacing: 1px;
+    }
+
+    /* ============================================================
+       COOKIE BANNER — Isentos de Consentimento (LGPD)
+    ============================================================ */
+    #cookie-banner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 99000;
+        background: rgba(12,12,14,.97);
+        border-top: 1px solid rgba(255,153,0,.25);
+        backdrop-filter: blur(12px);
+        padding: .85rem 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        transform: translateY(0);
+        transition: transform .4s ease, opacity .4s ease;
+    }
+    #cookie-banner.hide {
+        transform: translateY(100%);
+        opacity: 0;
+        pointer-events: none;
+    }
+    .cookie-icon {
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    .cookie-text {
+        flex: 1;
+        font-family: 'Open Sans', sans-serif;
+        font-size: .78rem;
+        color: rgba(225,225,230,.7);
+        line-height: 1.5;
+    }
+    .cookie-text strong { color: #FF9900; }
+    .cookie-text a {
+        color: rgba(255,153,0,.8);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+    .cookie-badge {
+        display: inline-block;
+        background: rgba(255,153,0,.12);
+        border: 1px solid rgba(255,153,0,.3);
+        border-radius: 4px;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: .65rem;
+        color: #FF9900;
+        padding: .15rem .5rem;
+        letter-spacing: 1px;
+        vertical-align: middle;
+        margin-left: .3rem;
+    }
+    .cookie-btn-ok {
+        flex-shrink: 0;
+        padding: .5rem 1.4rem;
+        background: rgba(255,153,0,.15);
+        border: 1px solid rgba(255,153,0,.4);
+        border-radius: 6px;
+        font-family: 'Oswald', sans-serif;
+        font-size: .8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #FF9900;
+        cursor: pointer;
+        transition: all .2s ease;
+    }
+    .cookie-btn-ok:hover {
+        background: rgba(255,153,0,.25);
+        box-shadow: 0 0 12px rgba(255,153,0,.2);
+    }
+    @media (max-width: 600px) {
+        #cookie-banner { flex-direction: column; align-items: flex-start; }
+        .cookie-btn-ok { width: 100%; text-align: center; }
+    }
+    </style>
     <style>
         /* ============================================================
    NARUA RPG — Template Estilo PlayShox
@@ -2432,6 +2663,37 @@
 
 <body>
 
+    <!-- ============================================================ AGE GATE 14+ -->
+    <div id="age-gate">
+        <div class="age-gate-box">
+            <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" class="age-gate-logo" onerror="this.style.display='none'">
+            <div class="age-gate-badge">14+</div>
+            <div class="age-gate-title">Verificação de Idade</div>
+            <div class="age-gate-sub">RPG Brasil · NARUA RPG</div>
+            <div class="age-gate-divider"></div>
+            <p class="age-gate-text">
+                Este servidor de roleplay contém conteúdo temático adulto, linguagem forte e situações de conflito virtual.<br><br>
+                Confirme que você tem <strong>14 anos ou mais</strong> para acessar o site.
+            </p>
+            <button class="age-gate-btn-yes" onclick="confirmAge()">
+                ✔ Confirmo — Tenho 14 anos ou mais
+            </button>
+            <button class="age-gate-btn-no" onclick="denyAge()">
+                Não, tenho menos de 14 anos
+            </button>
+            <div class="age-gate-footer">NARUA RPG · RPG BRASIL · © 2025</div>
+        </div>
+    </div>
+
+    <!-- ============================================================ COOKIE BANNER (LGPD — Isentos) -->
+    <div id="cookie-banner" style="display:none;">
+        <span class="cookie-icon">🍪</span>
+        <div class="cookie-text">
+            Este site utiliza <strong>cookies essenciais</strong><span class="cookie-badge">ISENTO</span> necessários para o funcionamento do servidor RPG BRASIL — NARUA RPG (sessão, segurança e preferências). Por serem estritamente necessários, estes cookies <strong>não requerem consentimento</strong> conforme a LGPD (Art. 7°, II) e o Marco Civil da Internet.
+        </div>
+        <button class="cookie-btn-ok" onclick="closeCookieBanner()">Entendi</button>
+    </div>
+
     <!-- ============================================================ SPLASH INTRO -->
     <div id="splash" onclick="closeSplash()">
         <div class="splash-inner">
@@ -3984,6 +4246,59 @@ function enviarPedido() {
     if (!musica || !cantor) { toast('⚠️ Preencha a música e o cantor!'); return; }
     const msg = encodeURIComponent(`🎵 *Pedido de Música — Radio NaRua Play*\n\n🎶 Música: ${musica}\n🎤 Cantor/Banda: ${cantor}\n\n📻 Servidor NARUA RPG · 168.222.251.98:5177`);
     window.open(`https://wa.me/5534998110946?text=${msg}`, '_blank');
+}
+
+// ==============================
+// AGE GATE 14+
+// ==============================
+(function() {
+    const KEY = 'narua_age_ok';
+    const gate = document.getElementById('age-gate');
+    if (localStorage.getItem(KEY) === '1') {
+        // Já confirmado anteriormente — oculta imediatamente
+        gate.classList.add('hide');
+        initCookieBanner();
+    }
+    // Caso contrário, o gate fica visível (bloqueio padrão)
+})();
+
+function confirmAge() {
+    localStorage.setItem('narua_age_ok', '1');
+    const gate = document.getElementById('age-gate');
+    gate.classList.add('hide');
+    initCookieBanner();
+}
+
+function denyAge() {
+    // Redireciona para página segura (Google Brasil como fallback)
+    document.body.innerHTML = `
+        <div style="background:#07070A;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;text-align:center;padding:2rem;">
+            <div style="font-size:3rem;margin-bottom:1.2rem;">🔒</div>
+            <div style="font-size:1.6rem;color:#FF9900;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem;">Acesso Restrito</div>
+            <div style="font-size:.9rem;color:rgba(225,225,230,.6);max-width:360px;line-height:1.7;">
+                Este conteúdo é destinado a pessoas com <strong style="color:#FF9900">14 anos ou mais</strong>.<br>
+                Obrigado pela honestidade.
+            </div>
+        </div>`;
+}
+
+// ==============================
+// COOKIE BANNER — LGPD Isento
+// ==============================
+function initCookieBanner() {
+    if (localStorage.getItem('narua_cookie_ok') === '1') return;
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.style.display = 'flex';
+        // Força reflow para animar entrada
+        requestAnimationFrame(() => banner.classList.remove('hide'));
+    }
+}
+
+function closeCookieBanner() {
+    localStorage.setItem('narua_cookie_ok', '1');
+    const banner = document.getElementById('cookie-banner');
+    if (banner) banner.classList.add('hide');
 }
 
 // ==============================
