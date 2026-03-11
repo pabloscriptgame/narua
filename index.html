@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" href="https://iili.io/qBukOIR.png">
     <link rel="shortcut icon" href="https://iili.io/qBukOIR.png">
     <link rel="apple-touch-icon" href="https://iili.io/qBukOIR.png">
-    <meta name="theme-color" content="#FF9900">
+    <meta name="theme-color" content="#BF00FF">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -48,7 +48,7 @@
         bottom: 0; left: 50%;
         transform: translateX(-50%);
         width: 600px; height: 600px;
-        background: radial-gradient(circle, rgba(255,153,0,.25) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(191,0,255,.25) 0%, transparent 70%);
         pointer-events: none;
         animation: splashGlow 2s ease-in-out infinite alternate;
     }
@@ -63,7 +63,7 @@
         position: absolute;
         bottom: 0; left: 0; right: 0;
         height: 3px;
-        background: linear-gradient(90deg, transparent, #FF9900, #FF7700, transparent);
+        background: linear-gradient(90deg, transparent, #BF00FF, #8B00E6, transparent);
         animation: splashLine 2.5s ease infinite;
     }
     @keyframes splashLine {
@@ -87,7 +87,7 @@
     .splash-logo {
         width: 180px;
         height: auto;
-        filter: drop-shadow(0 0 20px rgba(255,153,0,.6));
+        filter: drop-shadow(0 0 20px rgba(191,0,255,.6));
         animation: splashLogoIn .7s cubic-bezier(.2,.8,.2,1) both;
         margin-bottom: .5rem;
     }
@@ -100,7 +100,7 @@
     .splash-char {
         width: min(380px, 80vw);
         height: auto;
-        filter: drop-shadow(0 0 40px rgba(255,153,0,.35)) drop-shadow(-10px 20px 30px rgba(0,0,0,.9));
+        filter: drop-shadow(0 0 40px rgba(191,0,255,.35)) drop-shadow(-10px 20px 30px rgba(0,0,0,.9));
         animation: splashCharIn 1s cubic-bezier(.2,.8,.2,1) .15s both;
         position: relative;
         z-index: 3;
@@ -122,13 +122,13 @@
         animation: splashTextIn .7s ease .4s both;
         text-shadow: 0 4px 20px rgba(0,0,0,.8);
     }
-    .splash-title span { color: #FF9900; }
+    .splash-title span { color: #BF00FF; }
 
     .splash-sub {
         font-family: 'Share Tech Mono', monospace;
         font-size: .8rem;
         letter-spacing: 3px;
-        color: rgba(255,153,0,.7);
+        color: rgba(191,0,255,.7);
         text-transform: uppercase;
         margin-top: .5rem;
         animation: splashTextIn .7s ease .55s both;
@@ -151,9 +151,9 @@
     .splash-bar {
         height: 100%;
         width: 0%;
-        background: linear-gradient(90deg, #FF7700, #FF9900);
+        background: linear-gradient(90deg, #8B00E6, #BF00FF);
         border-radius: 2px;
-        box-shadow: 0 0 10px #FF9900;
+        box-shadow: 0 0 10px #BF00FF;
         animation: splashLoad 2s cubic-bezier(.4,0,.2,1) .3s forwards;
     }
     @keyframes splashLoad {
@@ -202,7 +202,7 @@
         position: absolute;
         inset: 0;
         background:
-            radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,153,0,.12) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 50% at 50% 100%, rgba(191,0,255,.12) 0%, transparent 70%),
             url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         pointer-events: none;
     }
@@ -210,13 +210,13 @@
         position: relative;
         z-index: 2;
         background: rgba(18,18,20,.97);
-        border: 1px solid rgba(255,153,0,.35);
+        border: 1px solid rgba(191,0,255,.35);
         border-radius: 16px;
         padding: 2.8rem 2.4rem 2.4rem;
         max-width: 420px;
         width: 90%;
         text-align: center;
-        box-shadow: 0 0 60px rgba(255,153,0,.1), 0 20px 60px rgba(0,0,0,.7);
+        box-shadow: 0 0 60px rgba(191,0,255,.1), 0 20px 60px rgba(0,0,0,.7);
         animation: ageGateIn .55s cubic-bezier(.2,.8,.2,1) both;
     }
     @keyframes ageGateIn {
@@ -230,19 +230,19 @@
         width: 80px;
         height: 80px;
         border-radius: 50%;
-        background: linear-gradient(135deg, #FF9900, #FF7700);
+        background: linear-gradient(135deg, #BF00FF, #8B00E6);
         font-family: 'Oswald', sans-serif;
         font-size: 1.7rem;
         font-weight: 700;
         color: #fff;
         letter-spacing: 1px;
-        box-shadow: 0 0 30px rgba(255,153,0,.5);
+        box-shadow: 0 0 30px rgba(191,0,255,.5);
         margin-bottom: 1.4rem;
     }
     .age-gate-logo {
         width: 110px;
         height: auto;
-        filter: drop-shadow(0 0 12px rgba(255,153,0,.5));
+        filter: drop-shadow(0 0 12px rgba(191,0,255,.5));
         margin-bottom: 1rem;
         display: block;
         margin-left: auto;
@@ -260,7 +260,7 @@
     .age-gate-sub {
         font-family: 'Share Tech Mono', monospace;
         font-size: .75rem;
-        color: rgba(255,153,0,.7);
+        color: rgba(191,0,255,.7);
         letter-spacing: 2px;
         text-transform: uppercase;
         margin-bottom: 1.4rem;
@@ -272,18 +272,18 @@
         line-height: 1.6;
         margin-bottom: 1.8rem;
     }
-    .age-gate-text strong { color: #FF9900; }
+    .age-gate-text strong { color: #BF00FF; }
     .age-gate-divider {
         width: 60px;
         height: 2px;
-        background: linear-gradient(90deg, transparent, #FF9900, transparent);
+        background: linear-gradient(90deg, transparent, #BF00FF, transparent);
         margin: 0 auto 1.6rem;
     }
     .age-gate-btn-yes {
         display: block;
         width: 100%;
         padding: .85rem 1rem;
-        background: linear-gradient(135deg, #FF9900, #FF7700);
+        background: linear-gradient(135deg, #BF00FF, #8B00E6);
         border: none;
         border-radius: 8px;
         font-family: 'Oswald', sans-serif;
@@ -293,13 +293,13 @@
         text-transform: uppercase;
         color: #fff;
         cursor: pointer;
-        box-shadow: 0 4px 20px rgba(255,153,0,.3);
+        box-shadow: 0 4px 20px rgba(191,0,255,.3);
         transition: all .25s ease;
         margin-bottom: .75rem;
     }
     .age-gate-btn-yes:hover {
-        background: linear-gradient(135deg, #FFB347, #FF9900);
-        box-shadow: 0 6px 28px rgba(255,153,0,.5);
+        background: linear-gradient(135deg, #D966FF, #BF00FF);
+        box-shadow: 0 6px 28px rgba(191,0,255,.5);
         transform: translateY(-2px);
     }
     .age-gate-btn-no {
@@ -338,7 +338,7 @@
         right: 0;
         z-index: 99000;
         background: rgba(12,12,14,.97);
-        border-top: 1px solid rgba(255,153,0,.25);
+        border-top: 1px solid rgba(191,0,255,.25);
         backdrop-filter: blur(12px);
         padding: .85rem 5%;
         display: flex;
@@ -365,20 +365,20 @@
         color: rgba(225,225,230,.7);
         line-height: 1.5;
     }
-    .cookie-text strong { color: #FF9900; }
+    .cookie-text strong { color: #BF00FF; }
     .cookie-text a {
-        color: rgba(255,153,0,.8);
+        color: rgba(191,0,255,.8);
         text-decoration: underline;
         text-underline-offset: 2px;
     }
     .cookie-badge {
         display: inline-block;
-        background: rgba(255,153,0,.12);
-        border: 1px solid rgba(255,153,0,.3);
+        background: rgba(191,0,255,.12);
+        border: 1px solid rgba(191,0,255,.3);
         border-radius: 4px;
         font-family: 'Share Tech Mono', monospace;
         font-size: .65rem;
-        color: #FF9900;
+        color: #BF00FF;
         padding: .15rem .5rem;
         letter-spacing: 1px;
         vertical-align: middle;
@@ -387,20 +387,20 @@
     .cookie-btn-ok {
         flex-shrink: 0;
         padding: .5rem 1.4rem;
-        background: rgba(255,153,0,.15);
-        border: 1px solid rgba(255,153,0,.4);
+        background: rgba(191,0,255,.15);
+        border: 1px solid rgba(191,0,255,.4);
         border-radius: 6px;
         font-family: 'Oswald', sans-serif;
         font-size: .8rem;
         letter-spacing: 2px;
         text-transform: uppercase;
-        color: #FF9900;
+        color: #BF00FF;
         cursor: pointer;
         transition: all .2s ease;
     }
     .cookie-btn-ok:hover {
-        background: rgba(255,153,0,.25);
-        box-shadow: 0 0 12px rgba(255,153,0,.2);
+        background: rgba(191,0,255,.25);
+        box-shadow: 0 0 12px rgba(191,0,255,.2);
     }
     @media (max-width: 600px) {
         #cookie-banner { flex-direction: column; align-items: flex-start; }
@@ -409,21 +409,23 @@
     </style>
     <style>
         /* ============================================================
-   NARUA RPG — Template Estilo PlayShox
+   NARUA RPG — Template ROXO NEON · GTA San Andreas Edition
    ============================================================ */
         
         :root {
-            --orange: #FF9900;
-            /* Ajustado para a cor da logo */
-            --orange2: #FF7700;
-            --orange3: #FFB347;
-            --dark: #0A0A0B;
-            --dark2: #121214;
-            --dark3: #18181B;
-            --dark4: #202024;
-            --card: rgba(24, 24, 27, 0.7);
-            --card2: rgba(32, 32, 36, 0.9);
-            --border: rgba(255, 153, 0, 0.3);
+            --purple: #BF00FF;
+            --purple2: #8B00E6;
+            --purple3: #D966FF;
+            --purple4: #6600CC;
+            --neon: #E040FB;
+            --neon2: #7C4DFF;
+            --dark: #07070A;
+            --dark2: #0D0D12;
+            --dark3: #13131A;
+            --dark4: #1A1A24;
+            --card: rgba(19, 13, 28, 0.85);
+            --card2: rgba(26, 18, 40, 0.95);
+            --border: rgba(191, 0, 255, 0.35);
             --border2: rgba(255, 255, 255, 0.05);
             --text: #E1E1E6;
             --muted: #A8A8B3;
@@ -432,8 +434,11 @@
             --font: 'Open Sans', sans-serif;
             --head: 'Oswald', sans-serif;
             --mono: 'Share Tech Mono', monospace;
-            --shadow-orange: 0 0 30px rgba(255, 153, 0, 0.15);
-            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-purple: 0 0 30px rgba(191, 0, 255, 0.25);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);
+            /* GTA SA Accent */
+            --gta-green: #22C55E;
+            --gta-red: #EF4444;
         }
         
         *,
@@ -449,12 +454,25 @@
         }
         
         body {
-            background: var(--dark) url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background: var(--dark);
+            background-image: 
+                radial-gradient(ellipse 80% 40% at 50% 0%, rgba(139,0,230,0.08) 0%, transparent 60%),
+                url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23BF00FF' fill-opacity='0.025'%3E%3Cpath d='M40 40v-6h-2v6h-6v2h6v6h2v-6h6v-2h-6zM40 0v-6h-2v6h-6v2h6v6h2V2h6V0h-6zM0 40v-6h-2v6h-6v2h6v6h2v-6h6v-2H0zM0 0v-6h-2v6h-6v2h6v6h2V2h6V0H0z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: var(--text);
             font-family: var(--font);
             font-size: 14px;
             overflow-x: hidden;
             min-height: 100vh;
+        }
+        /* GTA SA City Skyline decorative element */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            height: 200px;
+            background: linear-gradient(to top, rgba(139,0,230,0.04), transparent);
+            pointer-events: none;
+            z-index: 0;
         }
         
         ::-webkit-scrollbar {
@@ -466,7 +484,7 @@
         }
         
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--orange), var(--orange2));
+            background: linear-gradient(180deg, var(--purple), var(--purple2));
             border-radius: 4px;
         }
         .btn-apk {
@@ -523,17 +541,17 @@
         }
         
         .top-bar a:hover {
-            color: var(--orange);
+            color: var(--purple);
         }
         
         .top-bar .dot {
             display: inline-block;
             width: 6px;
             height: 6px;
-            background: var(--orange);
+            background: var(--purple);
             border-radius: 50%;
             margin-right: .4rem;
-            box-shadow: 0 0 10px var(--orange);
+            box-shadow: 0 0 10px var(--purple);
             animation: blink 2s infinite;
         }
         /* ============================================================
@@ -548,7 +566,7 @@
             z-index: 1000;
             height: 70px;
             background: rgba(18, 18, 20, 0.85);
-            border-bottom: 2px solid var(--orange2);
+            border-bottom: 2px solid var(--purple2);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -575,7 +593,7 @@
             height: 50px;
             width: auto;
             object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.5));
+            filter: drop-shadow(0 0 15px rgba(191, 0, 255, 0.5));
         }
         
         .nav-logo-text {
@@ -619,7 +637,7 @@
             left: 50%;
             right: 50%;
             height: 2px;
-            background: var(--orange);
+            background: var(--purple);
             transition: all .3s ease;
             opacity: 0;
         }
@@ -637,7 +655,7 @@
         }
         
         .nav-links li a.active {
-            color: var(--orange);
+            color: var(--purple);
         }
         
         .nav-right {
@@ -651,30 +669,30 @@
             display: flex;
             align-items: center;
             gap: .6rem;
-            background: rgba(255, 153, 0, 0.1);
-            border: 1px solid rgba(255, 153, 0, 0.4);
+            background: rgba(191, 0, 255, 0.1);
+            border: 1px solid rgba(191, 0, 255, 0.4);
             border-radius: 6px;
             padding: .4rem 1rem;
             font-family: var(--mono);
             font-size: .8rem;
-            color: var(--orange);
+            color: var(--purple);
             cursor: pointer;
             transition: all .3s ease;
-            box-shadow: inset 0 0 10px rgba(255, 153, 0, 0.05);
+            box-shadow: inset 0 0 10px rgba(191, 0, 255, 0.05);
         }
         
         .nav-ip:hover {
-            background: rgba(255, 153, 0, 0.2);
+            background: rgba(191, 0, 255, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(191, 0, 255, 0.2);
         }
         
         .nav-ip .pdot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--orange);
-            box-shadow: 0 0 8px var(--orange);
+            background: var(--purple);
+            box-shadow: 0 0 8px var(--purple);
             animation: blink 2s infinite;
         }
         
@@ -690,7 +708,7 @@
             display: block;
             width: 25px;
             height: 2px;
-            background: var(--orange);
+            background: var(--purple);
             transition: all .3s;
         }
         /* MOBILE MENU */
@@ -702,7 +720,7 @@
             left: 0;
             right: 0;
             background: rgba(18, 18, 20, 0.98);
-            border-bottom: 2px solid var(--orange);
+            border-bottom: 2px solid var(--purple);
             z-index: 998;
             flex-direction: column;
             padding: 1rem 0;
@@ -740,21 +758,21 @@
         
         .mobile-menu a:hover,
         .mobile-menu a.active {
-            color: var(--orange);
-            background: rgba(255, 153, 0, 0.05);
+            color: var(--purple);
+            background: rgba(191, 0, 255, 0.05);
             padding-left: calc(5% + 10px);
-            border-left: 4px solid var(--orange);
+            border-left: 4px solid var(--purple);
         }
         
         @keyframes blink {
             0%,
             100% {
                 opacity: 1;
-                box-shadow: 0 0 10px var(--orange);
+                box-shadow: 0 0 10px var(--purple);
             }
             50% {
                 opacity: .4;
-                box-shadow: 0 0 2px var(--orange);
+                box-shadow: 0 0 2px var(--purple);
             }
         }
         /* ============================================================
@@ -808,11 +826,23 @@
         }
         .hero-overlay {
             position: absolute; inset: 0; z-index: 1;
-            background: linear-gradient(90deg,
-                rgba(10,10,11,1)   0%,
-                rgba(10,10,11,.92) 45%,
-                rgba(10,10,11,.4)  75%,
-                rgba(10,10,11,.1)  100%);
+            background: 
+                linear-gradient(90deg,
+                    rgba(7,7,10,1)   0%,
+                    rgba(7,7,10,.92) 45%,
+                    rgba(7,7,10,.4)  75%,
+                    rgba(7,7,10,.1)  100%),
+                radial-gradient(ellipse 50% 80% at 0% 50%, rgba(139,0,230,0.07) 0%, transparent 70%);
+        }
+        /* GTA SA Neon bottom strip */
+        #page-home::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #8B00E6, #BF00FF, #D966FF, #8B00E6, transparent);
+            z-index: 5;
+            animation: neonShift 4s linear infinite;
         }
 
         /* WRAP — grid 2 colunas no desktop */
@@ -848,7 +878,7 @@
             max-height: 80vh;
             object-fit: contain;
             object-position: bottom center;
-            filter: drop-shadow(-10px 0 50px rgba(255,153,0,.3))
+            filter: drop-shadow(-10px 0 50px rgba(191,0,255,.3))
                     drop-shadow(0 20px 40px rgba(0,0,0,.9));
             animation: charFloat 5s ease-in-out infinite;
             pointer-events: none;
@@ -884,17 +914,17 @@
             display: inline-flex;
             align-items: center;
             gap: .6rem;
-            background: rgba(255, 153, 0, 0.1);
-            border: 1px solid rgba(255, 153, 0, 0.3);
+            background: rgba(191, 0, 255, 0.1);
+            border: 1px solid rgba(191, 0, 255, 0.3);
             border-radius: 4px;
             padding: .4rem 1rem;
             font-family: var(--mono);
             font-size: .75rem;
             letter-spacing: 2px;
-            color: var(--orange);
+            color: var(--purple);
             text-transform: uppercase;
             margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(255, 153, 0, 0.1);
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.1);
         }
         
         .hero-tag::before {
@@ -902,8 +932,8 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: var(--orange);
-            box-shadow: 0 0 8px var(--orange);
+            background: var(--purple);
+            box-shadow: 0 0 8px var(--purple);
             animation: blink 2s infinite;
         }
         
@@ -929,7 +959,7 @@
         }
         
         .hero-subtitle em {
-            color: var(--orange);
+            color: var(--purple);
             font-style: normal;
             font-weight: 700;
         }
@@ -939,7 +969,7 @@
             background: rgba(24, 24, 27, 0.8);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-left: 4px solid var(--orange);
+            border-left: 4px solid var(--purple);
             border-radius: 8px;
             padding: 1.2rem 1.5rem;
             margin-bottom: 2rem;
@@ -953,15 +983,15 @@
         
         .server-card:hover {
             transform: translateX(5px);
-            border-color: rgba(255, 153, 0, 0.3);
+            border-color: rgba(191, 0, 255, 0.3);
         }
         
         .server-status-dot {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: var(--orange);
-            box-shadow: 0 0 10px var(--orange);
+            background: var(--purple);
+            box-shadow: 0 0 10px var(--purple);
             animation: blink 2s infinite;
             flex-shrink: 0;
         }
@@ -983,7 +1013,7 @@
         .server-ip {
             font-family: var(--mono);
             font-size: .85rem;
-            color: var(--orange);
+            color: var(--purple);
             margin-top: .3rem;
             cursor: pointer;
             transition: color 0.2s;
@@ -1006,7 +1036,7 @@
             font-family: var(--head);
             font-size: 1.3rem;
             font-weight: 700;
-            color: var(--orange);
+            color: var(--purple);
             line-height: 1;
         }
         
@@ -1029,11 +1059,11 @@
         
         .server-bar {
             height: 100%;
-            background: linear-gradient(90deg, var(--orange2), var(--orange));
+            background: linear-gradient(90deg, var(--purple2), var(--purple));
             border-radius: 3px;
             transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
             width: 0%;
-            box-shadow: 0 0 10px var(--orange);
+            box-shadow: 0 0 10px var(--purple);
         }
         
         .hero-btns {
@@ -1080,7 +1110,7 @@
             font-size: .7rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--orange);
+            color: var(--purple);
             margin-top: .4rem;
             font-weight: 600;
         }
@@ -1100,7 +1130,7 @@
             max-height: 850px;
             width: auto;
             z-index: 2;
-            filter: drop-shadow(-20px 20px 50px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(255, 153, 0, 0.2));
+            filter: drop-shadow(-20px 20px 50px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 30px rgba(191, 0, 255, 0.2));
             animation: charIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) .2s both;
             pointer-events: none;
             transition: all 0.3s ease;
@@ -1157,16 +1187,26 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, var(--orange), var(--orange2));
-            color: #111;
-            /* Contraste forte no botão laranja */
-            box-shadow: 0 6px 20px rgba(255, 153, 0, 0.4);
+            background: linear-gradient(135deg, var(--purple2), var(--purple));
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(191, 0, 255, 0.4);
+            position: relative;
+            overflow: hidden;
         }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent, rgba(255,255,255,.08), transparent);
+            transform: translateX(-100%);
+            transition: transform .5s ease;
+        }
+        .btn-primary:hover::after { transform: translateX(100%); }
         
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 153, 0, 0.6);
-            color: #000;
+            box-shadow: 0 10px 35px rgba(191, 0, 255, 0.65);
+            color: #fff;
         }
         
         .btn-outline {
@@ -1177,9 +1217,9 @@
         }
         
         .btn-outline:hover {
-            border-color: var(--orange);
-            color: var(--orange);
-            background: rgba(255, 153, 0, 0.05);
+            border-color: var(--purple);
+            color: var(--purple);
+            background: rgba(191, 0, 255, 0.05);
             transform: translateY(-3px);
         }
         
@@ -1198,11 +1238,24 @@
    ============================================================ */
         
         .page-hero {
-            background: linear-gradient(to bottom, rgba(18, 18, 20, 0.8), var(--dark)), url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
-            border-bottom: 1px solid rgba(255, 153, 0, 0.15);
+            background: 
+                linear-gradient(to bottom, rgba(13, 13, 18, 0.95), var(--dark)),
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(191,0,255,0.018) 2px, rgba(191,0,255,0.018) 4px),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            border-bottom: 1px solid rgba(191, 0, 255, 0.2);
             padding: 4rem 5% 3rem;
             position: relative;
             overflow: hidden;
+        }
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0;
+            top: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8B00E6, #BF00FF, #D966FF, #BF00FF, #8B00E6, transparent);
+            background-size: 200%;
+            animation: neonShift 4s linear infinite;
         }
         
         .page-hero::after {
@@ -1212,7 +1265,7 @@
             bottom: 0;
             width: 50%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--orange), transparent);
+            background: linear-gradient(90deg, transparent, var(--purple), transparent);
             transform: translateX(-50%);
         }
         
@@ -1227,14 +1280,14 @@
             font-family: var(--mono);
             font-size: .8rem;
             letter-spacing: 4px;
-            color: var(--orange);
+            color: var(--purple);
             text-transform: uppercase;
             margin-bottom: 1rem;
             display: inline-block;
-            background: rgba(255, 153, 0, 0.1);
+            background: rgba(191, 0, 255, 0.1);
             padding: 0.3rem 1rem;
             border-radius: 4px;
-            border: 1px solid rgba(255, 153, 0, 0.2);
+            border: 1px solid rgba(191, 0, 255, 0.2);
         }
         
         .page-title {
@@ -1249,8 +1302,9 @@
         }
         
         .page-title em {
-            color: var(--orange);
+            color: var(--purple3);
             font-style: normal;
+            text-shadow: 0 0 30px rgba(191,0,255,.6), 0 0 60px rgba(191,0,255,.3);
         }
         
         .page-desc {
@@ -1263,8 +1317,8 @@
         }
         
         .page-desc code {
-            color: var(--orange);
-            background: rgba(255, 153, 0, 0.1);
+            color: var(--purple);
+            background: rgba(191, 0, 255, 0.1);
             padding: .2em .6em;
             border-radius: 4px;
             font-family: var(--mono);
@@ -1310,17 +1364,17 @@
         }
         
         .fb.active {
-            background: linear-gradient(135deg, var(--orange2), var(--orange));
+            background: linear-gradient(135deg, var(--purple2), var(--purple));
             color: #111;
             border-color: transparent;
-            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(191, 0, 255, 0.3);
         }
         
         .fb:hover:not(.active) {
-            border-color: var(--orange);
+            border-color: var(--purple);
             color: #fff;
             transform: translateY(-2px);
-            background: rgba(255, 153, 0, 0.05);
+            background: rgba(191, 0, 255, 0.05);
         }
         /* SEARCH */
         
@@ -1339,8 +1393,8 @@
         }
         
         .search-box:focus-within {
-            border-color: var(--orange);
-            box-shadow: 0 4px 20px rgba(255, 153, 0, 0.15);
+            border-color: var(--purple);
+            box-shadow: 0 4px 20px rgba(191, 0, 255, 0.15);
             transform: translateY(-2px);
         }
         
@@ -1404,7 +1458,7 @@
         }
         
         .org-card {
-            border-top: 4px solid var(--oc, var(--orange));
+            border-top: 4px solid var(--oc, var(--purple));
             padding: 1.5rem;
             display: flex;
             align-items: center;
@@ -1478,9 +1532,9 @@
         }
         
         .badge-gov {
-            background: rgba(255, 153, 0, .1);
-            color: var(--orange);
-            border: 1px solid rgba(255, 153, 0, .3);
+            background: rgba(191, 0, 255, .1);
+            color: var(--purple);
+            border: 1px solid rgba(191, 0, 255, .3);
         }
         
         .badge-other {
@@ -1526,7 +1580,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--orange2), var(--orange));
+            background: linear-gradient(90deg, var(--purple2), var(--purple));
             transform: scaleX(0);
             transition: transform .3s ease;
             transform-origin: center;
@@ -1571,9 +1625,9 @@
         .job-req {
             font-family: var(--mono);
             font-size: .75rem;
-            color: var(--orange);
-            background: rgba(255, 153, 0, .1);
-            border: 1px solid rgba(255, 153, 0, .2);
+            color: var(--purple);
+            background: rgba(191, 0, 255, .1);
+            border: 1px solid rgba(191, 0, 255, .2);
             padding: .3rem .8rem;
             border-radius: 4px;
             font-weight: bold;
@@ -1599,9 +1653,9 @@
         }
         
         .cat-veiculo {
-            background: rgba(255, 153, 0, .1);
-            color: var(--orange);
-            border: 1px solid rgba(255, 153, 0, .3);
+            background: rgba(191, 0, 255, .1);
+            color: var(--purple);
+            border: 1px solid rgba(191, 0, 255, .3);
         }
         
         .cat-crime {
@@ -1639,9 +1693,9 @@
             font-family: var(--head);
             font-size: 1.2rem;
             font-weight: 700;
-            color: var(--orange);
-            background: rgba(255, 153, 0, .1);
-            border: 1px solid rgba(255, 153, 0, .2);
+            color: var(--purple);
+            background: rgba(191, 0, 255, .1);
+            border: 1px solid rgba(191, 0, 255, .2);
             padding: .5rem 1rem;
             border-radius: 6px;
             flex-shrink: 0;
@@ -1752,14 +1806,14 @@
             display: flex;
             align-items: center;
             gap: .8rem;
-            color: var(--orange);
+            color: var(--purple);
         }
         
         .sec-head::before {
             content: '';
             width: 4px;
             height: 18px;
-            background: var(--orange);
+            background: var(--purple);
             border-radius: 2px;
         }
         /* VIP */
@@ -1772,8 +1826,8 @@
         }
         
         .vip-card.featured {
-            border: 2px solid var(--orange);
-            background: linear-gradient(180deg, rgba(32, 32, 36, 0.95) 0%, rgba(255, 153, 0, 0.05) 100%);
+            border: 2px solid var(--purple);
+            background: linear-gradient(180deg, rgba(32, 32, 36, 0.95) 0%, rgba(191, 0, 255, 0.05) 100%);
             transform: scale(1.02);
         }
         
@@ -1786,7 +1840,7 @@
             font-size: .7rem;
             font-weight: 700;
             letter-spacing: 2px;
-            background: var(--orange);
+            background: var(--purple);
             color: #111;
             padding: .4rem 3rem;
             transform: rotate(45deg);
@@ -1795,8 +1849,8 @@
         
         .vip-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 153, 0, 0.1);
-            border-color: rgba(255, 153, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(191, 0, 255, 0.1);
+            border-color: rgba(191, 0, 255, 0.5);
         }
         
         .vip-card.featured:hover {
@@ -1857,7 +1911,7 @@
         
         .vip-perks li::before {
             content: '✔';
-            color: var(--orange);
+            color: var(--purple);
             font-size: 1rem;
             flex-shrink: 0;
             font-weight: bold;
@@ -1881,8 +1935,8 @@
         }
         
         .faq-item.open {
-            border-color: var(--orange);
-            box-shadow: 0 4px 20px rgba(255, 153, 0, 0.1);
+            border-color: var(--purple);
+            box-shadow: 0 4px 20px rgba(191, 0, 255, 0.1);
         }
         
         .faq-q {
@@ -1902,12 +1956,12 @@
         }
         
         .faq-q:hover {
-            color: var(--orange);
+            color: var(--purple);
             background: rgba(255, 255, 255, 0.05);
         }
         
         .faq-arrow {
-            color: var(--orange);
+            color: var(--purple);
             font-size: .8rem;
             flex-shrink: 0;
             transition: transform .3s ease;
@@ -1946,17 +2000,17 @@
         
         .info-card:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 153, 0, 0.2);
+            border-color: rgba(191, 0, 255, 0.2);
         }
         
         .info-card-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
-            background: rgba(255, 153, 0, 0.1);
+            background: rgba(191, 0, 255, 0.1);
             display: inline-block;
             padding: 0.8rem;
             border-radius: 8px;
-            border: 1px solid rgba(255, 153, 0, 0.2);
+            border: 1px solid rgba(191, 0, 255, 0.2);
         }
         
         .info-card-title {
@@ -1965,7 +2019,7 @@
             font-size: 1.1rem;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--orange);
+            color: var(--purple);
             margin-bottom: 1rem;
         }
         
@@ -1976,8 +2030,8 @@
         }
         
         .info-card-text code {
-            color: var(--orange);
-            background: rgba(255, 153, 0, .1);
+            color: var(--purple);
+            background: rgba(191, 0, 255, .1);
             padding: .2em .5em;
             border-radius: 4px;
             font-family: var(--mono);
@@ -1989,7 +2043,7 @@
         
         .page-footer {
             background: var(--dark2);
-            border-top: 2px solid rgba(255, 153, 0, 0.2);
+            border-top: 2px solid rgba(191, 0, 255, 0.2);
             padding: 4rem 5%;
             text-align: center;
             position: relative;
@@ -2003,7 +2057,7 @@
             left: 50%;
             width: 50%;
             height: 100px;
-            background: radial-gradient(circle, rgba(255, 153, 0, 0.1), transparent 70%);
+            background: radial-gradient(circle, rgba(191, 0, 255, 0.1), transparent 70%);
             transform: translateX(-50%);
             pointer-events: none;
         }
@@ -2013,7 +2067,7 @@
             width: auto;
             margin: 0 auto 1.5rem;
             display: block;
-            filter: drop-shadow(0 0 15px rgba(255, 153, 0, 0.4));
+            filter: drop-shadow(0 0 15px rgba(191, 0, 255, 0.4));
             transition: transform 0.3s;
         }
         
@@ -2055,10 +2109,10 @@
         
         .footer-link:hover {
             color: #fff;
-            border-color: var(--orange);
-            background: rgba(255, 153, 0, 0.1);
+            border-color: var(--purple);
+            background: rgba(191, 0, 255, 0.1);
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(255, 153, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(191, 0, 255, 0.2);
         }
         
         .footer-copy {
@@ -2068,8 +2122,298 @@
             font-family: var(--mono);
         }
         /* ============================================================
-   COMO CONECTAR PAGE
+   COMO CONECTAR PAGE — NEON PURPLE · GTA SA EDITION
    ============================================================ */
+        /* Plataform tabs */
+        .connect-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid rgba(191,0,255,.2);
+            padding-bottom: 0;
+        }
+        .connect-tab {
+            padding: .8rem 2rem;
+            font-family: var(--head);
+            font-size: .9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all .25s;
+            position: relative;
+            bottom: -1px;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .connect-tab:hover { color: var(--purple3); }
+        .connect-tab.active { color: var(--purple); border-bottom-color: var(--purple); }
+        .connect-panel { display: none; }
+        .connect-panel.active { display: block; animation: fadeIn .35s ease; }
+
+        /* Big download card */
+        .connect-dl-hero {
+            background: var(--card2);
+            border: 1px solid rgba(191,0,255,.25);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color .3s, box-shadow .3s;
+        }
+        .connect-dl-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #8B00E6, #BF00FF, #D966FF, #8B00E6);
+            background-size: 200%;
+            animation: neonShift 3s linear infinite;
+        }
+        @keyframes neonShift {
+            0% { background-position: 0%; }
+            100% { background-position: 200%; }
+        }
+        .connect-dl-hero:hover {
+            border-color: rgba(191,0,255,.55);
+            box-shadow: 0 0 40px rgba(191,0,255,.15);
+        }
+        .connect-dl-hero-header {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.2rem;
+        }
+        .connect-dl-hero-icon {
+            font-size: 2.8rem;
+            filter: drop-shadow(0 0 10px rgba(191,0,255,.6));
+        }
+        .connect-dl-hero-title {
+            font-family: var(--head);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .connect-dl-hero-title span { color: var(--purple); }
+        .connect-dl-hero-sub {
+            font-family: var(--mono);
+            font-size: .72rem;
+            color: rgba(191,0,255,.7);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .connect-dl-hero-desc {
+            font-size: .9rem;
+            color: var(--muted2);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .connect-dl-hero-desc strong { color: var(--purple3); }
+        .connect-dl-hero-badges {
+            display: flex;
+            gap: .7rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+        .connect-badge {
+            font-family: var(--mono);
+            font-size: .68rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: .3rem .8rem;
+            border-radius: 4px;
+            border: 1px solid rgba(191,0,255,.3);
+            color: var(--purple3);
+            background: rgba(191,0,255,.07);
+        }
+        .connect-badge.green {
+            border-color: rgba(34,197,94,.35);
+            color: #4ade80;
+            background: rgba(34,197,94,.08);
+        }
+        .connect-badge.blue {
+            border-color: rgba(59,130,246,.35);
+            color: #60a5fa;
+            background: rgba(59,130,246,.08);
+        }
+        .btn-dl-mega {
+            background: linear-gradient(135deg, #6600CC, #BF00FF);
+            color: #fff !important;
+            border: 1px solid rgba(191,0,255,.6);
+            box-shadow: 0 4px 25px rgba(191,0,255,.35);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            padding: .95rem 2.2rem;
+            font-family: var(--head);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: all .3s;
+            cursor: pointer;
+        }
+        .btn-dl-mega:hover {
+            background: linear-gradient(135deg, #BF00FF, #D966FF);
+            box-shadow: 0 6px 35px rgba(191,0,255,.55);
+            transform: translateY(-3px);
+        }
+        /* Variant for Android LITE/FULL */
+        .android-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: .5rem;
+        }
+        @media (max-width: 500px) { .android-options { grid-template-columns: 1fr; } }
+        .android-opt {
+            background: rgba(191,0,255,.06);
+            border: 1px solid rgba(191,0,255,.2);
+            border-radius: 10px;
+            padding: 1.4rem;
+            text-align: center;
+            transition: all .3s;
+        }
+        .android-opt:hover { border-color: rgba(191,0,255,.5); background: rgba(191,0,255,.12); transform: translateY(-3px); }
+        .android-opt-label {
+            font-family: var(--head);
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: .4rem;
+        }
+        .android-opt-label.lite { color: #4ade80; }
+        .android-opt-label.full { color: var(--purple3); }
+        .android-opt-desc { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+
+        /* Steps redesign */
+        .connect-steps-v2 {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .connect-steps-v2::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 24px;
+            bottom: 24px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--purple), rgba(191,0,255,.1));
+        }
+        .connect-step-v2 {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem 0;
+            position: relative;
+        }
+        .connect-step-num-v2 {
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple2), var(--purple));
+            font-family: var(--head);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(191,0,255,.4);
+            z-index: 1;
+            flex-shrink: 0;
+        }
+        .connect-step-body { flex: 1; }
+        .connect-step-title-v2 {
+            font-family: var(--head);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: .45rem;
+        }
+        .connect-step-desc-v2 {
+            font-size: .9rem;
+            color: var(--muted2);
+            line-height: 1.75;
+        }
+        .connect-step-desc-v2 code {
+            background: rgba(191,0,255,.12);
+            color: var(--purple3);
+            padding: .15rem .45rem;
+            border-radius: 3px;
+            font-family: var(--mono);
+            font-size: .82rem;
+            border: 1px solid rgba(191,0,255,.2);
+        }
+        .connect-step-desc-v2 strong { color: var(--purple3); }
+
+        /* IP Box neon */
+        .connect-ip-box {
+            background: var(--card2);
+            border: 1px solid rgba(191,0,255,.3);
+            border-left: 4px solid var(--purple);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .connect-ip-box::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 60% 60% at 50% 100%, rgba(191,0,255,.08), transparent);
+            pointer-events: none;
+        }
+        .connect-ip-label {
+            font-family: var(--head);
+            font-size: .85rem;
+            letter-spacing: 3px;
+            color: var(--muted);
+            text-transform: uppercase;
+            margin-bottom: .8rem;
+        }
+        .connect-ip-value {
+            font-family: var(--mono);
+            font-size: 1.8rem;
+            color: var(--purple);
+            margin-bottom: 1.2rem;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(191,0,255,.5);
+        }
+        /* GTA SA Warning box */
+        .gta-warn-box {
+            background: rgba(191,0,255,.06);
+            border: 1px solid rgba(191,0,255,.2);
+            border-left: 4px solid var(--purple);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .gta-warn-box .icon { font-size: 1.5rem; flex-shrink: 0; }
+        .gta-warn-box p { font-size: .9rem; color: var(--muted2); line-height: 1.7; }
+        .gta-warn-box strong { color: var(--purple3); }
+        
         .connect-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -2089,7 +2433,7 @@
             font-family: var(--head);
             font-size: 3rem;
             font-weight: 700;
-            color: var(--orange);
+            color: var(--purple);
             opacity: .25;
             line-height: 1;
             margin-bottom: .5rem;
@@ -2109,8 +2453,8 @@
             line-height: 1.7;
         }
         .connect-step-desc code {
-            background: rgba(255,153,0,.1);
-            color: var(--orange);
+            background: rgba(191,0,255,.1);
+            color: var(--purple);
             padding: .15rem .45rem;
             border-radius: 3px;
             font-family: var(--mono);
@@ -2134,7 +2478,7 @@
             gap: 1rem;
             transition: border-color .3s, box-shadow .3s;
         }
-        .connect-dl-card:hover { border-color: var(--border); box-shadow: var(--shadow-orange); }
+        .connect-dl-card:hover { border-color: var(--border); box-shadow: var(--shadow-purple); }
         .connect-dl-icon { font-size: 3rem; line-height: 1; }
         .connect-dl-title {
             font-family: var(--head);
@@ -2174,9 +2518,9 @@
         }
         .btn-dl-pc:hover { background: linear-gradient(135deg,#2277cc,#2a88dd); box-shadow: 0 6px 25px rgba(34,119,204,.45); transform: translateY(-3px); }
         .connect-info-box {
-            background: rgba(255,153,0,.06);
-            border: 1px solid rgba(255,153,0,.2);
-            border-left: 4px solid var(--orange);
+            background: rgba(191,0,255,.06);
+            border: 1px solid rgba(191,0,255,.2);
+            border-left: 4px solid var(--purple);
             border-radius: 8px;
             padding: 1.5rem 2rem;
             margin-bottom: 2rem;
@@ -2186,7 +2530,7 @@
         }
         .connect-info-box .icon { font-size: 1.5rem; flex-shrink: 0; }
         .connect-info-box p { font-size: .9rem; color: var(--muted2); line-height: 1.7; }
-        .connect-info-box strong { color: var(--orange); }
+        .connect-info-box strong { color: var(--purple); }
 
         /* ============================================================
    RÁDIO PLAYER FLUTUANTE
@@ -2197,14 +2541,14 @@
             right: 1.2rem;
             z-index: 9000;
             background: rgba(14,14,16,.97);
-            border: 1px solid rgba(255,153,0,.35);
+            border: 1px solid rgba(191,0,255,.35);
             border-radius: 14px;
-            box-shadow: 0 8px 40px rgba(0,0,0,.7), 0 0 20px rgba(255,153,0,.1);
+            box-shadow: 0 8px 40px rgba(0,0,0,.7), 0 0 20px rgba(191,0,255,.1);
             width: 292px;
             overflow: hidden;
             transition: box-shadow .3s;
         }
-        #radio-player:hover { box-shadow: 0 10px 50px rgba(0,0,0,.8), 0 0 30px rgba(255,153,0,.2); }
+        #radio-player:hover { box-shadow: 0 10px 50px rgba(0,0,0,.8), 0 0 30px rgba(191,0,255,.2); }
         @media (max-width: 480px) {
             #radio-player { width: calc(100vw - 2rem); right: 1rem; bottom: 1rem; }
         }
@@ -2231,7 +2575,7 @@
             display: block;
             width: 3px;
             border-radius: 2px;
-            background: var(--orange);
+            background: var(--purple);
             animation: wave 0.8s ease-in-out infinite alternate;
         }
         .radio-wave span:nth-child(1){ height: 8px;  animation-delay: 0s; }
@@ -2262,12 +2606,12 @@
         .radio-title span {
             font-family: var(--mono);
             font-size: .65rem;
-            color: var(--orange);
+            color: var(--purple);
             letter-spacing: 1px;
         }
         .radio-chevron {
             font-size: .85rem;
-            color: var(--orange);
+            color: var(--purple);
             transition: transform .3s;
             flex-shrink: 0;
         }
@@ -2287,18 +2631,18 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--orange2), var(--orange));
+            background: linear-gradient(135deg, var(--purple2), var(--purple));
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(255,153,0,.35);
+            box-shadow: 0 4px 15px rgba(191,0,255,.35);
             transition: all .2s;
             flex-shrink: 0;
         }
-        .radio-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(255,153,0,.5); }
+        .radio-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(191,0,255,.5); }
         .radio-btn:active { transform: scale(.95); }
         .radio-vol-wrap {
             flex: 1;
@@ -2320,9 +2664,9 @@
             -webkit-appearance: none;
             width: 14px; height: 14px;
             border-radius: 50%;
-            background: var(--orange);
+            background: var(--purple);
             cursor: pointer;
-            box-shadow: 0 0 6px var(--orange);
+            box-shadow: 0 0 6px var(--purple);
         }
         .radio-pedido-btn {
             display: flex;
@@ -2330,10 +2674,10 @@
             justify-content: center;
             gap: .5rem;
             padding: .6rem;
-            background: rgba(255,153,0,.08);
-            border: 1px solid rgba(255,153,0,.2);
+            background: rgba(191,0,255,.08);
+            border: 1px solid rgba(191,0,255,.2);
             border-radius: 8px;
-            color: var(--orange);
+            color: var(--purple);
             font-family: var(--head);
             font-size: .8rem;
             font-weight: 700;
@@ -2343,7 +2687,7 @@
             text-decoration: none;
             transition: all .2s;
         }
-        .radio-pedido-btn:hover { background: rgba(255,153,0,.15); border-color: var(--orange); }
+        .radio-pedido-btn:hover { background: rgba(191,0,255,.15); border-color: var(--purple); }
 
         /* ============================================================
    PÁGINA RÁDIO / PEDIDO DE MÚSICA
@@ -2365,8 +2709,8 @@
             height: 120px;
             border-radius: 50%;
             background: radial-gradient(circle, #2a2a2a 30%, #1a1a1a 70%);
-            border: 4px solid var(--orange);
-            box-shadow: 0 0 40px rgba(255,153,0,.4), inset 0 0 20px rgba(0,0,0,.8);
+            border: 4px solid var(--purple);
+            box-shadow: 0 0 40px rgba(191,0,255,.4), inset 0 0 20px rgba(0,0,0,.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2384,7 +2728,7 @@
             color: #fff;
             text-align: center;
         }
-        .radio-page-name span { color: var(--orange); }
+        .radio-page-name span { color: var(--purple); }
         .radio-page-sub {
             font-family: var(--mono);
             font-size: .75rem;
@@ -2400,15 +2744,15 @@
         .rpc-btn {
             width: 60px; height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--orange2), var(--orange));
+            background: linear-gradient(135deg, var(--purple2), var(--purple));
             border: none;
             cursor: pointer;
             font-size: 1.4rem;
-            box-shadow: 0 6px 25px rgba(255,153,0,.4);
+            box-shadow: 0 6px 25px rgba(191,0,255,.4);
             transition: all .2s;
             display: flex; align-items: center; justify-content: center;
         }
-        .rpc-btn:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(255,153,0,.6); }
+        .rpc-btn:hover { transform: scale(1.12); box-shadow: 0 8px 30px rgba(191,0,255,.6); }
         .radio-page-vol {
             width: 100%;
             max-width: 300px;
@@ -2430,8 +2774,8 @@
             -webkit-appearance: none;
             width: 16px; height: 16px;
             border-radius: 50%;
-            background: var(--orange);
-            box-shadow: 0 0 8px var(--orange);
+            background: var(--purple);
+            box-shadow: 0 0 8px var(--purple);
         }
         /* Pedido de musica form */
         .pedido-card {
@@ -2450,7 +2794,7 @@
             color: #fff;
             margin-bottom: 1.8rem;
         }
-        .pedido-card h3 span { color: var(--orange); }
+        .pedido-card h3 span { color: var(--purple); }
         .pedido-fields {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2481,7 +2825,7 @@
             transition: border-color .2s;
             outline: none;
         }
-        .pedido-field input:focus { border-color: var(--orange); background: rgba(255,153,0,.05); }
+        .pedido-field input:focus { border-color: var(--purple); background: rgba(191,0,255,.05); }
         .pedido-field input::placeholder { color: var(--muted); }
         .btn-pedido-wa {
             display: inline-flex;
@@ -2523,7 +2867,7 @@
             bottom: 2rem;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: linear-gradient(135deg, var(--orange), var(--orange2));
+            background: linear-gradient(135deg, var(--purple), var(--purple2));
             color: #111;
             font-family: var(--head);
             font-weight: 700;
@@ -2534,7 +2878,7 @@
             z-index: 99999;
             transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
             white-space: nowrap;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 153, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(191, 0, 255, 0.4);
         }
         
         #toast.show {
@@ -2700,14 +3044,14 @@
             <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" class="splash-logo" onerror="this.style.display='none'">
             <img src="https://iili.io/qBuZQ1a.png" alt="Personagem NARUA" class="splash-char" onerror="this.style.display='none'">
             <div class="splash-title">NARUA<span>RPG</span></div>
-            <div class="splash-sub">Servidor Oficial SA-MP · D.1.0</div>
+            <div class="splash-sub">🏙️ Los Santos · SA-MP D.1.0 · Roxo Neon Edition</div>
             <div class="splash-bar-wrap"><div class="splash-bar"></div></div>
             <div class="splash-enter">Toque para entrar</div>
         </div>
     </div>
     <div class="top-bar">
         <div class="top-bar-left">
-            <span><span class="dot"></span>SA-MP · PC &amp; Android · v0.3.7</span>
+            <span><span class="dot"></span>🏙️ Los Santos · San Fierro · Las Venturas · SA-MP v0.3.7</span>
         </div>
         <div class="top-bar-right">
             <span>📱 WhatsApp VIP: (34) 9 9811-0946</span>
@@ -2742,9 +3086,9 @@
     </nav>
 
     <div class="mobile-menu" id="mobileMenu">
-        <div style="padding:.8rem 5%;border-bottom:1px solid rgba(255,153,0,.15);display:flex;align-items:center;justify-content:space-between">
+        <div style="padding:.8rem 5%;border-bottom:1px solid rgba(191,0,255,.15);display:flex;align-items:center;justify-content:space-between">
             <span style="font-family:var(--mono);font-size:.75rem;color:var(--muted)">SA-MP · 168.222.251.98:5177</span>
-            <span id="mobileOnline" style="font-family:var(--mono);font-size:.75rem;color:var(--orange)">● Carregando...</span>
+            <span id="mobileOnline" style="font-family:var(--mono);font-size:.75rem;color:var(--purple)">● Carregando...</span>
         </div>
         <a href="#" data-page="home" onclick="goPage('home');closeMobile();return false">🏠 Início</a>
         <a href="#" data-page="conectar" onclick="goPage('conectar');closeMobile();return false">🎮 Como Conectar</a>
@@ -2798,8 +3142,8 @@
 
             <div class="hero-wrap">
                 <div class="hero-content">
-                    <div class="hero-tag">Servidor Oficial SA-MP · D.1.0</div>
-                    <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" class="hero-logo-img" onerror="this.outerHTML='<h1 style=\'font-family:Oswald,sans-serif;font-size:4.5rem;font-weight:900;letter-spacing:6px;color:#fff;text-transform:uppercase;margin-bottom:1rem;text-shadow:0 4px 20px rgba(0,0,0,0.8)\'>NARUA<span style=\'color:var(--orange)\'>RPG</span></h1>'">
+                    <div class="hero-tag">🏙️ Los Santos · San Fierro · Las Venturas · SA-MP D.1.0</div>
+                    <img src="https://iili.io/qBukOIR.png" alt="NARUA RPG" class="hero-logo-img" onerror="this.outerHTML='<h1 style=\'font-family:Oswald,sans-serif;font-size:4.5rem;font-weight:900;letter-spacing:6px;color:#fff;text-transform:uppercase;margin-bottom:1rem;text-shadow:0 4px 20px rgba(0,0,0,0.8)\'>NARUA<span style=\'color:var(--purple)\'>RPG</span></h1>'">
                     <p class="hero-subtitle">Guerra de Facções · <em>Empregos</em> · Crimes · Vida Real</p>
 
                     <div class="server-card">
@@ -2859,91 +3203,187 @@
         <div class="page" id="page-conectar">
             <div class="page-hero">
                 <div class="page-hero-inner">
-                    <div class="page-eyebrow">guia de instalação</div>
+                    <div class="page-eyebrow">🎮 guia de instalação</div>
                     <h2 class="page-title">COMO <em>CONECTAR</em></h2>
-                    <p class="page-desc">Conecte-se ao NARUA RPG em PC ou Celular. Siga os passos abaixo e entre no servidor em minutos.</p>
+                    <p class="page-desc">Conecte-se ao NARUA RPG em PC ou Celular. Escolha sua plataforma e siga os passos abaixo.</p>
                 </div>
             </div>
             <div class="page-content">
 
-                <!-- Downloads -->
-                <div class="sec-head">⬇️ Downloads</div>
-                <div class="connect-download-grid">
-                    <div class="connect-dl-card">
-                        <div class="connect-dl-icon">📱</div>
-                        <div class="connect-dl-title">SA-MP Mobile</div>
-                        <div class="connect-dl-desc">Para jogar no <strong>Android</strong>. Instale o APK do SA-MP Mobile e conecte direto pelo celular.</div>
-                        <span class="connect-dl-badge">Android · APK · v0.3.7</span>
-                        <a href="https://drive.google.com/file/d/172NubqniDPhy4kRryNe4qYxerIIbg2np/view?usp=sharing" target="_blank" class="btn btn-dl-apk" style="padding:.85rem 1.8rem;font-family:var(--head);font-size:.9rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:8px;transition:all .3s;cursor:pointer;">
-                            📥 Baixar APK
+                <!-- Tabs PC / Android -->
+                <div class="connect-tabs">
+                    <button class="connect-tab active" onclick="switchTab('pc',this)">🖥️ PC — Windows</button>
+                    <button class="connect-tab" onclick="switchTab('android',this)">📱 Android</button>
+                </div>
+
+                <!-- ===== PAINEL PC ===== -->
+                <div class="connect-panel active" id="tab-pc">
+
+                    <!-- Download card -->
+                    <div class="connect-dl-hero">
+                        <div class="connect-dl-hero-header">
+                            <div class="connect-dl-hero-icon">💻</div>
+                            <div>
+                                <div class="connect-dl-hero-title">GTA SA + SA‑MP + <span>VOIP</span></div>
+                                <div class="connect-dl-hero-sub">Pacote completo · Windows · v0.3.7-R4</div>
+                            </div>
+                        </div>
+                        <p class="connect-dl-hero-desc">
+                            Pacote completo com <strong>GTA San Andreas</strong>, <strong>SA-MP</strong> e <strong>VOIP</strong> já configurados. Baixe, instale e entre no servidor em minutos.
+                        </p>
+                        <div class="connect-dl-hero-badges">
+                            <span class="connect-badge">Windows</span>
+                            <span class="connect-badge">GTA SA Incluso</span>
+                            <span class="connect-badge">SA-MP v0.3.7</span>
+                            <span class="connect-badge green">VOIP Incluso</span>
+                        </div>
+                        <a href="https://mega.nz/file/6qRzEaAS#CCZqFXzeHtJE2Pv0PRz9kWIRxNIcF4iRVcifnT-4q30" target="_blank" class="btn-dl-mega">
+                            ⬇️ Baixar no MEGA
                         </a>
                     </div>
-                    <div class="connect-dl-card">
-                        <div class="connect-dl-icon">🖥️</div>
-                        <div class="connect-dl-title">SA-MP PC</div>
-                        <div class="connect-dl-desc">Para jogar no <strong>Computador</strong>. Você precisa do GTA San Andreas instalado + o cliente SA-MP.</div>
-                        <span class="connect-dl-badge">Windows · PC · v0.3.7-R4</span>
-                        <a href="https://drive.google.com/file/d/1isaCBkxiLvruOjRT8TqLGtqr-F9JCXXU/view?usp=sharing" target="_blank" class="btn btn-dl-pc" style="padding:.85rem 1.8rem;font-family:var(--head);font-size:.9rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-radius:8px;transition:all .3s;cursor:pointer;">
-                            💻 Baixar SA-MP PC
+
+                    <!-- Aviso -->
+                    <div class="gta-warn-box">
+                        <div class="icon">⚠️</div>
+                        <p>Após baixar, <strong>instale o GTA San Andreas primeiro</strong> e em seguida instale o <strong>SA-MP</strong>. Ambos devem estar na mesma pasta.</p>
+                    </div>
+
+                    <!-- Passo a passo PC -->
+                    <div class="sec-head">🖥️ Passo a Passo — PC</div>
+                    <div class="connect-steps-v2">
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">1</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Baixe o Pacote</div>
+                                <div class="connect-step-desc-v2">Clique em <strong>Baixar no MEGA</strong> acima e salve o arquivo no seu computador.</div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">2</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Instale o GTA San Andreas</div>
+                                <div class="connect-step-desc-v2">Execute o instalador do <strong>GTA San Andreas</strong> primeiro. Instale em:<br><code>C:\Arquivos de Programas\Rockstar Games\GTA San Andreas\</code></div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">3</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Instale o SA-MP</div>
+                                <div class="connect-step-desc-v2">Com o GTA instalado, execute o instalador do <strong>SA-MP</strong>. Ele detecta automaticamente a pasta do jogo.</div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">4</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Crie um Atalho no Desktop</div>
+                                <div class="connect-step-desc-v2">Abra <strong>Arquivos de Programas → Rockstar Games → GTA San Andreas</strong>, localize o arquivo <code>samp.exe</code>, clique com botão direito → <strong>Enviar para → Desktop (criar atalho)</strong>.</div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">5</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Adicione o IP do Servidor</div>
+                                <div class="connect-step-desc-v2">Abra o SA-MP → vá em <strong>Favoritos → Adicionar Servidor</strong> → insira:<br><code>168.222.251.98:5177</code></div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">6</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Crie seu Nick & Jogue!</div>
+                                <div class="connect-step-desc-v2">Clique no servidor salvo, <strong>crie seu apelido</strong> e pressione <strong>Conectar</strong>. Bem-vindo ao NARUA RPG! 🎮</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ===== PAINEL ANDROID ===== -->
+                <div class="connect-panel" id="tab-android">
+
+                    <!-- Download card Android -->
+                    <div class="connect-dl-hero">
+                        <div class="connect-dl-hero-header">
+                            <div class="connect-dl-hero-icon">📱</div>
+                            <div>
+                                <div class="connect-dl-hero-title">SA‑MP <span>Mobile</span></div>
+                                <div class="connect-dl-hero-sub">Android · APK · v0.3.7 · LITE & FULL</div>
+                            </div>
+                        </div>
+                        <p class="connect-dl-hero-desc">
+                            Instale o <strong>SA-MP Mobile</strong> no seu Android e entre no servidor direto pelo celular. Escolha a versão ideal para o seu aparelho:
+                        </p>
+                        <div class="android-options" style="margin-bottom:1.8rem">
+                            <div class="android-opt">
+                                <div class="android-opt-label lite">📦 LITE</div>
+                                <div class="android-opt-desc">Para <strong>celulares mais fracos</strong> ou com pouca memória. Versão otimizada e mais leve.</div>
+                            </div>
+                            <div class="android-opt">
+                                <div class="android-opt-label full">🚀 FULL</div>
+                                <div class="android-opt-desc">Para <strong>celulares modernos</strong> com mais memória. Experiência completa e gráficos melhores.</div>
+                            </div>
+                        </div>
+                        <div class="connect-dl-hero-badges">
+                            <span class="connect-badge">Android APK</span>
+                            <span class="connect-badge green">LITE — Celulares Fracos</span>
+                            <span class="connect-badge">FULL — Celulares Modernos</span>
+                        </div>
+                        <a href="https://mega.nz/file/3ywx0IBI#Mt6r7KpfUdQzfpI6PwAjFBktX2Z9tOs33qTClMNGq0I" target="_blank" class="btn-dl-mega">
+                            ⬇️ Baixar APK no MEGA
                         </a>
                     </div>
-                </div>
 
-                <!-- Aviso importante -->
-                <div class="connect-info-box">
-                    <div class="icon">⚠️</div>
-                    <p>No Android, antes de instalar o APK vá em <strong>Configurações → Segurança</strong> e ative <strong>"Fontes desconhecidas"</strong> ou <strong>"Instalar apps desconhecidos"</strong>. No PC, instale o GTA SA primeiro e depois o SA-MP na mesma pasta do jogo.</p>
-                </div>
+                    <!-- Aviso Android -->
+                    <div class="gta-warn-box">
+                        <div class="icon">⚠️</div>
+                        <p>Antes de instalar, vá em <strong>Configurações → Segurança</strong> e ative <strong>"Fontes desconhecidas"</strong> ou <strong>"Instalar apps desconhecidos"</strong> para permitir a instalação do APK.</p>
+                    </div>
 
-                <!-- Passos Mobile -->
-                <div class="sec-head">📱 Passo a Passo — Mobile (Android)</div>
-                <div class="connect-steps" style="margin-bottom:3rem">
-                    <div class="connect-step">
-                        <div class="connect-step-num">01</div>
-                        <div class="connect-step-title">Baixe o APK</div>
-                        <div class="connect-step-desc">Clique em <strong>"Baixar APK"</strong> acima, faça o download e instale o SA-MP Mobile no seu Android.</div>
+                    <!-- Passo a passo Android -->
+                    <div class="sec-head">📱 Passo a Passo — Android</div>
+                    <div class="connect-steps-v2">
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">1</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Baixe o APK</div>
+                                <div class="connect-step-desc-v2">Clique em <strong>Baixar APK no MEGA</strong> acima e aguarde o download no seu celular.</div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">2</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Escolha LITE ou FULL</div>
+                                <div class="connect-step-desc-v2">Instale a opção <strong class="android-opt-label lite" style="font-size:.9rem">LITE</strong> para celulares fracos ou <strong class="android-opt-label full" style="font-size:.9rem">FULL</strong> para celulares modernos.</div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">3</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Instale o APK</div>
+                                <div class="connect-step-desc-v2">Abra o arquivo baixado e toque em <strong>Instalar</strong>. Se solicitado, autorize a instalação de fontes desconhecidas nas configurações.</div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">4</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Abra o SA-MP Mobile</div>
+                                <div class="connect-step-desc-v2">Após instalar, abra o app <strong>SA-MP Mobile</strong> → toque em <strong>Servidores → Adicionar</strong> e insira:<br>IP: <code>168.222.251.98</code>  Porta: <code>5177</code></div>
+                            </div>
+                        </div>
+                        <div class="connect-step-v2">
+                            <div class="connect-step-num-v2">5</div>
+                            <div class="connect-step-body">
+                                <div class="connect-step-title-v2">Conecte & Jogue!</div>
+                                <div class="connect-step-desc-v2">Toque no servidor salvo, escolha seu <strong>apelido</strong> e toque em <strong>Conectar</strong>. BomGAME! 🎮</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="connect-step">
-                        <div class="connect-step-num">02</div>
-                        <div class="connect-step-title">Abra o SA-MP</div>
-                        <div class="connect-step-desc">Abra o app. Toque em <strong>"Servidores"</strong> → <strong>"Adicionar"</strong> e insira o IP: <code>168.222.251.98</code> e Porta: <code>5177</code>.</div>
-                    </div>
-                    <div class="connect-step">
-                        <div class="connect-step-num">03</div>
-                        <div class="connect-step-title">Conecte & Jogue</div>
-                        <div class="connect-step-desc">Toque no servidor salvo, escolha seu apelido e clique em <strong>Conectar</strong>. Bem-vindo ao NARUA RPG! 🎮</div>
-                    </div>
-                </div>
 
-                <!-- Passos PC -->
-                <div class="sec-head">🖥️ Passo a Passo — PC (Windows)</div>
-                <div class="connect-steps">
-                    <div class="connect-step">
-                        <div class="connect-step-num">01</div>
-                        <div class="connect-step-title">Baixe o SA-MP PC</div>
-                        <div class="connect-step-desc">Clique em <strong>"Baixar SA-MP PC"</strong> acima e salve o arquivo no seu computador. Dentro do arquivo baixado estará a <strong>pasta do GTA San Andreas</strong>.</div>
-                    </div>
-                    <div class="connect-step">
-                        <div class="connect-step-num">02</div>
-                        <div class="connect-step-title">Mover para Arquivos de Programas</div>
-                        <div class="connect-step-desc">Abra o <strong>Explorador de Arquivos</strong> e vá em:<br><code>C:\Arquivos de Programas\</code><br>Se não existir, crie a pasta <code>Rockstar Games</code> dentro.</div>
-                    </div>
-                    <div class="connect-step">
-                        <div class="connect-step-num">03</div>
-                        <div class="connect-step-title">Cole a pasta do GTA SA</div>
-                        <div class="connect-step-desc">Cole a pasta do GTA San Andreas dentro de <code>C:\Arquivos de Programas\Rockstar Games\</code>. O resultado deve ser:<br><code>...\Rockstar Games\GTA San Andreas\</code></div>
-                    </div>
-                    <div class="connect-step">
-                        <div class="connect-step-num">04</div>
-                        <div class="connect-step-title">Abra o SA-MP e Conecte</div>
-                        <div class="connect-step-desc">Dentro da pasta do GTA SA, execute o <strong>samp.exe</strong> → vá em <strong>Favoritos → Adicionar Servidor</strong> → insira <code>168.222.251.98:5177</code> e clique em <strong>Conectar</strong>. 🎮</div>
-                    </div>
                 </div>
 
                 <!-- IP Box -->
-                <div style="background:var(--card);border:1px solid rgba(255,153,0,.2);border-left:4px solid var(--orange);border-radius:8px;padding:2rem;text-align:center;margin-bottom:2rem">
-                    <div style="font-family:var(--head);font-size:1rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:.8rem">IP DO SERVIDOR</div>
-                    <div style="font-family:var(--mono);font-size:1.6rem;color:var(--orange);margin-bottom:1.2rem;letter-spacing:2px">168.222.251.98:5177</div>
+                <div class="connect-ip-box">
+                    <div class="connect-ip-label">🎮 IP DO SERVIDOR</div>
+                    <div class="connect-ip-value">168.222.251.98:5177</div>
                     <a href="#" onclick="copyIP();return false" class="btn btn-primary" style="text-decoration:none">📋 Copiar IP</a>
                 </div>
 
@@ -3064,21 +3504,21 @@
                     <div class="vip-grid" id="socioGrid"></div>
                 </div>
 
-                <div style="margin-top:4rem;background:var(--card);border:1px solid rgba(255,153,0,.2);border-left:4px solid var(--orange);border-radius:8px;padding:2.5rem;box-shadow:0 10px 30px rgba(0,0,0,0.3)">
-                    <div style="font-family:var(--head);font-size:1.4rem;font-weight:700;letter-spacing:2px;color:var(--orange);margin-bottom:1.5rem;text-transform:uppercase">💳 Como Adquirir VIP / Sócio</div>
+                <div style="margin-top:4rem;background:var(--card);border:1px solid rgba(191,0,255,.2);border-left:4px solid var(--purple);border-radius:8px;padding:2.5rem;box-shadow:0 10px 30px rgba(0,0,0,0.3)">
+                    <div style="font-family:var(--head);font-size:1.4rem;font-weight:700;letter-spacing:2px;color:var(--purple);margin-bottom:1.5rem;text-transform:uppercase">💳 Como Adquirir VIP / Sócio</div>
                     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
                         <div style="background:var(--card2);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
                             <div style="color:#25D366;font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">📲 Via WhatsApp</div>
                             <div style="font-size:.9rem;color:var(--muted);line-height:2">1. Chame: <strong style="color:#fff">(34) 9 9811-0946</strong><br>2. Informe seu Nick exato<br>3. Escolha o plano<br>4. Realize o pagamento<br>5. Ativação em até 24h</div>
                         </div>
                         <div style="background:var(--card2);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
-                            <div style="color:var(--orange);font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">🪙 Via Moedas VIP</div>
-                            <div style="font-size:.9rem;color:var(--muted);line-height:2">1. Digite <code style="color:var(--orange);background:rgba(255,153,0,0.1);padding:2px 6px;border-radius:4px">/lojavip</code> no jogo<br>2. Escolha VIPs ou Sócios<br>3. Tenha moedas suficientes<br>4. Confirme a compra<br>5.
+                            <div style="color:var(--purple);font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">🪙 Via Moedas VIP</div>
+                            <div style="font-size:.9rem;color:var(--muted);line-height:2">1. Digite <code style="color:var(--purple);background:rgba(191,0,255,0.1);padding:2px 6px;border-radius:4px">/lojavip</code> no jogo<br>2. Escolha VIPs ou Sócios<br>3. Tenha moedas suficientes<br>4. Confirme a compra<br>5.
                                 Benefícios imediatos</div>
                         </div>
                         <div style="background:var(--card2);border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:1.5rem;box-shadow:0 4px 15px rgba(0,0,0,0.2)">
                             <div style="color:#C4C4CC;font-family:var(--head);font-weight:700;font-size:1rem;letter-spacing:1px;margin-bottom:1rem;text-transform:uppercase">🎯 Comandos VIP</div>
-                            <div style="font-size:.9rem;color:var(--muted);line-height:2"><code style="color:var(--orange)">/lojavip</code> — Abrir loja<br><code style="color:var(--orange)">/menuvip</code> — Seus benefícios<br><code style="color:var(--orange)">/vip</code> — Info VIP<br><code style="color:var(--orange)">/kitsocio</code>                                — Kit sócio<br><code style="color:var(--orange)">/kitvip</code> — Kit VIP</div>
+                            <div style="font-size:.9rem;color:var(--muted);line-height:2"><code style="color:var(--purple)">/lojavip</code> — Abrir loja<br><code style="color:var(--purple)">/menuvip</code> — Seus benefícios<br><code style="color:var(--purple)">/vip</code> — Info VIP<br><code style="color:var(--purple)">/kitsocio</code>                                — Kit sócio<br><code style="color:var(--purple)">/kitvip</code> — Kit VIP</div>
                         </div>
                     </div>
                 </div>
@@ -3768,7 +4208,7 @@
             perks: ['Status VIP no servidor', '+1 Nível ao ativar', 'R$120.000 no Banco', 'Salário elevado (+7/PayDay)', 'Comprar mansões e casas', '/KitVIP Comum na loja de armas', 'Chat VIP exclusivo (/v)', '/cordinha liberado', 'Cor diferenciada no relatório', '+2 Respeitos por PayDay']
         }, {
             name: 'VIP PREMIUM',
-            color: '#FF9900',
+            color: '#BF00FF',
             moedas: '15.000',
             salBonus: '+8/PayDay',
             featured: true,
@@ -3862,7 +4302,7 @@
         };
         const tipoColor = {
             Policial: '#33CCFF',
-            Governo: '#FF9900',
+            Governo: '#BF00FF',
             Criminosa: '#ff6b7a',
             Outro: '#A8A8B3'
         };
@@ -4008,6 +4448,17 @@ function goPage(id) {
 }
 
 // ==============================
+// CONNECT PAGE TABS
+// ==============================
+function switchTab(tab, btn) {
+  document.querySelectorAll('.connect-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.connect-tab').forEach(b => b.classList.remove('active'));
+  const panel = document.getElementById('tab-' + tab);
+  if (panel) panel.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+
+// ==============================
 // INTERACTIONS
 // ==============================
 function toggleFAQ(i) { document.getElementById('fq' + i).classList.toggle('open'); }
@@ -4140,13 +4591,13 @@ function applyStatus(d) {
 
   // dots
   document.querySelectorAll('.server-status-dot, .pdot, .nav-ip .pdot').forEach(dot => {
-    dot.style.background = ok ? 'var(--orange)' : '#ff4757';
-    dot.style.boxShadow = ok ? '0 0 10px var(--orange)' : '0 0 10px #ff4757';
+    dot.style.background = ok ? 'var(--purple)' : '#ff4757';
+    dot.style.boxShadow = ok ? '0 0 10px var(--purple)' : '0 0 10px #ff4757';
   });
 
   // nav status
   const navIp = document.getElementById('navStatus');
-  if (navIp) { navIp.textContent = ok ? '● ONLINE' : '● OFFLINE'; navIp.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+  if (navIp) { navIp.textContent = ok ? '● ONLINE' : '● OFFLINE'; navIp.style.color = ok ? 'var(--purple)' : '#ff4757'; }
 
   // hero players — só mostra ONLINE
   const hp = document.getElementById('heroPlayers');
@@ -4162,11 +4613,11 @@ function applyStatus(d) {
 
   // mobile menu status
   const mob = document.getElementById('mobileOnline');
-  if (mob) { mob.textContent = ok ? '● ONLINE' : '● OFFLINE'; mob.style.color = ok ? 'var(--orange)' : '#ff4757'; }
+  if (mob) { mob.textContent = ok ? '● ONLINE' : '● OFFLINE'; mob.style.color = ok ? 'var(--purple)' : '#ff4757'; }
 
   // status dot on server card
   const heroD = document.getElementById('heroStatusDot');
-  if (heroD) { heroD.style.background = ok ? 'var(--orange)' : '#ff4757'; }
+  if (heroD) { heroD.style.background = ok ? 'var(--purple)' : '#ff4757'; }
 }
 
 fetchStatus();
@@ -4274,9 +4725,9 @@ function denyAge() {
     document.body.innerHTML = `
         <div style="background:#07070A;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Oswald',sans-serif;text-align:center;padding:2rem;">
             <div style="font-size:3rem;margin-bottom:1.2rem;">🔒</div>
-            <div style="font-size:1.6rem;color:#FF9900;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem;">Acesso Restrito</div>
+            <div style="font-size:1.6rem;color:#BF00FF;letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem;">Acesso Restrito</div>
             <div style="font-size:.9rem;color:rgba(225,225,230,.6);max-width:360px;line-height:1.7;">
-                Este conteúdo é destinado a pessoas com <strong style="color:#FF9900">14 anos ou mais</strong>.<br>
+                Este conteúdo é destinado a pessoas com <strong style="color:#BF00FF">14 anos ou mais</strong>.<br>
                 Obrigado pela honestidade.
             </div>
         </div>`;
