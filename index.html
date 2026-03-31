@@ -104,21 +104,22 @@
     /* ───── LOGO ───── */
     .logo-wrap {
       position: fixed;
-      top: max(22px, 4vh);
+      bottom: 150px;
       left: 50%; transform: translateX(-50%);
-      z-index: 30;
+      z-index: 14;
     }
     .logo-img {
-      width: clamp(90px, 18vw, 140px);
+      width: clamp(240px, 52vw, 440px);
       height: auto;
+      opacity: .18;
       filter:
-        drop-shadow(0 0 16px rgba(191,0,255,.8))
-        drop-shadow(0 0 40px rgba(191,0,255,.35));
+        drop-shadow(0 0 30px rgba(191,0,255,1))
+        drop-shadow(0 0 80px rgba(191,0,255,.6));
       animation: logoPulse 3s ease-in-out infinite;
     }
     @keyframes logoPulse {
-      0%,100% { filter: drop-shadow(0 0 14px rgba(191,0,255,.7)) drop-shadow(0 0 35px rgba(191,0,255,.3)); }
-      50%      { filter: drop-shadow(0 0 24px rgba(191,0,255,1))  drop-shadow(0 0 55px rgba(191,0,255,.5)); }
+      0%,100% { opacity:.14; filter: drop-shadow(0 0 24px rgba(191,0,255,.9)) drop-shadow(0 0 60px rgba(191,0,255,.5)); }
+      50%      { opacity:.28; filter: drop-shadow(0 0 42px rgba(191,0,255,1))  drop-shadow(0 0 110px rgba(191,0,255,.7)); }
     }
 
     /* ───── CHARACTER ───── */
