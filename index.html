@@ -4,234 +4,251 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NARUA RPG</title>
-  <link rel="icon" type="image/png" href="https://iili.io/qBukOIR.png">
-  <link href="https://fonts.googleapis.com/css2?family=Pricedown&family=Oswald:wght@700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="https://iili.io/qsB9H21.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Oswald:wght@700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --purple:     #BF00FF;
       --purple2:    #8B00E6;
-      --purple-dim: rgba(191,0,255,0.18);
-      --dark:       #06040D;
+      --cyan:       #00FFFF;
+      --dark:       #04020C;
+      --deep:       #06000F;
     }
 
-    body {
-      min-height: 100vh;
-      background: var(--dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    html, body {
+      width: 100%; height: 100%;
       overflow: hidden;
+      background: var(--dark);
       font-family: 'Oswald', sans-serif;
     }
 
-    /* ── BACKGROUND LAYERS ── */
-    .bg-grid {
+    /* ───── TUNNEL / WORMHOLE ───── */
+    #tunnel-canvas {
       position: fixed; inset: 0; z-index: 0;
-      background-image:
-        linear-gradient(rgba(191,0,255,.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(191,0,255,.07) 1px, transparent 1px);
-      background-size: 48px 48px;
-      animation: gridDrift 20s linear infinite;
-    }
-    @keyframes gridDrift {
-      from { background-position: 0 0; }
-      to   { background-position: 48px 48px; }
     }
 
-    /* city silhouette at bottom */
-    .bg-city {
-      position: fixed; bottom: 0; left: 0; right: 0; z-index: 1;
-      height: 220px;
-      background:
-        /* buildings simple CSS art */
-        linear-gradient(to top, #0C0018 0%, transparent 100%);
-    }
-    .bg-city::before {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 180px;
-      background:
-        /* row of building silhouettes */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 180'%3E%3Crect x='0'   y='60'  width='60'  height='120' fill='%230A0018'/%3E%3Crect x='70'  y='20'  width='80'  height='160' fill='%230A0018'/%3E%3Crect x='80'  y='10'  width='10'  height='10'  fill='%23BF00FF' opacity='.6'/%3E%3Crect x='160' y='50'  width='50'  height='130' fill='%230A0018'/%3E%3Crect x='220' y='0'   width='100' height='180' fill='%230A0018'/%3E%3Crect x='230' y='0'   width='8'   height='20'  fill='%23BF00FF' opacity='.8'/%3E%3Crect x='250' y='30'  width='60'  height='10'  fill='%23BF00FF' opacity='.15'/%3E%3Crect x='330' y='70'  width='40'  height='110' fill='%230A0018'/%3E%3Crect x='380' y='30'  width='90'  height='150' fill='%230A0018'/%3E%3Crect x='390' y='30'  width='8'   height='30'  fill='%23BF00FF' opacity='.7'/%3E%3Crect x='480' y='55'  width='70'  height='125' fill='%230A0018'/%3E%3Crect x='560' y='10'  width='110' height='170' fill='%230A0018'/%3E%3Crect x='570' y='5'   width='10'  height='15'  fill='%23BF00FF' opacity='.9'/%3E%3Crect x='590' y='40'  width='70'  height='12'  fill='%23BF00FF' opacity='.12'/%3E%3Crect x='680' y='60'  width='55'  height='120' fill='%230A0018'/%3E%3Crect x='745' y='25'  width='85'  height='155' fill='%230A0018'/%3E%3Crect x='755' y='18'  width='8'   height='18'  fill='%23BF00FF' opacity='.75'/%3E%3Crect x='840' y='50'  width='60'  height='130' fill='%230A0018'/%3E%3Crect x='910' y='0'   width='120' height='180' fill='%230A0018'/%3E%3Crect x='920' y='0'   width='10'  height='20'  fill='%23BF00FF' opacity='.85'/%3E%3Crect x='940' y='35'  width='80'  height='12'  fill='%23BF00FF' opacity='.1'/%3E%3Crect x='1040' y='65' width='45'  height='115' fill='%230A0018'/%3E%3Crect x='1095' y='30' width='75'  height='150' fill='%230A0018'/%3E%3Crect x='1100' y='22' width='8'   height='18'  fill='%23BF00FF' opacity='.7'/%3E%3Crect x='1180' y='55' width='55'  height='125' fill='%230A0018'/%3E%3Crect x='1245' y='15' width='100' height='165' fill='%230A0018'/%3E%3Crect x='1255' y='8'  width='10'  height='20'  fill='%23BF00FF' opacity='.9'/%3E%3Crect x='1355' y='50' width='85'  height='130' fill='%230A0018'/%3E%3C/svg%3E") bottom/cover no-repeat;
+    /* ───── VIGNETTE ───── */
+    .vignette {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      background: radial-gradient(ellipse at center,
+        transparent 30%,
+        rgba(4,2,12,.7) 70%,
+        rgba(4,2,12,.98) 100%);
     }
 
-    /* neon glow on horizon */
-    .bg-glow {
-      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 900px; height: 350px; z-index: 2; pointer-events: none;
-      background: radial-gradient(ellipse at 50% 100%,
-        rgba(191,0,255,.35) 0%,
-        rgba(139,0,230,.15) 40%,
-        transparent 70%);
-      animation: glowPulse 3s ease-in-out infinite alternate;
-    }
-    @keyframes glowPulse {
-      from { opacity: .7; transform: translateX(-50%) scaleX(1); }
-      to   { opacity: 1;  transform: translateX(-50%) scaleX(1.08); }
-    }
-
-    /* scan lines overlay */
+    /* ───── SCAN LINES ───── */
     .scanlines {
       position: fixed; inset: 0; z-index: 3; pointer-events: none;
       background: repeating-linear-gradient(
         to bottom,
-        transparent,
-        transparent 3px,
-        rgba(0,0,0,.08) 3px,
-        rgba(0,0,0,.08) 4px
+        transparent 0px, transparent 3px,
+        rgba(0,0,0,.09) 3px, rgba(0,0,0,.09) 4px
       );
     }
 
-    /* ── MAIN CONTENT ── */
+    /* ───── GLITCH FLASH ───── */
+    .glitch-overlay {
+      position: fixed; inset: 0; z-index: 50; pointer-events: none;
+      opacity: 0;
+      background: rgba(191,0,255,.06);
+      animation: glitchFlash 4s infinite;
+    }
+    @keyframes glitchFlash {
+      0%,100%       { opacity: 0; transform: none; }
+      10%           { opacity: 1; transform: skewX(.4deg); }
+      10.5%         { opacity: 0; transform: none; }
+      55%           { opacity: .5; transform: skewX(-.2deg) translateX(2px); }
+      55.3%         { opacity: 0; transform: none; }
+    }
+
+    /* ───── CORNERS ───── */
+    .corner {
+      position: fixed; z-index: 20;
+      width: 44px; height: 44px;
+      opacity: .55;
+      animation: cornerPulse 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes cornerPulse { from { opacity:.35; } to { opacity:.75; } }
+    .corner--tl { top:14px; left:14px;  border-top:2px solid var(--purple); border-left:2px solid var(--purple); }
+    .corner--tr { top:14px; right:14px; border-top:2px solid var(--purple); border-right:2px solid var(--purple); }
+    .corner--bl { bottom:14px; left:14px;  border-bottom:2px solid var(--purple); border-left:2px solid var(--purple); }
+    .corner--br { bottom:14px; right:14px; border-bottom:2px solid var(--purple); border-right:2px solid var(--purple); }
+
+    /* ───── HUD LINES ───── */
+    .hud-h {
+      position: fixed; z-index: 10; pointer-events: none;
+      left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(191,0,255,.18), transparent);
+    }
+    .hud-h--t { top: 58px; }
+    .hud-h--b { bottom: 58px; }
+    .hud-v {
+      position: fixed; z-index: 10; pointer-events: none;
+      top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(191,0,255,.15), transparent);
+    }
+    .hud-v--l { left: 58px; }
+    .hud-v--r { right: 58px; }
+
+    /* ───── STAGE ───── */
     .stage {
-      position: relative; z-index: 10;
+      position: relative; z-index: 15;
+      width: 100%; height: 100vh;
       display: flex; flex-direction: column;
       align-items: center; justify-content: flex-end;
-      min-height: 100vh; width: 100%;
-      padding-bottom: 60px;
+      padding-bottom: 52px;
     }
 
-    /* ── CHARACTER ── */
+    /* ───── LOGO ───── */
+    .logo-wrap {
+      position: fixed;
+      top: max(22px, 4vh);
+      left: 50%; transform: translateX(-50%);
+      z-index: 30;
+    }
+    .logo-img {
+      width: clamp(90px, 18vw, 140px);
+      height: auto;
+      filter:
+        drop-shadow(0 0 16px rgba(191,0,255,.8))
+        drop-shadow(0 0 40px rgba(191,0,255,.35));
+      animation: logoPulse 3s ease-in-out infinite;
+    }
+    @keyframes logoPulse {
+      0%,100% { filter: drop-shadow(0 0 14px rgba(191,0,255,.7)) drop-shadow(0 0 35px rgba(191,0,255,.3)); }
+      50%      { filter: drop-shadow(0 0 24px rgba(191,0,255,1))  drop-shadow(0 0 55px rgba(191,0,255,.5)); }
+    }
+
+    /* ───── CHARACTER ───── */
     .char-wrap {
       position: relative;
-      width: min(400px, 85vw);
-      animation: charFloat 3s ease-in-out infinite;
+      width: min(360px, 78vw);
+      margin-bottom: -10px;
+      animation: charFloat 3.2s ease-in-out infinite;
+      z-index: 20;
     }
     @keyframes charFloat {
-      0%,100% { transform: translateY(0px); }
-      50%      { transform: translateY(-18px); }
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-16px); }
     }
-
-    /* neon circle glow under char */
-    .char-wrap::before {
+    .char-wrap::after {
       content: '';
       position: absolute;
-      bottom: -10px; left: 50%; transform: translateX(-50%);
-      width: 70%; height: 30px;
-      background: radial-gradient(ellipse, rgba(191,0,255,.55) 0%, transparent 70%);
-      filter: blur(6px);
-      animation: shadowPulse 3s ease-in-out infinite;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 68%; height: 28px;
+      background: radial-gradient(ellipse, rgba(191,0,255,.5) 0%, transparent 70%);
+      filter: blur(8px);
+      animation: shadowPulse 3.2s ease-in-out infinite;
     }
     @keyframes shadowPulse {
-      0%,100% { opacity: .6; width: 65%; }
-      50%      { opacity: 1;  width: 75%; }
+      0%,100% { opacity:.55; width:62%; }
+      50%      { opacity:.95; width:74%; }
     }
-
     .char-img {
       width: 100%; height: auto;
       filter:
-        drop-shadow(0 0 30px rgba(191,0,255,.6))
-        drop-shadow(0 0 60px rgba(191,0,255,.25))
-        drop-shadow(-8px 20px 25px rgba(0,0,0,.95));
-      animation: charShake 0.12s ease-in-out infinite alternate;
-    }
-    @keyframes charShake {
-      from { transform: rotate(-0.4deg) scaleX(1); }
-      to   { transform: rotate(0.4deg)  scaleX(1.003); }
+        drop-shadow(0 0 28px rgba(191,0,255,.65))
+        drop-shadow(0 0 60px rgba(191,0,255,.2))
+        drop-shadow(-6px 22px 22px rgba(0,0,0,.98));
     }
 
-    /* ── LOGO ── */
-    .logo-wrap {
-      position: absolute;
-      top: max(30px, 5vh);
-      left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-    }
-    .logo-img {
-      width: clamp(100px, 22vw, 150px);
-      filter: drop-shadow(0 0 18px rgba(191,0,255,.7));
-      animation: logoBob 4s ease-in-out infinite;
-    }
-    @keyframes logoBob {
-      0%,100% { filter: drop-shadow(0 0 18px rgba(191,0,255,.7)); }
-      50%      { filter: drop-shadow(0 0 28px rgba(191,0,255,1)); }
-    }
-
-    /* ── REDIRECT CARD ── */
+    /* ───── CARD ───── */
     .redirect-card {
-      background: rgba(10,0,20,.75);
-      border: 1px solid rgba(191,0,255,.3);
-      border-radius: 4px;
-      padding: 1.2rem 2.5rem;
+      position: relative;
+      background: rgba(8,0,18,.8);
+      border: 1px solid rgba(191,0,255,.28);
+      border-radius: 3px;
+      padding: 1.15rem 2.4rem 1.25rem;
       text-align: center;
       box-shadow:
-        0 0 0 1px rgba(191,0,255,.08),
-        0 0 40px rgba(191,0,255,.15),
-        inset 0 1px 0 rgba(191,0,255,.12);
-      backdrop-filter: blur(8px);
-      animation: cardIn .6s cubic-bezier(.2,.8,.2,1) .3s both;
-      margin-bottom: 12px;
+        0 0 0 1px rgba(191,0,255,.06),
+        0 0 50px rgba(191,0,255,.14),
+        inset 0 1px 0 rgba(191,0,255,.1);
+      backdrop-filter: blur(12px);
+      animation: cardIn .7s cubic-bezier(.15,.85,.2,1) .25s both;
+      margin-bottom: 8px;
+      z-index: 20;
+      overflow: hidden;
+    }
+    .card-shine {
+      position: absolute;
+      top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(191,0,255,.07), transparent);
+      animation: cardShine 4s ease-in-out infinite;
+    }
+    @keyframes cardShine {
+      0%   { left: -60%; }
+      60%  { left: 140%; }
+      100% { left: 140%; }
     }
     @keyframes cardIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: none; }
+      from { opacity:0; transform: translateY(24px) scale(.97); }
+      to   { opacity:1; transform: none; }
     }
 
     .card-label {
       font-family: 'Share Tech Mono', monospace;
-      font-size: .65rem;
+      font-size: .62rem;
       letter-spacing: 4px;
-      color: rgba(191,0,255,.6);
+      color: rgba(191,0,255,.55);
       text-transform: uppercase;
-      margin-bottom: .5rem;
+      margin-bottom: .45rem;
     }
-
     .card-title {
-      font-family: 'Oswald', sans-serif;
-      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
-      font-weight: 700;
-      letter-spacing: 3px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(1.4rem, 4.5vw, 2rem);
+      letter-spacing: 6px;
       color: #fff;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px rgba(191,0,255,.5);
+      text-shadow: 0 0 22px rgba(191,0,255,.5);
     }
     .card-title span { color: var(--purple); }
 
-    /* countdown ring */
+    /* ───── COUNTDOWN ───── */
     .countdown-wrap {
       display: flex; align-items: center; justify-content: center;
-      gap: 14px; margin-top: 1rem;
+      gap: 16px; margin-top: .9rem;
     }
-    .ring-svg { width: 52px; height: 52px; }
-    .ring-bg  { fill: none; stroke: rgba(191,0,255,.12); stroke-width: 3; }
+    .ring-svg { width: 54px; height: 54px; }
+    .ring-bg  { fill: none; stroke: rgba(191,0,255,.1); stroke-width: 3; }
     .ring-arc {
       fill: none; stroke: var(--purple); stroke-width: 3;
       stroke-linecap: round;
       stroke-dasharray: 138; stroke-dashoffset: 0;
       transform: rotate(-90deg); transform-origin: center;
       transition: stroke-dashoffset 1s linear;
+      filter: drop-shadow(0 0 4px var(--purple));
     }
     .ring-num {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       fill: var(--purple);
     }
-
     .cd-text {
       font-family: 'Share Tech Mono', monospace;
-      font-size: .75rem;
+      font-size: .72rem;
       letter-spacing: 2px;
-      color: rgba(255,255,255,.4);
+      color: rgba(255,255,255,.38);
       text-transform: uppercase;
       text-align: left;
-      line-height: 1.7;
+      line-height: 1.8;
     }
-    .cd-text strong { color: rgba(191,0,255,.8); display: block; }
+    .cd-text strong { color: rgba(191,0,255,.85); display: block; }
 
-    /* progress bar */
+    /* ───── PROGRESS ───── */
     .prog-bar {
-      width: 200px; height: 2px;
-      background: rgba(255,255,255,.06);
+      width: 210px; height: 2px;
+      background: rgba(255,255,255,.05);
       border-radius: 2px;
-      margin: 1rem auto 0;
+      margin: .9rem auto 0;
       overflow: hidden;
     }
     .prog-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--purple2), var(--purple));
-      box-shadow: 0 0 8px var(--purple);
-      width: 100%;
+      background: linear-gradient(90deg, var(--purple2), var(--purple), #00FFFF);
+      box-shadow: 0 0 10px var(--purple);
       transform-origin: left;
       animation: progDrain 5s linear forwards;
     }
@@ -240,63 +257,59 @@
       to   { transform: scaleX(0); }
     }
 
-    /* neon corner decorations */
-    .corner {
-      position: fixed; width: 40px; height: 40px;
-      z-index: 20; opacity: .5;
-    }
-    .corner--tl { top: 16px; left: 16px;
-      border-top: 2px solid var(--purple);
-      border-left: 2px solid var(--purple); }
-    .corner--tr { top: 16px; right: 16px;
-      border-top: 2px solid var(--purple);
-      border-right: 2px solid var(--purple); }
-    .corner--bl { bottom: 16px; left: 16px;
-      border-bottom: 2px solid var(--purple);
-      border-left: 2px solid var(--purple); }
-    .corner--br { bottom: 16px; right: 16px;
-      border-bottom: 2px solid var(--purple);
-      border-right: 2px solid var(--purple); }
-
-    /* floating particles */
-    .particles { position: fixed; inset: 0; z-index: 4; pointer-events: none; }
-    .p {
-      position: absolute;
-      width: 2px; height: 2px;
+    /* ───── WARP / ZOOM TRANSITION ───── */
+    #warp-overlay {
+      position: fixed; inset: 0; z-index: 100;
+      background: radial-gradient(circle at center, #BF00FF 0%, #06000F 60%);
+      transform: scale(0);
+      opacity: 0;
       border-radius: 50%;
-      background: var(--purple);
-      box-shadow: 0 0 6px var(--purple);
-      animation: particleUp linear infinite;
+      transition: none;
+      pointer-events: none;
     }
-    @keyframes particleUp {
-      from { transform: translateY(0) scale(1); opacity: .8; }
-      to   { transform: translateY(-100vh) scale(0); opacity: 0; }
+    #warp-overlay.go {
+      animation: warpIn .9s cubic-bezier(.65,0,.35,1) forwards;
     }
+    @keyframes warpIn {
+      0%   { transform: scale(0); opacity: 1; border-radius: 50%; }
+      60%  { transform: scale(1.6); opacity: 1; border-radius: 0; }
+      100% { transform: scale(3);  opacity: 1; border-radius: 0; }
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Background layers -->
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
-  <div class="bg-city"></div>
-  <div class="scanlines"></div>
+  <!-- Tunnel canvas -->
+  <canvas id="tunnel-canvas"></canvas>
 
-  <!-- Corner decorations -->
+  <!-- Atmosphere -->
+  <div class="vignette"></div>
+  <div class="scanlines"></div>
+  <div class="glitch-overlay"></div>
+
+  <!-- HUD frame -->
+  <div class="hud-h hud-h--t"></div>
+  <div class="hud-h hud-h--b"></div>
+  <div class="hud-v hud-v--l"></div>
+  <div class="hud-v hud-v--r"></div>
+
+  <!-- Corners -->
   <div class="corner corner--tl"></div>
   <div class="corner corner--tr"></div>
   <div class="corner corner--bl"></div>
   <div class="corner corner--br"></div>
 
-  <!-- Particles -->
-  <div class="particles" id="particles"></div>
+  <!-- Warp transition -->
+  <div id="warp-overlay"></div>
 
-  <!-- Main stage -->
+  <!-- Logo -->
+  <div class="logo-wrap">
+    <img class="logo-img" src="https://iili.io/qsB9H21.png" alt="NARUA RPG">
+  </div>
+
+  <!-- Stage -->
   <div class="stage">
-    <!-- Logo top -->
-    <div class="logo-wrap">
-      <img class="logo-img" src="https://iili.io/qBukOIR.png" alt="NARUA RPG">
-    </div>
 
     <!-- Character -->
     <div class="char-wrap">
@@ -305,9 +318,10 @@
            alt="Personagem NARUA RPG">
     </div>
 
-    <!-- Redirect card -->
+    <!-- Card -->
     <div class="redirect-card">
-      <div class="card-label">▸ Redirecionando</div>
+      <div class="card-shine"></div>
+      <div class="card-label">▸ Sincronizando consciência</div>
       <div class="card-title">NARUA <span>RPG</span></div>
 
       <div class="countdown-wrap">
@@ -317,7 +331,7 @@
           <text class="ring-num" x="23" y="28" text-anchor="middle" id="cdNum">5</text>
         </svg>
         <div class="cd-text">
-          <strong id="cdMsg">Aguarde…</strong>
+          <strong id="cdMsg">Iniciando portal…</strong>
           naruarpg.gamer.gd
         </div>
       </div>
@@ -326,49 +340,191 @@
         <div class="prog-fill"></div>
       </div>
     </div>
+
   </div>
 
   <script>
-    /* ── PARTICLES ── */
-    const pc = document.getElementById('particles');
-    for (let i = 0; i < 22; i++) {
-      const p = document.createElement('div');
-      p.className = 'p';
-      const x = Math.random() * 100;
-      const dur = 4 + Math.random() * 8;
-      const del = Math.random() * 8;
-      const sz = Math.random() > .5 ? 3 : 2;
-      p.style.cssText = `left:${x}%;bottom:${Math.random()*30}%;
-        width:${sz}px;height:${sz}px;
-        animation-duration:${dur}s;animation-delay:${del}s`;
-      pc.appendChild(p);
-    }
+  /* ════════════════════════════════
+     TUNNEL / WORMHOLE CANVAS
+  ════════════════════════════════ */
+  const canvas = document.getElementById('tunnel-canvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H, CX, CY;
 
-    /* ── COUNTDOWN & REDIRECT ── */
-    const TOTAL   = 5;
-    const ARC_LEN = 138; // 2π × 22 ≈ 138
-    const arc     = document.getElementById('ringArc');
-    const numEl   = document.getElementById('cdNum');
-    const msgEl   = document.getElementById('cdMsg');
-    const msgs    = ['Aguarde…','Carregando…','Quase lá…','Pronto!','Entrando…'];
-    let   secs    = TOTAL;
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    CX = W / 2; CY = H / 2;
+  }
+  window.addEventListener('resize', resize);
+  resize();
 
-    function tick() {
-      secs--;
-      if (secs <= 0) {
-        numEl.textContent = '0';
-        msgEl.textContent = '🚀 Entrando!';
-        arc.style.strokeDashoffset = ARC_LEN;
-        setTimeout(() => { window.location.href = 'http://naruarpg.gamer.gd/narua.php'; }, 400);
-        return;
+  // Tunnel rings config
+  const RINGS    = 24;
+  const SPEED    = 1.6;          // ring travel speed
+  let   camZoom  = 1;            // zoom multiplier (grows on exit)
+  let   rings    = [];
+
+  // Pre-generate ring "spokes"
+  const SPOKES = 12;
+
+  function mkRing(z) {
+    return {
+      z,                            // 0 = far, 1 = near
+      hue:   270 + Math.random() * 60 - 30,   // purple range
+      cyan:  Math.random() > .7,
+      twist: Math.random() * Math.PI * 2,
+    };
+  }
+
+  for (let i = 0; i < RINGS; i++) {
+    rings.push(mkRing(i / RINGS));
+  }
+
+  let t = 0;
+  let warpActive = false;
+
+  function drawTunnel() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Deep space gradient center
+    const grad = ctx.createRadialGradient(CX, CY, 0, CX, CY, Math.min(W, H) * 0.55);
+    grad.addColorStop(0,   'rgba(30,0,60,.55)');
+    grad.addColorStop(.5,  'rgba(10,0,25,.4)');
+    grad.addColorStop(1,   'transparent');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Sort far → near
+    const sorted = [...rings].sort((a, b) => a.z - b.z);
+
+    sorted.forEach(ring => {
+      const perspScale = ring.z;                          // 0=tiny, 1=full
+      const radius     = perspScale * Math.min(W, H) * .65 * camZoom;
+      const alpha      = perspScale * .75;
+
+      if (radius < 2) return;
+
+      const color = ring.cyan
+        ? `rgba(0,255,255,${alpha * .5})`
+        : `rgba(191,0,255,${alpha})`;
+
+      // Main ring
+      ctx.beginPath();
+      ctx.arc(CX, CY, radius, 0, Math.PI * 2);
+      ctx.strokeStyle = color;
+      ctx.lineWidth   = ring.cyan ? 1 : 1.5;
+      ctx.globalAlpha = alpha;
+      ctx.shadowColor = ring.cyan ? '#00FFFF' : '#BF00FF';
+      ctx.shadowBlur  = 18 * perspScale;
+      ctx.stroke();
+
+      // Spokes
+      for (let s = 0; s < SPOKES; s++) {
+        const angle  = (s / SPOKES) * Math.PI * 2 + ring.twist + t * .004;
+        const innerR = radius * .18;
+        ctx.beginPath();
+        ctx.moveTo(CX + Math.cos(angle) * innerR,  CY + Math.sin(angle) * innerR);
+        ctx.lineTo(CX + Math.cos(angle) * radius,  CY + Math.sin(angle) * radius);
+        ctx.strokeStyle = `rgba(191,0,255,${alpha * .2})`;
+        ctx.lineWidth   = .5;
+        ctx.shadowBlur  = 0;
+        ctx.stroke();
       }
-      numEl.textContent = secs;
-      msgEl.textContent = msgs[TOTAL - secs] || 'Aguarde…';
-      const pct = (TOTAL - secs) / TOTAL;
-      arc.style.strokeDashoffset = pct * ARC_LEN;
-    }
+    });
 
-    setInterval(tick, 1000);
+    ctx.globalAlpha = 1;
+    ctx.shadowBlur  = 0;
+
+    // Bright core glow
+    const coreR = warpActive ? 120 + camZoom * 80 : 60 + Math.sin(t * .04) * 10;
+    const coreG = ctx.createRadialGradient(CX, CY, 0, CX, CY, coreR);
+    coreG.addColorStop(0,   `rgba(191,0,255,${warpActive ? .9 : .3})`);
+    coreG.addColorStop(.45, `rgba(139,0,230,${warpActive ? .4 : .1})`);
+    coreG.addColorStop(1,   'transparent');
+    ctx.fillStyle = coreG;
+    ctx.fillRect(0, 0, W, H);
+
+    // Floating synaptic dots
+    for (let d = 0; d < 28; d++) {
+      const ang  = (d / 28) * Math.PI * 2 + t * .008;
+      const dist = 80 + Math.sin(d * 1.3 + t * .02) * 60;
+      const px   = CX + Math.cos(ang) * dist * camZoom;
+      const py   = CY + Math.sin(ang) * dist * .55 * camZoom;
+      const a    = (.3 + Math.sin(d + t * .06) * .2) * (warpActive ? 1.5 : 1);
+      ctx.beginPath();
+      ctx.arc(px, py, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(191,0,255,${Math.min(a, 1)})`;
+      ctx.shadowColor = '#BF00FF';
+      ctx.shadowBlur  = 8;
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+  }
+
+  function updateRings() {
+    const spd = warpActive ? SPEED * 4 : SPEED;
+    rings.forEach(r => {
+      r.z += spd * .003;
+      if (r.z > 1) {
+        r.z   = 0.02;
+        r.hue = 270 + Math.random() * 60 - 30;
+        r.cyan  = Math.random() > .7;
+        r.twist = Math.random() * Math.PI * 2;
+      }
+    });
+    if (warpActive) camZoom = Math.min(camZoom * 1.04, 3.5);
+  }
+
+  function loop() {
+    t++;
+    updateRings();
+    drawTunnel();
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  /* ════════════════════════════════
+     COUNTDOWN + WARP REDIRECT
+  ════════════════════════════════ */
+  const TOTAL   = 5;
+  const ARC_LEN = 138;
+  const arc     = document.getElementById('ringArc');
+  const numEl   = document.getElementById('cdNum');
+  const msgEl   = document.getElementById('cdMsg');
+  const msgs    = [
+    'Iniciando portal…',
+    'Calibrando mente…',
+    'Sincronizando…',
+    'Abrindo portal…',
+    'Entrando!'
+  ];
+
+  let secs = TOTAL;
+
+  function tick() {
+    secs--;
+    if (secs <= 0) {
+      numEl.textContent = '0';
+      msgEl.textContent = '🚀 Entrando!';
+      arc.style.strokeDashoffset = ARC_LEN;
+
+      // Activate warp
+      warpActive = true;
+      document.getElementById('warp-overlay').classList.add('go');
+
+      setTimeout(() => {
+        window.location.href = 'http://naruarpg.gamer.gd/narua.php';
+      }, 850);
+      return;
+    }
+    numEl.textContent = secs;
+    msgEl.textContent = msgs[TOTAL - secs] || 'Aguarde…';
+    const pct = (TOTAL - secs) / TOTAL;
+    arc.style.strokeDashoffset = pct * ARC_LEN;
+  }
+
+  setInterval(tick, 1000);
   </script>
 </body>
 </html>
